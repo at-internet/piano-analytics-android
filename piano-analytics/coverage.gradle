@@ -32,7 +32,7 @@ project.afterEvaluate {
                     '**/BuildConfig.*',
                     '**/Manifest*.*',
                     '**/*Test*.*',
-                    '**/com/piano/analytics/avinsights/*',
+                    '**/io/piano/analytics/avinsights/*',
                     '**/android/databinding/*',
                     '**/androidx/databinding/*',
                     '**/di/module/*',

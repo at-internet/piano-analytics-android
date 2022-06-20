@@ -75,8 +75,8 @@ piano-analytics should now be recognized as a library
 
 1. Configure your site and collect domain in your application initialization
     ```java
-    import com.piano.analytics.PianoAnalytics;
-    import com.piano.analytics.Configuration;
+    import io.piano.analytics.PianoAnalytics;
+    import io.piano.analytics.Configuration;
     
     ...
 
@@ -94,7 +94,7 @@ piano-analytics should now be recognized as a library
 2. Send events
     ```java
    ...
-    import com.piano.analytics.Event;
+    import io.piano.analytics.Event;
    ...
 
     pa.sendEvent(new Event("page.display", new HashMap<String, Object>(){{

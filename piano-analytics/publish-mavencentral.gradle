@@ -1,9 +1,9 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-def GROUP = 'com.piano'
+def GROUP = 'io.piano'
 def ARTIFACT_ID = 'analytics'
-def VERSION = '3.0.0'
+def VERSION = '3.1.0'
 def DESCRIPTION = 'Piano Analytics Mobile Analytics Solutions for Android'
 def URL = 'https://github.com/at-internet/piano-analytics-android'
 def SCM_URL = 'scm:git@github.com:at-internet/piano-analytics-android.git'
@@ -41,8 +41,8 @@ publishing {
                 }
                 developers {
                     developer {
-                        id = 'at-internet'
-                        name = 'AT Internet'
+                        id = 'piano-analytics'
+                        name = 'Piano Analytics'
                         email = 'teamdatacollection@atinternet.com'
                     }
                 }

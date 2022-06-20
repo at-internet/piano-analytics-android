@@ -1,1 +1,2 @@
 include ':app', ':piano-analytics'
+rootProject.name = "piano-analytics"
