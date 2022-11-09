@@ -31,6 +31,8 @@ public final class Media {
 
     private String sessionId;
     private String previousEvent = "";
+    private int previousHeartbeatDelay = 0;
+    private int previousBufferHeartbeatDelay = 0;
     private int previousCursorPositionMillis = 0;
     private int currentCursorPositionMillis = 0;
     private long eventDurationMillis = 0;
@@ -55,13 +57,14 @@ public final class Media {
         heartbeatRunnable = new HeartbeatRunnable(this);
         bufferHeartbeatRunnable = new BufferHeartbeatRunnable(this);
         rebufferHeartbeatRunnable = new RebufferHeartbeatRunnable(this);
+        this.sessionId = UUID.randomUUID().toString();
     }
 
     public Media(PianoAnalytics pianoAnalytics, String sessionId) {
         this(pianoAnalytics);
-        setHeartbeat(createHeartbeatStages(MIN_HEARTBEAT_DURATION))
-                .setBufferHeartbeat(createHeartbeatStages(MIN_BUFFER_HEARTBEAT_DURATION));
-        this.sessionId = TextUtils.isEmpty(sessionId) ? UUID.randomUUID().toString() : sessionId;
+        if (!TextUtils.isEmpty(sessionId)) {
+            this.sessionId = sessionId;
+        }
     }
 
     /***
@@ -141,8 +144,7 @@ public final class Media {
         heartbeat(-1, null);
 
         if (autoHeartbeat) {
-            int diffMin = (int) ((currentTimeMillis() - startSessionTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(heartbeatRunnable, heartbeatDurations.get(diffMin, MIN_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousHeartbeatDelay = updateHeartbeatRunnable(this.previousHeartbeatDelay, startSessionTimeMillis, MIN_HEARTBEAT_DURATION, heartbeatDurations, heartbeatRunnable);
         }
         this.playbackSpeed = playbackSpeed;
     }
@@ -206,15 +208,13 @@ public final class Media {
         if (isPlaybackActivated) {
             if (autoBufferHeartbeat) {
                 bufferTimeMillis = bufferTimeMillis == 0 ? currentTimeMillis() : bufferTimeMillis;
-                int diffMin = (int) ((currentTimeMillis() - bufferTimeMillis) / 60_000);
-                heartbeatExecutor.schedule(rebufferHeartbeatRunnable, bufferHeartbeatDurations.get(diffMin, MIN_BUFFER_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+                this.previousBufferHeartbeatDelay = updateHeartbeatRunnable(this.previousBufferHeartbeatDelay, bufferTimeMillis, MIN_BUFFER_HEARTBEAT_DURATION, bufferHeartbeatDurations, rebufferHeartbeatRunnable);
             }
             sendEvents(createEvent("av.rebuffer.start", true, extraProps));
         } else {
             if (autoBufferHeartbeat) {
                 bufferTimeMillis = bufferTimeMillis == 0 ? currentTimeMillis() : bufferTimeMillis;
-                int diffMin = (int) ((currentTimeMillis() - bufferTimeMillis) / 60_000);
-                heartbeatExecutor.schedule(bufferHeartbeatRunnable, bufferHeartbeatDurations.get(diffMin, MIN_BUFFER_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+                this.previousBufferHeartbeatDelay = updateHeartbeatRunnable(this.previousBufferHeartbeatDelay, bufferTimeMillis, MIN_BUFFER_HEARTBEAT_DURATION, bufferHeartbeatDurations, bufferHeartbeatRunnable);
             }
             sendEvents(createEvent("av.buffer.start", true, extraProps));
         }
@@ -238,8 +238,7 @@ public final class Media {
 
         stopHeartbeatService();
         if (autoHeartbeat) {
-            int diffMin = (int) ((currentTimeMillis() - startSessionTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(heartbeatRunnable, heartbeatDurations.get(diffMin, MIN_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousHeartbeatDelay = updateHeartbeatRunnable(this.previousHeartbeatDelay, startSessionTimeMillis, MIN_HEARTBEAT_DURATION, heartbeatDurations, heartbeatRunnable);
         }
 
         sendEvents(createEvent("av.start", true, extraProps));
@@ -262,8 +261,7 @@ public final class Media {
 
         stopHeartbeatService();
         if (autoHeartbeat) {
-            int diffMin = (int) ((currentTimeMillis() - startSessionTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(heartbeatRunnable, heartbeatDurations.get(diffMin, MIN_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousHeartbeatDelay = updateHeartbeatRunnable(this.previousHeartbeatDelay, startSessionTimeMillis, MIN_HEARTBEAT_DURATION, heartbeatDurations, heartbeatRunnable);
         }
 
         sendEvents(createEvent("av.resume", true, extraProps));
@@ -310,6 +308,8 @@ public final class Media {
         startSessionTimeMillis = 0;
         sessionDurationMillis = 0;
         bufferTimeMillis = 0;
+        previousHeartbeatDelay = 0;
+        previousBufferHeartbeatDelay = 0;
 
         sendEvents(createEvent("av.stop", true, extraProps));
 
@@ -450,26 +450,12 @@ public final class Media {
         sendEvents(createEvent("av.share", false, extraProps));
     }
 
-    /// endregion
-
-    /// region Private methods
-
-    private static SparseIntArray createHeartbeatStages(int heartbeat) {
-        SparseIntArray s = new SparseIntArray();
-        s.append(0, heartbeat);
-        s.append(1, 10);
-        s.append(5, 20);
-        s.append(15, 30);
-        s.append(30, 60);
-        return s;
-    }
-
     /***
      * Set heartbeat value
      * @param heartbeat SparseIntArray
      * @return current Media instance
      */
-    private Media setHeartbeat(SparseIntArray heartbeat) {
+    public Media setHeartbeat(SparseIntArray heartbeat) {
         if (heartbeat == null) {
             return this;
         }
@@ -488,7 +474,12 @@ public final class Media {
         return this;
     }
 
-    private Media setBufferHeartbeat(SparseIntArray bufferHeartbeat) {
+    /***
+     * Set buffer heartbeat value
+     * @param bufferHeartbeat SparseIntArray
+     * @return current Media instance
+     */
+    public Media setBufferHeartbeat(SparseIntArray bufferHeartbeat) {
         if (bufferHeartbeat == null) {
             return this;
         }
@@ -505,6 +496,17 @@ public final class Media {
             bufferHeartbeatDurations.put(0, MIN_BUFFER_HEARTBEAT_DURATION);
         }
         return this;
+    }
+
+    /// endregion
+
+    /// region Private methods
+
+    private int updateHeartbeatRunnable(int previousHeartbeatDelay, long startTimerMillis, int MIN_HEARTBEAT_DURATION, SparseIntArray heartbeatDurations, AVRunnable heartbeatRunnable) {
+        int minutesDelay = (int) ((currentTimeMillis() - startTimerMillis) / 60_000);
+        int heartbeatDelay = Math.max(heartbeatDurations.get(minutesDelay, previousHeartbeatDelay), MIN_HEARTBEAT_DURATION);
+        heartbeatExecutor.schedule(heartbeatRunnable, heartbeatDelay, TimeUnit.SECONDS);
+        return heartbeatDelay;
     }
 
     private synchronized Event createSeekStart(int oldCursorPosition, Map<String, Object> extraProps) {
@@ -637,8 +639,7 @@ public final class Media {
         }
 
         if (fromAuto) {
-            int diffMin = (int) ((currentTimeMillis() - startSessionTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(heartbeatRunnable, heartbeatDurations.get(diffMin, MIN_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousHeartbeatDelay = updateHeartbeatRunnable(this.previousHeartbeatDelay, startSessionTimeMillis, MIN_HEARTBEAT_DURATION, heartbeatDurations, heartbeatRunnable);
         }
 
         sendEvents(createEvent("av.heartbeat", true, extraProps));
@@ -651,8 +652,7 @@ public final class Media {
 
         if (fromAuto) {
             bufferTimeMillis = bufferTimeMillis == 0 ? currentTimeMillis() : bufferTimeMillis;
-            int diffMin = (int) ((currentTimeMillis() - bufferTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(bufferHeartbeatRunnable, bufferHeartbeatDurations.get(diffMin, MIN_BUFFER_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousBufferHeartbeatDelay = updateHeartbeatRunnable(this.previousBufferHeartbeatDelay, bufferTimeMillis, MIN_BUFFER_HEARTBEAT_DURATION, bufferHeartbeatDurations, bufferHeartbeatRunnable);
         }
         sendEvents(createEvent("av.buffer.heartbeat", true, extraProps));
     }
@@ -666,8 +666,7 @@ public final class Media {
 
         if (fromAuto) {
             bufferTimeMillis = bufferTimeMillis == 0 ? currentTimeMillis() : bufferTimeMillis;
-            int diffMin = (int) ((currentTimeMillis() - bufferTimeMillis) / 60_000);
-            heartbeatExecutor.schedule(rebufferHeartbeatRunnable, bufferHeartbeatDurations.get(diffMin, MIN_BUFFER_HEARTBEAT_DURATION), TimeUnit.SECONDS);
+            this.previousBufferHeartbeatDelay = updateHeartbeatRunnable(this.previousBufferHeartbeatDelay, bufferTimeMillis, MIN_BUFFER_HEARTBEAT_DURATION, bufferHeartbeatDurations, rebufferHeartbeatRunnable);
         }
 
         sendEvents(createEvent("av.rebuffer.heartbeat", true, extraProps));

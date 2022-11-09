@@ -195,7 +195,7 @@ final class InternalContextPropertiesStep implements WorkingQueue.IStep {
 
     /// region Tag properties
 
-    private static final String EVENT_COLLECTION_VERSION = "3.1.0";
+    private static final String EVENT_COLLECTION_VERSION = "3.2.0";
     private boolean tagCached;
     private final Map<String, Object> tagProperties = new HashMap<>();
     private final IInternalContextPropertiesFunction getTagProperties = (Context ctx) -> {
