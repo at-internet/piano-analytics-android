@@ -24,6 +24,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    namespace = "com.example.piano_analytics_android"
 }
 
 dependencies {
