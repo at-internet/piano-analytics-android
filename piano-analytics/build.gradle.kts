@@ -1,13 +1,14 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.moshiIR)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.mavenRelease)
 }
 
 android {
     defaultConfig {
-        minSdk = 19
+        minSdk = 21
         compileSdk = 33
         targetSdk = 33
         buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
@@ -33,6 +34,11 @@ ktlint {
 dependencies {
     compileOnly(libs.googleAdsId)
     compileOnly(libs.huaweiAdsId)
+    implementation(libs.lifecycleProcess)
+    implementation(libs.timber)
+    implementation(libs.okhttp)
+    implementation(libs.okhttpLogging)
+    implementation(libs.moshi)
 
     testImplementation(libs.junit)
     testImplementation(libs.androidxTestCore)

@@ -1,11 +1,4 @@
 <resources>
     <string name="app_name">piano-analytics-android</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="config_fragment_label">Config Fragment</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="item_text">You are seeing info about %1$s</string>
 </resources>

@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.mavenRelease) apply false
+    alias(libs.plugins.moshiIR) apply false
     alias(libs.plugins.versionUpdater)
 }
 
