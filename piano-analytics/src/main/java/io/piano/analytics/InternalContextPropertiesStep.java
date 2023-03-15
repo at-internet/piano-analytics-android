@@ -64,8 +64,8 @@ final class InternalContextPropertiesStep implements WorkingQueue.IStep {
     static final String DEVICE_SCREEN_PROPERTIES_FORMAT = "device_screen%s";
     static final String DEVICE_SCREEN_DIAGONAL_PROPERTY = String.format(DEVICE_SCREEN_PROPERTIES_FORMAT, "_diagonal");
     static final String APP_VERSION_PROPERTY = "app_version";
-    static final String MANUFACTURER_PROPERTY = "manufacturer";
-    static final String MODEL_PROPERTY = "model";
+    static final String MANUFACTURER_PROPERTY = "device_manufacturer";
+    static final String MODEL_PROPERTY = "device_model";
     static final String OS_PROPERTIES_FORMAT = "os_%s";
     static final String EVENT_COLLECTION_PROPERTIES_FORMAT = "event_collection_%s";
     static final String BROWSER_LANGUAGE_PROPERTIES = "browser_language";
@@ -161,7 +161,7 @@ final class InternalContextPropertiesStep implements WorkingQueue.IStep {
 
         this.hardwareProperties.put(String.format(OS_PROPERTIES_FORMAT, "group"), PLATFORM);
         this.hardwareProperties.put(String.format(OS_PROPERTIES_FORMAT, "version"), Build.VERSION.RELEASE);
-        this.hardwareProperties.put(String.format(OS_PROPERTIES_FORMAT, "name"), OS_NAME);
+        this.hardwareProperties.put("os", OS_NAME);
         this.hardwareProperties.put(MANUFACTURER_PROPERTY, Build.MANUFACTURER);
         this.hardwareProperties.put(MODEL_PROPERTY, Build.MODEL);
         this.hardwareCached = true;

@@ -25,7 +25,7 @@ public class InternalContextPropertiesStepAPI16Test {
         /// API 17
         testInternalContextProperties.put("device_screen_diagonal", 0.0);
         testInternalContextProperties.put("os_version", "4.1.2");
-        testInternalContextProperties.put("os_name", "android 4.1.2");
+        testInternalContextProperties.put("os", "android 4.1.2");
 
         InternalContextPropertiesStep internalContextPropertiesStep = InternalContextPropertiesStep.getInstance();
 
@@ -52,7 +52,7 @@ public class InternalContextPropertiesStepAPI16Test {
         /// API 17
         testInternalContextProperties.put("device_screen_diagonal", 0.0);
         testInternalContextProperties.put("os_version", "4.1.2");
-        testInternalContextProperties.put("os_name", "android 4.1.2");
+        testInternalContextProperties.put("os", "android 4.1.2");
 
         InternalContextPropertiesStep internalContextPropertiesStep = InternalContextPropertiesStep.getInstance();
 

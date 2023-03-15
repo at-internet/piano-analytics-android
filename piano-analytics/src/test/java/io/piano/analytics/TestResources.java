@@ -39,12 +39,12 @@ class TestResources {
         internalContextProperties.put("connection_type", "UNKNOWN");
         internalContextProperties.put("os_version", "5.0.2");
         internalContextProperties.put("os_group", "android");
-        internalContextProperties.put("os_name", "android 5.0.2");
-        internalContextProperties.put("manufacturer", "unknown");
+        internalContextProperties.put("os", "android 5.0.2");
+        internalContextProperties.put("device_manufacturer", "unknown");
         internalContextProperties.put("event_collection_version", "3.0.0");
         internalContextProperties.put("device_screen_width", 320);
         internalContextProperties.put("device_screen_height", 470);
-        internalContextProperties.put("model", "robolectric");
+        internalContextProperties.put("device_model", "robolectric");
         internalContextProperties.put("app_id", "io.piano.analytics.test");
         internalContextProperties.put("browser_language", "en");
         internalContextProperties.put("event_collection_platform", "android");

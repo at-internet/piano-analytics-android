@@ -112,7 +112,6 @@ final class ConfigurationStep implements WorkingQueue.IStep {
         try {
             objectMap = MapUtils.fromJSONString(PianoAnalyticsUtils.getStringFromInputStream(ctx.getAssets().open(configFileLocation)));
         } catch (IOException e) {
-            PianoAnalytics.InternalLogger.severe("error on ConfigStep.loadConfigurationFromLocalFile: " + e.toString());
             objectMap = new HashMap<>();
         }
 
