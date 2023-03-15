@@ -8,8 +8,9 @@ import io.piano.android.analytics.model.PropertyName
 /**
  * Stores all customer context properties. Automatically removes non-persistent properties at adding them to event
  */
-class ContextPropertiesStorage {
-    private val contextProperties = mutableListOf<ContextProperty>()
+class ContextPropertiesStorage internal constructor(
+    private val contextProperties: MutableList<ContextProperty> = mutableListOf()
+) {
 
     /**
      * Clears storage
@@ -48,7 +49,7 @@ class ContextPropertiesStorage {
 
     internal fun getByEventName(eventName: String): List<Property> {
         val filtered = if (eventName == Event.ANY) {
-            contextProperties
+            contextProperties.toList()
         } else {
             contextProperties.filter { cp ->
                 cp.eventNames.any { it.wildcardMatches(eventName) }

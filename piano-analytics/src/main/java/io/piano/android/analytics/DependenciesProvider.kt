@@ -51,7 +51,9 @@ internal class DependenciesProvider private constructor(
         screenNameProvider,
         contextPropertiesStorage,
         moshi.adapter(EventJsonAdapterFactory.EVENT_PROPERTIES_TYPE)
-    )
+    ).apply {
+        initialize()
+    }
     private val crashHandler = CrashHandler(
         Thread.getDefaultUncaughtExceptionHandler(),
         crashReporter::processUncaughtException

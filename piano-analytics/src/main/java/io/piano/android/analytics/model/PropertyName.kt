@@ -237,10 +237,10 @@ value class PropertyName(
         val HIT_TIME_UTC = PropertyName("hit_time_utc")
 
         @JvmStatic
-        val MANUFACTURER = PropertyName("manufacturer")
+        val MANUFACTURER = PropertyName("device_manufacturer")
 
         @JvmStatic
-        val MODEL = PropertyName("model")
+        val MODEL = PropertyName("device_model")
 
         @JvmStatic
         val OS = PropertyName("os")

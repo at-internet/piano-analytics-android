@@ -21,7 +21,6 @@ internal class ScreenNameProvider : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityPaused(activity: Activity) {
-        TODO("Not yet implemented")
     }
 
     override fun onActivityStopped(activity: Activity) {

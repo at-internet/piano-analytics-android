@@ -13,11 +13,7 @@ internal class CrashReporter(
     private val contextPropertiesStorage: ContextPropertiesStorage,
     private val propertiesJsonAdapter: JsonAdapter<Set<Property>>
 ) {
-    init {
-        addCrashInfo()
-    }
-
-    internal fun addCrashInfo() {
+    internal fun initialize() {
         val crashInfo = prefsStorage.crashInfo ?: return
         val data = propertiesJsonAdapter.fromJson(crashInfo) ?: return
         contextPropertiesStorage.add(ContextProperty(data))

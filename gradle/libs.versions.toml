@@ -1,18 +1,18 @@
 [versions]
 # Plugins
 kotlin = "1.7.22"
-android = "7.4.0"
-versionUpdater = "0.44.0"
-ktlint = "11.0.0"
+android = "7.4.2"
+versionUpdater = "0.46.0"
+ktlint = "11.3.1"
 dokka = "1.7.21"
-mavenRelease = "0.23.2"
+mavenRelease = "0.24.0"
 moshiIR = "0.20.0"
 
 # AndroidX libraries
 compatLibrary = "1.6.0"
 annotationsLibrary = "1.4.0"
-lifecycle = "2.5.1"
-materialLibrary = "1.7.0"
+lifecycle = "2.6.0"
+materialLibrary = "1.8.0"
 
 # Third party Libraries
 googleAdsId = "18.0.1"
@@ -21,14 +21,13 @@ retrofit = "2.6.4"
 okhttp = "4.10.0"
 moshi = "1.14.0"
 timber = "5.0.1"
-viewBindingProperty = "1.5.6"
+viewBindingProperty = "1.5.8"
 
 # Test Libraries
 junit = "4.13.2"
 androidxTestCore = "1.5.0"
 mockitoKotlin = "2.2.0"
-mockitoCore = "3.4.6"
-robolectric = "4.8.2"
+mockitoCore = "5.0.0"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }
@@ -61,4 +60,3 @@ mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore"
 junit = { module = "junit:junit", version.ref = "junit" }
 androidxTestCore = { module = "androidx.test:core-ktx", version.ref = "androidxTestCore" }
 okhttpMockServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }

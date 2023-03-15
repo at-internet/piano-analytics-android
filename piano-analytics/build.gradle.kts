@@ -10,7 +10,6 @@ android {
     defaultConfig {
         minSdk = 21
         compileSdk = 33
-        targetSdk = 33
         buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -40,7 +39,9 @@ dependencies {
     implementation(libs.okhttpLogging)
     implementation(libs.moshi)
 
+    testImplementation(libs.kotlinJunit)
+    testImplementation(libs.mockitoKotlin)
+    testImplementation(libs.mockitoCore)
     testImplementation(libs.junit)
     testImplementation(libs.androidxTestCore)
-    testImplementation(libs.robolectric)
 }
