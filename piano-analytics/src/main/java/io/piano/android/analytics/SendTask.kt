@@ -56,8 +56,6 @@ internal class SendTask(
         }
     }
 
-    internal
-
     companion object {
         internal val MEDIA_TYPE by lazy(LazyThreadSafetyMode.NONE) { "application/json; charset=UTF-8".toMediaType() }
     }

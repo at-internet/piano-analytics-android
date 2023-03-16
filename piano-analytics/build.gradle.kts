@@ -44,4 +44,5 @@ dependencies {
     testImplementation(libs.mockitoCore)
     testImplementation(libs.junit)
     testImplementation(libs.androidxTestCore)
+    testImplementation(libs.okhttpMockServer)
 }

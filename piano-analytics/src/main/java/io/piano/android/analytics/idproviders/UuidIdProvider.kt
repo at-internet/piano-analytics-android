@@ -37,6 +37,5 @@ internal class UuidIdProvider(
         }
 
     // for mocking in tests
-    @Suppress("NOTHING_TO_INLINE")
-    internal inline fun getGenerationTimestamp() = System.currentTimeMillis()
+    internal fun getGenerationTimestamp() = System.currentTimeMillis()
 }

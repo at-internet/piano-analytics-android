@@ -5,12 +5,13 @@ import android.app.Application
 import android.os.Bundle
 
 internal class ScreenNameProvider : Application.ActivityLifecycleCallbacks {
-    private var currentActivityName: String = ""
+    internal var currentActivityName: String = ""
     internal var customScreenName: String? = null
     internal val screenName: String
         get() = customScreenName ?: currentActivityName
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        customScreenName = null
     }
 
     override fun onActivityStarted(activity: Activity) {

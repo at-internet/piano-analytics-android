@@ -9,17 +9,15 @@ internal class UserEventProcessor(
     private val userStorage: UserStorage
 ) : EventProcessor {
     override fun process(events: List<Event>): List<Event> =
-        if (userStorage.currentUser == null)
-            events
-        else with(userStorage.currentUser!!) {
+        userStorage.currentUser?.let {
             val properties = mutableListOf(
-                Property(PropertyName.USER_ID, id),
+                Property(PropertyName.USER_ID, it.id),
                 Property(PropertyName.USER_RECOGNITION, userStorage.userRecognized)
             )
-            if (category != null)
-                properties.add(Property(PropertyName.USER_CATEGORY, category))
+            if (it.category != null)
+                properties.add(Property(PropertyName.USER_CATEGORY, it.category))
             events.map { event ->
                 event.newBuilder().properties(properties).build()
             }
-        }
+        } ?: events
 }
