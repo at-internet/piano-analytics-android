@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Helper for AV Insights
  */
-class MediaHelper(
+class MediaHelper internal constructor(
     sessionId: String,
     private val contentId: String,
     private val pianoAnalytics: PianoAnalytics,
