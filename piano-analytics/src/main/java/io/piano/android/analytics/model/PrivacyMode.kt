@@ -86,6 +86,8 @@ class PrivacyMode(
             PropertyName.DEVICE_BRAND,
             PropertyName.DEVICE_DISPLAY_HEIGHT,
             PropertyName.DEVICE_DISPLAY_WIDTH,
+            PropertyName.DEVICE_MANUFACTURER,
+            PropertyName.DEVICE_MODEL,
             PropertyName.DEVICE_NAME,
             PropertyName.DEVICE_NAME_TECH,
             PropertyName.DEVICE_SCREEN_DIAGONAL,
@@ -159,7 +161,7 @@ class PrivacyMode(
             visitorConsent = true,
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(PrivacyStorageFeature.ALL),
-            allowedPropertyKeys = mutableMapOf("*" to mutableSetOf(PropertyName.ANY_PROPERTY))
+            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY))
         )
 
         /**
@@ -169,7 +171,7 @@ class PrivacyMode(
         val OPTOUT = PrivacyMode(
             visitorMode = "optout",
             allowedEventNames = mutableSetOf(Event.ANY),
-            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY))
+            allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet())
         )
 
         /**
