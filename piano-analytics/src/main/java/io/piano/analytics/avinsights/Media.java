@@ -3,6 +3,7 @@ package io.piano.analytics.avinsights;
 import android.text.TextUtils;
 import android.util.SparseIntArray;
 
+import androidx.annotation.Nullable;
 import io.piano.analytics.PianoAnalytics;
 import io.piano.analytics.Event;
 
@@ -46,6 +47,9 @@ public final class Media {
     private boolean autoHeartbeat;
     private boolean autoBufferHeartbeat;
     private final PianoAnalytics pianoAnalytics;
+
+    @Nullable
+    private Map<String, Object> extraProps;
 
     /// region PUBLIC SECTION
 
@@ -147,6 +151,25 @@ public final class Media {
             this.previousHeartbeatDelay = updateHeartbeatRunnable(this.previousHeartbeatDelay, startSessionTimeMillis, MIN_HEARTBEAT_DURATION, heartbeatDurations, heartbeatRunnable);
         }
         this.playbackSpeed = playbackSpeed;
+    }
+
+    /**
+     * Sets a map of extraProps on the media object and returns it.
+     * @param extraProps The extra props (e.g. av_content properties)
+     * @return The previous media object enriched with the new props
+     */
+    public Media setExtraProps(@Nullable Map<String, Object> extraProps) {
+        this.extraProps = extraProps;
+        return this;
+    }
+
+    /**
+     * Returns the currently set extraProps. Note: Package-private since only AVRunnable needs it at the moment.
+     * @return the extraProps
+     */
+    @Nullable
+    Map<String, Object> getExtraProps() {
+        return extraProps;
     }
 
     /***
