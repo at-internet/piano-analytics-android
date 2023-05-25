@@ -16,7 +16,7 @@ final class HeartbeatRunnable extends AVRunnable {
 
     @Override
     public void run() {
-        media.processHeartbeat(-1, true, null);
+        media.processHeartbeat(-1, true, media.getExtraProps());
     }
 }
 
@@ -28,7 +28,7 @@ final class BufferHeartbeatRunnable extends AVRunnable {
 
     @Override
     public void run() {
-        media.processBufferHeartbeat(true, null);
+        media.processBufferHeartbeat(true, media.getExtraProps());
     }
 }
 
@@ -40,6 +40,6 @@ final class RebufferHeartbeatRunnable extends AVRunnable {
 
     @Override
     public void run() {
-        media.processRebufferHeartbeat(true, null);
+        media.processRebufferHeartbeat(true, media.getExtraProps());
     }
 }
