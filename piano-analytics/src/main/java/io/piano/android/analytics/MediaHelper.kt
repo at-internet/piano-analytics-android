@@ -26,6 +26,8 @@ class MediaHelper internal constructor(
     private var isPlaying = false
     private var isPlaybackActivated = false
 
+    private var extraProps: Array<out Property> = emptyArray()
+
     private var previousHeartbeatDelay = 0L
     private var previousBufferHeartbeatDelay = 0L
     private var previousEventName = ""
@@ -40,13 +42,13 @@ class MediaHelper internal constructor(
         getCurrentTimestamp()
     }
     private val heartbeatRunnable: Runnable = Runnable {
-        processHeartbeat(-1, true)
+        processHeartbeat(-1, true, *extraProps)
     }
     private val bufferHeartbeatRunnable: Runnable = Runnable {
-        processBufferHeartbeat(true)
+        processBufferHeartbeat(true, *extraProps)
     }
     private val rebufferHeartbeatRunnable: Runnable = Runnable {
-        processRebufferHeartbeat(true)
+        processRebufferHeartbeat(true, *extraProps)
     }
 
     /**
@@ -111,6 +113,16 @@ class MediaHelper internal constructor(
         }
         autoBufferHeartbeat = true
         bufferHeartbeatDurations.replaceValues(values, MIN_BUFFER_HEARTBEAT_DURATION)
+    }
+
+    /**
+     * Sets a map of extraProps on the media object and returns it.
+     * @param extraProps The extra props (e.g. av_content properties)
+     * @return this [MediaHelper] instance
+     */
+    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    fun setExtraProps(extraProps: Array<out Property>) = apply {
+        this.extraProps = extraProps
     }
 
     /**
