@@ -1,41 +1,48 @@
 plugins {
-    signing
-    id("com.android.library")
-    id("com.vanniktech.maven.publish")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.moshiIR)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.mavenRelease)
 }
 
 android {
-    compileSdk = 32
-
     defaultConfig {
-
-        minSdk = 16
-        targetSdk = 32
+        minSdk = 21
+        compileSdk = 33
+        buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        release {
+        named("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
-    }
+    namespace = "io.piano.analytics"
+}
+
+ktlint {
+    version.set("0.45.2")
+    android.set(true)
 }
 
 dependencies {
-    compileOnly("com.google.android.gms:play-services-ads:21.0.0")
-    compileOnly("com.huawei.hms:hms-ads-identifier:3.4.26.303")
+    compileOnly(libs.googleAdsId)
+    compileOnly(libs.huaweiAdsId)
+    implementation(libs.lifecycleProcess)
+    implementation(libs.timber)
+    implementation(libs.okhttp)
+    implementation(libs.okhttpLogging)
+    implementation(libs.moshi)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.test:core:1.4.0")
-    testImplementation("org.robolectric:robolectric:4.5.1")
+    testImplementation(libs.kotlinJunit)
+    testImplementation(libs.mockitoKotlin)
+    testImplementation(libs.mockitoCore)
+    testImplementation(libs.junit)
+    testImplementation(libs.androidxTestCore)
+    testImplementation(libs.okhttpMockServer)
 }
