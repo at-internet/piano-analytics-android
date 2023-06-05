@@ -121,8 +121,8 @@ class MediaHelper internal constructor(
      * @return this [MediaHelper] instance
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun setExtraProps(extraProps: Array<out Property>) = apply {
-        this.extraProps = extraProps
+    fun setExtraProps(vararg extraProps: Property): MediaHelper = apply {
+        this.extraProps = extraProps.copyOf()
     }
 
     /**
