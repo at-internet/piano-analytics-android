@@ -1,33 +1,33 @@
 [versions]
 # Plugins
-kotlin = "1.7.22"
-android = "7.4.2"
+kotlin = "1.8.21"
+android = "8.0.2"
 versionUpdater = "0.46.0"
-ktlint = "11.3.1"
-dokka = "1.7.21"
-mavenRelease = "0.24.0"
-moshiIR = "0.20.0"
+ktlint = "11.3.2"
+dokka = "1.8.10"
+mavenRelease = "0.25.2"
+moshiIR = "0.22.1"
 
 # AndroidX libraries
-compatLibrary = "1.6.0"
-annotationsLibrary = "1.4.0"
-lifecycle = "2.6.0"
-materialLibrary = "1.8.0"
+compatLibrary = "1.6.1"
+annotationsLibrary = "1.6.0"
+lifecycle = "2.6.1"
+materialLibrary = "1.9.0"
 
 # Third party Libraries
 googleAdsId = "18.0.1"
 huaweiAdsId = "3.4.26.303"
 retrofit = "2.6.4"
-okhttp = "4.10.0"
-moshi = "1.14.0"
+okhttp = "4.11.0"
+moshi = "1.15.0"
 timber = "5.0.1"
-viewBindingProperty = "1.5.8"
+viewBindingProperty = "1.5.9"
 
 # Test Libraries
 junit = "4.13.2"
 androidxTestCore = "1.5.0"
 mockitoKotlin = "2.2.0"
-mockitoCore = "5.0.0"
+mockitoCore = "5.3.1"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }

@@ -6,6 +6,11 @@ plugins {
     alias(libs.plugins.mavenRelease)
 }
 
+val GROUP: String by project
+val VERSION_NAME: String by project
+group = GROUP
+version = VERSION_NAME
+
 android {
     defaultConfig {
         minSdk = 21
@@ -14,6 +19,11 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildTypes {
@@ -25,8 +35,15 @@ android {
     namespace = "io.piano.analytics"
 }
 
+kotlin {
+    explicitApi()
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
+    }
+}
+
 ktlint {
-    version.set("0.45.2")
+    version.set("0.48.2")
     android.set(true)
 }
 
