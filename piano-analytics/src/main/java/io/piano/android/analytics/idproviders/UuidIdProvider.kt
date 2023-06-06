@@ -14,8 +14,9 @@ internal class UuidIdProvider(
         get() {
             val now = getGenerationTimestamp()
             val uuid = prefsStorage.visitorUuid?.let {
-                if (prefsStorage.visitorUuidGenerateTimestamp == 0L)
+                if (prefsStorage.visitorUuidGenerateTimestamp == 0L) {
                     prefsStorage.visitorUuidGenerateTimestamp = now
+                }
                 val expireTimestamp = prefsStorage.visitorUuidGenerateTimestamp + TimeUnit.DAYS.toMillis(
                     configuration.visitorStorageLifetime.toLong()
                 )
@@ -24,7 +25,9 @@ internal class UuidIdProvider(
                         prefsStorage.visitorUuidGenerateTimestamp = now
                     }
                     it
-                } else null
+                } else {
+                    null
+                }
             } ?: createNewUuid()
             return uuid
         }

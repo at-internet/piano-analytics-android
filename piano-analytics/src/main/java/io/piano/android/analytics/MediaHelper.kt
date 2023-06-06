@@ -15,7 +15,7 @@ class MediaHelper internal constructor(
     sessionId: String,
     private val contentId: String,
     private val pianoAnalytics: PianoAnalytics,
-    private val executorProvider: () -> ScheduledExecutorService,
+    private val executorProvider: () -> ScheduledExecutorService
 ) {
     private var executor: ScheduledExecutorService = executorProvider()
     private val heartbeatDurations = SparseLongArray()
@@ -182,7 +182,9 @@ class MediaHelper internal constructor(
     fun bufferStart(cursorPosition: Int, vararg properties: Property) {
         val (eventName, runnable) = if (isPlaybackActivated) {
             "av.rebuffer.start" to rebufferHeartbeatRunnable
-        } else "av.buffer.start" to bufferHeartbeatRunnable
+        } else {
+            "av.buffer.start" to bufferHeartbeatRunnable
+        }
 
         processEvent(eventName, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
@@ -312,7 +314,9 @@ class MediaHelper internal constructor(
     fun seek(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
         if (oldCursorPosition > newCursorPosition) {
             seekBackward(oldCursorPosition, newCursorPosition, *properties)
-        } else seekForward(oldCursorPosition, newCursorPosition, *properties)
+        } else {
+            seekForward(oldCursorPosition, newCursorPosition, *properties)
+        }
 
     /**
      * Measuring seek backward.
@@ -513,11 +517,13 @@ class MediaHelper internal constructor(
                 Property(PropertyName("av_previous_position"), 0),
                 Property(PropertyName("av_position"), 0),
                 Property(PropertyName("av_duration"), 0),
-                Property(PropertyName("av_previous_event"), previousEventName),
+                Property(PropertyName("av_previous_event"), previousEventName)
             ).also {
                 previousEventName = eventName
             }
-        } else emptySet()
+        } else {
+            emptySet()
+        }
         return Event.Builder(eventName)
             .properties(
                 *properties,
@@ -540,9 +546,11 @@ class MediaHelper internal constructor(
     internal fun processHeartbeat(cursorPosition: Int = -1, isAutomatic: Boolean, vararg properties: Property) =
         processEvent("av.heartbeat", properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
-            currentCursorPositionMillis = if (cursorPosition < 0)
+            currentCursorPositionMillis = if (cursorPosition < 0) {
                 currentCursorPositionMillis + (eventDurationMillis * playbackSpeed).toInt()
-            else cursorPosition
+            } else {
+                cursorPosition
+            }
 
             if (isAutomatic) {
                 previousHeartbeatDelay = rescheduleRunnable(

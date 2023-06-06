@@ -44,20 +44,23 @@ class PrivacyMode(
             Event.CLICK_DOWNLOAD,
             Event.CLICK_EXIT,
             Event.CLICK_NAVIGATION,
-            Event.PAGE_DISPLAY,
+            Event.PAGE_DISPLAY
         )
+
         @JvmStatic
         internal val DEFAULT_STORAGE_FEATURES = setOf(
             PrivacyStorageFeature.VISITOR,
-            PrivacyStorageFeature.PRIVACY,
+            PrivacyStorageFeature.PRIVACY
         )
+
         @JvmStatic
         internal val MINIMUM_DEFAULT_PROPERTY_KEYS = setOf(
             PropertyName.CONNECTION_TYPE,
             PropertyName.DEVICE_TIMESTAMP_UTC,
             PropertyName.VISITOR_PRIVACY_CONSENT,
-            PropertyName.VISITOR_PRIVACY_MODE,
+            PropertyName.VISITOR_PRIVACY_MODE
         )
+
         @JvmStatic
         internal val EXEMPT_DEFAULT_PROPERTY_KEYS = MINIMUM_DEFAULT_PROPERTY_KEYS + setOf(
             PropertyName.APP_CRASH,
@@ -149,7 +152,7 @@ class PrivacyMode(
             PropertyName.SRC_TYPE,
             PropertyName.SRC_URL,
             PropertyName.SRC_URL_DOMAIN,
-            PropertyName.SRC_WEBMAIL,
+            PropertyName.SRC_WEBMAIL
         )
 
         /**

@@ -23,8 +23,9 @@ internal class PrivacyEventProcessor(
 
             val allowedEvents = allowedEventNames.simplify()
             val forbiddenEvents = forbiddenEventNames.simplify()
-            if (allowedEvents.isEmpty())
+            if (allowedEvents.isEmpty()) {
                 return emptyList()
+            }
 
             val allowedPropertiesKeys = allowedPropertyKeys.simplify()
             val forbiddenPropertiesKeys = forbiddenPropertyKeys.simplify()
@@ -46,17 +47,20 @@ internal class PrivacyEventProcessor(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun Set<String>.simplify(): Set<String> {
-        return if (contains(WILDCARD))
+    private inline fun Set<String>.simplify(): Set<String> =
+        if (contains(WILDCARD)) {
             setOf(WILDCARD)
-        else toSet()
-    }
+        } else {
+            toSet()
+        }
 
     @Suppress("NOTHING_TO_INLINE")
     private inline fun Map<String, Set<PropertyName>>.simplify(): Map<String, Set<PropertyName>> = mapValues {
-        if (it.value.contains(PropertyName.ANY_PROPERTY))
+        if (it.value.contains(PropertyName.ANY_PROPERTY)) {
             setOf(PropertyName.ANY_PROPERTY)
-        else it.value
+        } else {
+            it.value
+        }
     }
 
     @Suppress("NOTHING_TO_INLINE")
@@ -68,13 +72,16 @@ internal class PrivacyEventProcessor(
         }
 
     private fun Set<Property>.applyFilter(allowed: Set<PropertyName>, forbidden: Set<PropertyName>): Set<Property> {
-        if (forbidden.contains(PropertyName.ANY_PROPERTY))
+        if (forbidden.contains(PropertyName.ANY_PROPERTY)) {
             return emptySet()
+        }
         val sequence = asSequence()
-        val filtered = if (allowed.contains(PropertyName.ANY_PROPERTY))
+        val filtered = if (allowed.contains(PropertyName.ANY_PROPERTY)) {
             sequence
-        else sequence.filter { p ->
-            p.name in allowed || allowed.any { it.key.wildcardMatches(p.name.key) }
+        } else {
+            sequence.filter { p ->
+                p.name in allowed || allowed.any { it.key.wildcardMatches(p.name.key) }
+            }
         }
         return filtered.filterNot { p ->
             p.name in forbidden || forbidden.any { it.key.wildcardMatches(p.name.key) }

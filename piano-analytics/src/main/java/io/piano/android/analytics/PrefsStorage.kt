@@ -23,7 +23,9 @@ internal class PrefsStorage(
                 keysByPrivacyStorageFeature[privacyStorageFeature]?.forEach {
                     remove(it)
                 }
-            } else clear()
+            } else {
+                clear()
+            }
         }.apply()
 
     init {
@@ -107,7 +109,7 @@ internal class PrefsStorage(
             PRIVACY_VISITOR_ID to PrivacyStorageFeature.PRIVACY,
             CRASHED to PrivacyStorageFeature.CRASH,
             USER to PrivacyStorageFeature.USER,
-            USER_GENERATION_TIMESTAMP to PrivacyStorageFeature.USER,
+            USER_GENERATION_TIMESTAMP to PrivacyStorageFeature.USER
         )
 
         @JvmStatic
@@ -128,7 +130,7 @@ internal class PrefsStorage(
             VERSION_CODE,
             FIRST_SESSION_DATE,
             FIRST_SESSION_DATE_AFTER_UPDATE,
-            LAST_SESSION_DATE,
+            LAST_SESSION_DATE
         )
     }
 }

@@ -15,8 +15,9 @@ internal class ResettableProperty<T>(
 ) : ReadWriteProperty<Any, T> {
     private var value: T = resetValue
     override fun getValue(thisRef: Any, property: KProperty<*>): T {
-        if (value == resetValue)
+        if (value == resetValue) {
             value = initializer()
+        }
         return value
     }
 

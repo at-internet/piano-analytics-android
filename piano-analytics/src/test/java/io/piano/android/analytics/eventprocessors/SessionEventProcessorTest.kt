@@ -16,6 +16,7 @@ class SessionEventProcessorTest {
     fun process() {
         val sessionStorage = mock<SessionStorage> {
             on { isFirstSessionAfterUpdate } doReturn false
+            on { sessionId } doReturn DUMMY
         }
         val processor = SessionEventProcessor(sessionStorage)
         val events = processor.process(eventsSource)
@@ -27,6 +28,7 @@ class SessionEventProcessorTest {
     fun processAfterUpdate() {
         val sessionStorage = mock<SessionStorage> {
             on { isFirstSessionAfterUpdate } doReturn true
+            on { sessionId } doReturn DUMMY
         }
         val processor = SessionEventProcessor(sessionStorage)
         val events = processor.process(eventsSource)

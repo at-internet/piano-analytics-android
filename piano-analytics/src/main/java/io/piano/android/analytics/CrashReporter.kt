@@ -20,8 +20,9 @@ internal class CrashReporter(
     }
 
     internal fun processUncaughtException(@Suppress("UNUSED_PARAMETER") t: Thread, e: Throwable) {
-        if (!configuration.detectCrashes)
+        if (!configuration.detectCrashes) {
             return
+        }
         val exc = e.cause ?: e
         val data = setOf(
             Property(PropertyName.APP_CRASH, exc.javaClass.name),

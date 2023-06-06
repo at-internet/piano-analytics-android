@@ -23,9 +23,7 @@ class ContextPropertiesStorage internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun add(property: ContextProperty) {
-        val p = if (property.eventNames.isEmpty()) {
-            property.copy(eventNames = listOf(Event.ANY))
-        } else property
+        val p = if (property.eventNames.isEmpty()) property.copy(eventNames = listOf(Event.ANY)) else property
         contextProperties.add(p)
     }
 

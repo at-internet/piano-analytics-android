@@ -119,8 +119,9 @@ class PianoAnalytics internal constructor(
             {
                 val processedEvents = eventProcessorsGroup.process(events.toList())
                 eventRepository.putEvents(processedEvents)
-                if (configuration.offlineStorageMode != OfflineStorageMode.ALWAYS)
+                if (configuration.offlineStorageMode != OfflineStorageMode.ALWAYS) {
                     sendTask.run()
+                }
             },
             1,
             TimeUnit.SECONDS

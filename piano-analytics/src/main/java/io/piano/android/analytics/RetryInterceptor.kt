@@ -14,13 +14,15 @@ internal class RetryInterceptor(
         for (attempt in 1..maxAttempts) {
             try {
                 val response = chain.proceed(request)
-                if (response.isSuccessful)
+                if (response.isSuccessful) {
                     return response
+                }
                 Timber.d("Unsuccessful request, retrying attempt $attempt")
             } catch (e: Exception) {
                 Timber.d("Exception at request, retrying attempt $attempt")
-                if (attempt == maxAttempts)
+                if (attempt == maxAttempts) {
                     throw e
+                }
             }
             try {
                 Thread.sleep(sleepBetweenAttempts)

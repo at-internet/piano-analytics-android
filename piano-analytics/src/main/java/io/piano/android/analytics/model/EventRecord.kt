@@ -22,7 +22,7 @@ internal class EventRecord(
             ID,
             DATA,
             TIME,
-            IS_SENT,
+            IS_SENT
         )
     }
 }

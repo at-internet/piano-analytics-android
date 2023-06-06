@@ -3,7 +3,6 @@ package io.piano.android.analytics
 import android.content.Context
 import androidx.annotation.RestrictTo
 import com.squareup.moshi.Moshi
-import io.piano.analytics.BuildConfig
 import io.piano.android.analytics.eventprocessors.ContextPropertiesEventProcessor
 import io.piano.android.analytics.eventprocessors.GroupEventProcessor
 import io.piano.android.analytics.eventprocessors.InternalPropertiesEventProcessor
@@ -105,9 +104,11 @@ internal class DependenciesProvider private constructor(
         .addInterceptor(RetryInterceptor())
         .addInterceptor(
             HttpLoggingInterceptor().setLevel(
-                if (BuildConfig.DEBUG || isLogHttpSet())
+                if (BuildConfig.DEBUG || isLogHttpSet()) {
                     HttpLoggingInterceptor.Level.BODY
-                else HttpLoggingInterceptor.Level.NONE
+                } else {
+                    HttpLoggingInterceptor.Level.NONE
+                }
             )
         )
         .build()
@@ -121,21 +122,6 @@ internal class DependenciesProvider private constructor(
         eventsAdapter
     )
 
-/*
-    configurationStep,
-    VisitorIDStep.getInstance(ps),                                              visitorIdProvider -> required for url
-    CrashHandlingStep.getInstance(context, ps),                                 CrashReporter (extract saved crash and add as properties, maybe via contextPropertiesStorage)
-    LifecycleStep.getInstance(context, ps),                                     SessionEventProcessor
-    InternalContextPropertiesStep.getInstance(),                                InternalPropertiesEventProcessor
-    CustomerContextPropertiesStep.getInstance(),                                ContextPropertiesEventProcessor
-    UsersStep.getInstance(context, ps, configurationStep.getConfiguration()),   UserEventProcessor
-    OnBeforeBuildCallStep.getInstance(),                                        customEventProcessors
-    ps,                                                                         PrivacyEventProcessor
-    BuildStep.getInstance(),                                                    useless, url will be built at sending
-    StorageStep.getInstance(context),
-    OnBeforeSendCallStep.getInstance(),                                         useless, maybe EventProcessor will be allowed
-    SendStep.getInstance()                                                      SendTask
-*/
     private val customEventProcessors = GroupEventProcessor()
     private val eventProcessors = GroupEventProcessor(
         mutableListOf(
@@ -172,10 +158,11 @@ internal class DependenciesProvider private constructor(
         internal fun init(context: Context, configuration: Configuration, dataEncoder: DataEncoder) {
             if (instance == null) {
                 synchronized(this) {
-                    if (instance == null)
+                    if (instance == null) {
                         instance = DependenciesProvider(context.applicationContext, configuration, dataEncoder).also {
                             Thread.setDefaultUncaughtExceptionHandler(it.crashHandler)
                         }
+                    }
                 }
             }
         }

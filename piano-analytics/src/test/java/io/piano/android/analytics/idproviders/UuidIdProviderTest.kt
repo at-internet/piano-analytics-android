@@ -30,7 +30,9 @@ class UuidIdProviderTest {
             if (isFirstCall) {
                 isFirstCall = false
                 0
-            } else timestamp
+            } else {
+                timestamp
+            }
         }
         doReturn(VisitorStorageMode.RELATIVE).whenever(configuration).visitorStorageMode
         idProvider.visitorId

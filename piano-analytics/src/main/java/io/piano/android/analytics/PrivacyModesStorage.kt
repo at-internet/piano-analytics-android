@@ -55,7 +55,7 @@ class PrivacyModesStorage internal constructor(
         PrivacyMode.NO_STORAGE,
         PrivacyMode.OPTIN,
         PrivacyMode.OPTOUT,
-        PrivacyMode.EXEMPT,
+        PrivacyMode.EXEMPT
     )
 
     // for mocking in tests

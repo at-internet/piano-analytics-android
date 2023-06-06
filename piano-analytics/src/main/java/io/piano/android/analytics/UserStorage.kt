@@ -40,8 +40,9 @@ class UserStorage internal constructor(
         get() = field ?: storedUser
         set(value) {
             userRecognized = false
-            if (value == null || value.shouldBeStored)
+            if (value == null || value.shouldBeStored) {
                 saveUser(value)
+            }
         }
 
     /**

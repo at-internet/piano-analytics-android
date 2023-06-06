@@ -1,7 +1,7 @@
 package io.piano.android.analytics.eventprocessors
 
 import android.os.Build
-import io.piano.analytics.BuildConfig
+import io.piano.android.analytics.BuildConfig
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.DeviceInfoProvider
 import io.piano.android.analytics.model.ConnectionType
@@ -20,13 +20,15 @@ internal class InternalPropertiesEventProcessor(
         val appProperties = deviceInfoProvider.packageInfo?.run {
             setOf(
                 Property(PropertyName.APP_ID, packageName),
-                Property(PropertyName.APP_VERSION, versionName),
+                Property(PropertyName.APP_VERSION, versionName)
             )
         } ?: emptySet()
         val (language, country) = Locale.getDefault().run { language to country }
-        val connectionType = if (configuration.offlineStorageMode == OfflineStorageMode.ALWAYS)
+        val connectionType = if (configuration.offlineStorageMode == OfflineStorageMode.ALWAYS) {
             ConnectionType.OFFLINE
-        else deviceInfoProvider.connectionType
+        } else {
+            deviceInfoProvider.connectionType
+        }
 
         return events.map { event ->
             event.newBuilder()
@@ -44,7 +46,7 @@ internal class InternalPropertiesEventProcessor(
                     Property(PropertyName.BROWSER_LANGUAGE_LOCAL, country),
                     Property(PropertyName.CONNECTION_TYPE, connectionType.key),
                     Property(PropertyName.EVENT_COLLECTION_PLATFORM, PLATFORM),
-                    Property(PropertyName.EVENT_COLLECTION_VERSION, BuildConfig.SDK_VERSION),
+                    Property(PropertyName.EVENT_COLLECTION_VERSION, BuildConfig.SDK_VERSION)
                 )
                 .properties(appProperties)
                 .build()

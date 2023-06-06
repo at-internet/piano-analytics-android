@@ -14,8 +14,9 @@ internal class UserEventProcessor(
                 Property(PropertyName.USER_ID, it.id),
                 Property(PropertyName.USER_RECOGNITION, userStorage.userRecognized)
             )
-            if (it.category != null)
+            if (it.category != null) {
                 properties.add(Property(PropertyName.USER_CATEGORY, it.category))
+            }
             events.map { event ->
                 event.newBuilder().properties(properties).build()
             }
