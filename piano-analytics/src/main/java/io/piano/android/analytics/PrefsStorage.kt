@@ -7,7 +7,7 @@ import timber.log.Timber
 
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 internal class PrefsStorage(
-    context: Context
+    context: Context,
 ) {
     private val prefs = context.getSharedPreferences("PAPreferencesKey", Context.MODE_PRIVATE)
     internal var privacyStorageFilter: (PrivacyStorageFeature) -> Boolean = { _ -> true }

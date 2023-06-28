@@ -15,7 +15,7 @@ class MediaHelper internal constructor(
     sessionId: String,
     private val contentId: String,
     private val pianoAnalytics: PianoAnalytics,
-    private val executorProvider: () -> ScheduledExecutorService
+    private val executorProvider: () -> ScheduledExecutorService,
 ) {
     private var executor: ScheduledExecutorService = executorProvider()
     private val heartbeatDurations = SparseLongArray()
@@ -485,7 +485,7 @@ class MediaHelper internal constructor(
         eventName: String,
         oldCursorPosition: Int,
         newCursorPosition: Int,
-        properties: Array<out Property>
+        properties: Array<out Property>,
     ) {
         val startSeekEvent = buildSeekStartEvent(oldCursorPosition, properties)
         eventDurationMillis = 0
@@ -596,7 +596,7 @@ class MediaHelper internal constructor(
         startTimerMillis: Long,
         minDelay: Long,
         durations: SparseLongArray,
-        runnable: Runnable
+        runnable: Runnable,
     ): Long {
         val minutesDelay = TimeUnit.MILLISECONDS.toMinutes(getCurrentTimestamp() - startTimerMillis).toInt()
         return durations.get(minutesDelay, previousDelay).coerceAtLeast(minDelay).also {

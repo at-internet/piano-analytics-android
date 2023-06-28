@@ -4,13 +4,13 @@ import java.util.Collections
 
 class Event private constructor(
     val name: String,
-    val properties: Set<Property>
+    val properties: Set<Property>,
 ) {
     fun newBuilder(): Builder = Builder(name, properties.toMutableSet())
 
     data class Builder constructor(
         var name: String,
-        val properties: MutableSet<Property> = mutableSetOf()
+        val properties: MutableSet<Property> = mutableSetOf(),
     ) {
         fun name(name: String) = apply { this.name = name }
         fun properties(vararg properties: Property) = apply { this.properties.addAll(properties) }

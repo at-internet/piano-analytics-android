@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 internal class UuidIdProvider(
     private val configuration: Configuration,
-    private val prefsStorage: PrefsStorage
+    private val prefsStorage: PrefsStorage,
 ) : IdProvider {
     override val visitorId: String?
         get() {

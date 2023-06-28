@@ -15,7 +15,7 @@ import io.piano.android.analytics.model.ConnectionType
 import timber.log.Timber
 
 internal class DeviceInfoProvider(
-    private val context: Context
+    private val context: Context,
 ) {
     val displayMetrics: DisplayMetrics by lazy { context.resources.displayMetrics }
 
@@ -51,9 +51,12 @@ internal class DeviceInfoProvider(
 
     private fun NetworkCapabilities.toConnectionType(): ConnectionType = when {
         !hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) -> ConnectionType.OFFLINE
+
         hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
             hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> ConnectionType.WIFI
+
         hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> ConnectionType.MOBILE
+
         else -> ConnectionType.UNKNOWN
     }
 
@@ -74,21 +77,26 @@ internal class DeviceInfoProvider(
 
         TelephonyManager.NETWORK_TYPE_CDMA,
         TelephonyManager.NETWORK_TYPE_IDEN,
-        TelephonyManager.NETWORK_TYPE_1xRTT -> ConnectionType.TWOG
+        TelephonyManager.NETWORK_TYPE_1xRTT,
+        -> ConnectionType.TWOG
 
         TelephonyManager.NETWORK_TYPE_UMTS,
         TelephonyManager.NETWORK_TYPE_EVDO_0,
         TelephonyManager.NETWORK_TYPE_EVDO_A,
-        TelephonyManager.NETWORK_TYPE_EVDO_B -> ConnectionType.THREEG
+        TelephonyManager.NETWORK_TYPE_EVDO_B,
+        -> ConnectionType.THREEG
 
         TelephonyManager.NETWORK_TYPE_HSPA,
         TelephonyManager.NETWORK_TYPE_HSDPA,
-        TelephonyManager.NETWORK_TYPE_HSUPA -> ConnectionType.THREEGPLUS
+        TelephonyManager.NETWORK_TYPE_HSUPA,
+        -> ConnectionType.THREEGPLUS
 
         TelephonyManager.NETWORK_TYPE_HSPAP,
-        TelephonyManager.NETWORK_TYPE_LTE -> ConnectionType.FOURG
+        TelephonyManager.NETWORK_TYPE_LTE,
+        -> ConnectionType.FOURG
 
         TelephonyManager.NETWORK_TYPE_NR -> ConnectionType.FIVEG
+
         else -> ConnectionType.UNKNOWN
     }
 }

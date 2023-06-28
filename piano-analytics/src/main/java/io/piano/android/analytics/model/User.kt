@@ -18,5 +18,5 @@ class User(
     @Json(name = "category")
     val category: String?,
     @Json(ignore = true)
-    val shouldBeStored: Boolean = true
+    val shouldBeStored: Boolean = true,
 )

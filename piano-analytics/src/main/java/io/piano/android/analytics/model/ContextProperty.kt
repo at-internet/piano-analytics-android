@@ -11,5 +11,5 @@ package io.piano.android.analytics.model
 data class ContextProperty @JvmOverloads constructor(
     val properties: Set<Property>,
     val persistent: Boolean = false,
-    val eventNames: Collection<String> = emptyList()
+    val eventNames: Collection<String> = emptyList(),
 )

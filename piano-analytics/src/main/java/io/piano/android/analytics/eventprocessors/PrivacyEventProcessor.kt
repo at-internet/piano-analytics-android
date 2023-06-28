@@ -11,7 +11,7 @@ import timber.log.Timber
 
 internal class PrivacyEventProcessor(
     private val configuration: Configuration,
-    private val privacyModesStorage: PrivacyModesStorage
+    private val privacyModesStorage: PrivacyModesStorage,
 ) : EventProcessor {
 
     override fun process(events: List<Event>): List<Event> {

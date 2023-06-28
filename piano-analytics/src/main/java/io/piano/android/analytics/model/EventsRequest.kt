@@ -5,5 +5,5 @@ import io.piano.android.analytics.RawJson
 
 @JsonClass(generateAdapter = true)
 internal class EventsRequest(
-    @RawJson val events: List<String>
+    @RawJson val events: List<String>,
 )

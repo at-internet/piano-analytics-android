@@ -11,7 +11,7 @@ internal enum class ConnectionType(val key: String) {
     MOBILE("MOBILE"),
     WIFI("WIFI"),
     OFFLINE("OFFLINE"),
-    UNKNOWN("UNKNOWN")
+    UNKNOWN("UNKNOWN"),
 }
 
 enum class VisitorIDType {
@@ -19,7 +19,7 @@ enum class VisitorIDType {
     GOOGLE_ADVERTISING_ID,
     HUAWEI_OPEN_ADVERTISING_ID,
     UUID,
-    CUSTOM
+    CUSTOM,
 }
 
 enum class PrivacyStorageFeature {
@@ -28,7 +28,7 @@ enum class PrivacyStorageFeature {
     LIFECYCLE,
     PRIVACY,
     USER,
-    ALL
+    ALL,
 }
 
 enum class OfflineStorageMode {
@@ -40,7 +40,7 @@ enum class OfflineStorageMode {
     /**
      * Hits are sent if network is available, stored otherwise
      */
-    REQUIRED
+    REQUIRED,
 }
 
 enum class VisitorStorageMode {
@@ -52,5 +52,5 @@ enum class VisitorStorageMode {
     /**
      * RELATIVE : UUID will expires in rare cases
      */
-    RELATIVE
+    RELATIVE,
 }

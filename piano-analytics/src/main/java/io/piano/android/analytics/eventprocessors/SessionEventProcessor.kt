@@ -9,7 +9,7 @@ import java.util.Date
 import java.util.Locale
 
 internal class SessionEventProcessor(
-    private val sessionStorage: SessionStorage
+    private val sessionStorage: SessionStorage,
 ) : EventProcessor {
     override fun process(events: List<Event>): List<Event> {
         val commonProperties = setOf(

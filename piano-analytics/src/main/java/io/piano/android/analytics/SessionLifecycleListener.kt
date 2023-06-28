@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.abs
 
 internal class SessionLifecycleListener(
-    backgroundDuration: Long
+    backgroundDuration: Long,
 ) : DefaultLifecycleObserver {
     private val sessionBackgroundDuration = TimeUnit.SECONDS.toMillis(backgroundDuration)
     private var timestamp = -1L

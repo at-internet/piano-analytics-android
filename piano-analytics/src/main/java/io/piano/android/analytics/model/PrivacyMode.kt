@@ -23,7 +23,7 @@ class PrivacyMode(
     val allowedPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(
         Event.ANY to EXEMPT_DEFAULT_PROPERTY_KEYS.toMutableSet()
     ),
-    val forbiddenPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf()
+    val forbiddenPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(),
 ) {
 
     override fun equals(other: Any?): Boolean {

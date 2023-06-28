@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 
 internal class EventRepository(
     private val databaseHelper: DatabaseHelper,
-    private val eventAdapter: JsonAdapter<Event>
+    private val eventAdapter: JsonAdapter<Event>,
 ) {
     fun putEvents(events: Collection<Event>) {
         events.forEach { e ->

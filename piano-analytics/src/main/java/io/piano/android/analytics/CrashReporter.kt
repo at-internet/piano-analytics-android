@@ -11,7 +11,7 @@ internal class CrashReporter(
     private val packageName: String,
     private val screenNameProvider: ScreenNameProvider,
     private val contextPropertiesStorage: ContextPropertiesStorage,
-    private val propertiesJsonAdapter: JsonAdapter<Set<Property>>
+    private val propertiesJsonAdapter: JsonAdapter<Set<Property>>,
 ) {
     internal fun initialize() {
         val crashInfo = prefsStorage.crashInfo ?: return

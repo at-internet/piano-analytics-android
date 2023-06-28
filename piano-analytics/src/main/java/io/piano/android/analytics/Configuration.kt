@@ -23,7 +23,7 @@ class Configuration private constructor(
     val sessionBackgroundDuration: Int,
     val detectCrashes: Boolean,
     val ignoreLimitedAdTracking: Boolean,
-    val sendEventWhenOptOut: Boolean
+    val sendEventWhenOptOut: Boolean,
 ) {
     class Builder @JvmOverloads constructor(
         var collectDomain: String,
@@ -40,7 +40,7 @@ class Configuration private constructor(
         var sessionBackgroundDuration: Int = DEFAULT_SESSION_BACKGROUND_DURATION,
         var detectCrashes: Boolean = true,
         var ignoreLimitedAdTracking: Boolean = false,
-        var sendEventWhenOptOut: Boolean = true
+        var sendEventWhenOptOut: Boolean = true,
     ) {
 
         /**

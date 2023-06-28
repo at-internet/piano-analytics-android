@@ -9,7 +9,7 @@ internal class VisitorIdProvider(
     private val configuration: Configuration,
     private val privacyModesStorage: PrivacyModesStorage,
     private val limitedTrackingIdProvider: IdProvider,
-    private val idByTypeProvider: (VisitorIDType) -> IdProvider
+    private val idByTypeProvider: (VisitorIDType) -> IdProvider,
 ) : IdProvider {
     override val visitorId: String?
         get() = when (privacyModesStorage.currentMode) {

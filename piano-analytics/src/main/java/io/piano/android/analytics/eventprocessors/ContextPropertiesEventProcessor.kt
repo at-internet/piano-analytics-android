@@ -4,7 +4,7 @@ import io.piano.android.analytics.ContextPropertiesStorage
 import io.piano.android.analytics.model.Event
 
 internal class ContextPropertiesEventProcessor(
-    private val contextPropertiesStorage: ContextPropertiesStorage
+    private val contextPropertiesStorage: ContextPropertiesStorage,
 ) : EventProcessor {
 
     override fun process(events: List<Event>): List<Event> = events.map { event ->

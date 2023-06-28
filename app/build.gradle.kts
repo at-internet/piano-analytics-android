@@ -7,7 +7,7 @@ android {
     defaultConfig {
         minSdk = 21
         compileSdk = 33
-        targetSdk = 33
+        targetSdk = 34
         applicationId = "com.example.piano_analytics_android"
         versionCode = 1
         versionName = "1.0"

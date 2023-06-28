@@ -7,7 +7,7 @@ import io.piano.android.analytics.model.Property
 import io.piano.android.analytics.model.PropertyName
 
 internal class EventPropertiesJsonAdapter(
-    private val mapAdapter: JsonAdapter<Map<String, Any>>
+    private val mapAdapter: JsonAdapter<Map<String, Any>>,
 ) : JsonAdapter<Set<Property>>() {
     override fun fromJson(reader: JsonReader): Set<Property>? {
         val value = mapAdapter.fromJson(reader)
@@ -19,7 +19,8 @@ internal class EventPropertiesJsonAdapter(
                 is Long,
                 is Double,
                 is Boolean,
-                is Array<*> -> Property(PropertyName(entry.key), entry.value)
+                is Array<*>,
+                -> Property(PropertyName(entry.key), entry.value)
 
                 else -> null
             }

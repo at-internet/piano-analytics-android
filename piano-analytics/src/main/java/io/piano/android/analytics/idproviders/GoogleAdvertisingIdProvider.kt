@@ -5,7 +5,7 @@ import com.google.android.gms.ads.identifier.AdvertisingIdClient
 import timber.log.Timber
 
 internal class GoogleAdvertisingIdProvider(
-    private val context: Context
+    private val context: Context,
 ) : IdProvider {
     private val info: AdvertisingIdInfo? by lazy {
         loadAdvertisingInfo()

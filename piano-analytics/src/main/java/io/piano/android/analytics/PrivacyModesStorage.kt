@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
  */
 class PrivacyModesStorage internal constructor(
     private val configuration: Configuration,
-    private val prefsStorage: PrefsStorage
+    private val prefsStorage: PrefsStorage,
 ) {
     init {
         prefsStorage.privacyStorageFilter = { privacyStorageFeature ->

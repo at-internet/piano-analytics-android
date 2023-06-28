@@ -36,7 +36,7 @@ class PianoAnalytics internal constructor(
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     val contextPropertiesStorage: ContextPropertiesStorage,
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    val userStorage: UserStorage
+    val userStorage: UserStorage,
 ) {
     private val executor: ScheduledExecutorService = executorProvider()
 
@@ -89,7 +89,7 @@ class PianoAnalytics internal constructor(
     @JvmOverloads
     fun mediaHelper(
         contentId: String,
-        mediaSessionId: String = UUID.randomUUID().toString()
+        mediaSessionId: String = UUID.randomUUID().toString(),
     ): MediaHelper {
         require(contentId.isNotEmpty()) {
             "Content id can't be empty"
@@ -112,7 +112,7 @@ class PianoAnalytics internal constructor(
      */
     @Suppress("unused") // Public API.
     fun sendEvents(
-        vararg events: Event
+        vararg events: Event,
     ) {
         // delay is required, see androidx.lifecycle.ProcessLifecycleOwner.TIMEOUT_MS
         executor.schedule(
@@ -162,7 +162,7 @@ class PianoAnalytics internal constructor(
         fun init(
             context: Context,
             configuration: Configuration,
-            dataEncoder: DataEncoder = PlainDataEncoder
+            dataEncoder: DataEncoder = PlainDataEncoder,
         ): PianoAnalytics {
             DependenciesProvider.init(context, configuration, dataEncoder)
             return getInstance()

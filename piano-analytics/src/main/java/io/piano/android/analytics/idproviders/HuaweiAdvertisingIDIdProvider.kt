@@ -5,7 +5,7 @@ import com.huawei.hms.ads.identifier.AdvertisingIdClient
 import timber.log.Timber
 
 internal class HuaweiAdvertisingIDIdProvider(
-    private val context: Context
+    private val context: Context,
 ) : IdProvider {
     private val info: AdvertisingIdInfo? by lazy {
         loadAdvertisingInfo()

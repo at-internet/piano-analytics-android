@@ -2,8 +2,8 @@
 # Plugins
 kotlin = "1.8.21"
 android = "8.0.2"
-versionUpdater = "0.46.0"
-ktlint = "11.3.2"
+versionUpdater = "0.47.0"
+ktlint = "11.4.2"
 dokka = "1.8.10"
 mavenRelease = "0.25.2"
 moshiIR = "0.22.1"
@@ -27,7 +27,7 @@ viewBindingProperty = "1.5.9"
 junit = "4.13.2"
 androidxTestCore = "1.5.0"
 mockitoKotlin = "2.2.0"
-mockitoCore = "5.3.1"
+mockitoCore = "5.4.0"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }

@@ -2,7 +2,7 @@ package io.piano.android.analytics.model
 
 @JvmInline
 value class PropertyName(
-    val key: String
+    val key: String,
 ) {
     init {
         require(

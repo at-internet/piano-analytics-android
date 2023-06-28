@@ -6,7 +6,7 @@ import io.piano.android.analytics.model.Property
 import io.piano.android.analytics.model.PropertyName
 
 internal class UserEventProcessor(
-    private val userStorage: UserStorage
+    private val userStorage: UserStorage,
 ) : EventProcessor {
     override fun process(events: List<Event>): List<Event> =
         userStorage.currentUser?.let {

@@ -9,7 +9,7 @@ import io.piano.android.analytics.model.PropertyName
  * Stores all customer context properties. Automatically removes non-persistent properties at adding them to event
  */
 class ContextPropertiesStorage internal constructor(
-    private val contextProperties: MutableList<ContextProperty> = mutableListOf()
+    private val contextProperties: MutableList<ContextProperty> = mutableListOf(),
 ) {
 
     /**

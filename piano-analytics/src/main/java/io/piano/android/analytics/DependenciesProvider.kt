@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
 internal class DependenciesProvider private constructor(
     context: Context,
     configuration: Configuration,
-    dataEncoder: DataEncoder
+    dataEncoder: DataEncoder,
 ) {
     private val userAgent = "Piano Analytics SDK ${BuildConfig.SDK_VERSION}"
     private val executorProvider: () -> ScheduledExecutorService = { Executors.newSingleThreadScheduledExecutor() }

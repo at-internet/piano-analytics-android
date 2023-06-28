@@ -6,7 +6,7 @@ internal class EventRecord(
     val data: String,
     val timestamp: Long = System.currentTimeMillis(),
     var id: Long? = null,
-    var isSent: Boolean = false
+    var isSent: Boolean = false,
 ) {
     val isValid = data.startsWith("{") && data.endsWith("}")
 

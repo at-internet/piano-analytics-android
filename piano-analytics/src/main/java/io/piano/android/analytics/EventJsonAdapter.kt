@@ -7,7 +7,7 @@ import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.Property
 
 internal class EventJsonAdapter(
-    private val propertiesAdapter: JsonAdapter<Set<Property>>
+    private val propertiesAdapter: JsonAdapter<Set<Property>>,
 ) : JsonAdapter<Event>() {
     override fun fromJson(reader: JsonReader): Event? {
         TODO("Not supported")

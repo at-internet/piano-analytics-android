@@ -20,7 +20,7 @@ internal class SendTask(
     private val deviceInfoProvider: DeviceInfoProvider,
     private val visitorIdProvider: VisitorIdProvider,
     private val okHttpClient: OkHttpClient,
-    private val eventsJsonAdapter: JsonAdapter<EventsRequest>
+    private val eventsJsonAdapter: JsonAdapter<EventsRequest>,
 ) : Runnable {
     override fun run() {
         eventRepository.deleteOldEvents(configuration.eventsOfflineStorageLifetime)

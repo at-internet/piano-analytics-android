@@ -19,12 +19,14 @@ internal class EventJsonAdapterFactory : JsonAdapter.Factory {
                     )
                 )
             )
+
             Event::class.java -> EventJsonAdapter(
                 moshi.adapter(EVENT_PROPERTIES_TYPE)
             )
 
             else -> null
         }
+
     companion object {
         @JvmStatic
         internal val EVENT_PROPERTIES_TYPE = Types.newParameterizedType(

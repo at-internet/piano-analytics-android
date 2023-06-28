@@ -13,7 +13,7 @@ import java.util.Locale
 
 internal class InternalPropertiesEventProcessor(
     private val configuration: Configuration,
-    private val deviceInfoProvider: DeviceInfoProvider
+    private val deviceInfoProvider: DeviceInfoProvider,
 ) : EventProcessor {
     override fun process(events: List<Event>): List<Event> {
         val (width, height) = deviceInfoProvider.displayMetrics.run { widthPixels to heightPixels }

@@ -9,7 +9,7 @@ import io.piano.android.analytics.model.EventRecord
 
 internal class DatabaseHelper(
     context: Context,
-    private val dataEncoder: DataEncoder
+    private val dataEncoder: DataEncoder,
 ) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -86,7 +86,7 @@ internal class DatabaseHelper(
         groupBy: String? = null,
         having: String? = null,
         orderBy: String? = "${EventRecord.TIME} ASC",
-        limit: String? = null
+        limit: String? = null,
     ): List<EventRecord> =
         readableDatabase.query(
             EventRecord.TABLE_NAME,

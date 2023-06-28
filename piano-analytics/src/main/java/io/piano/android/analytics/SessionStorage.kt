@@ -10,7 +10,7 @@ import kotlin.math.abs
 internal class SessionStorage(
     private val prefsStorage: PrefsStorage,
     private val deviceInfoProvider: DeviceInfoProvider,
-    sessionLifecycleListener: SessionLifecycleListener
+    sessionLifecycleListener: SessionLifecycleListener,
 ) {
     private val appVersionCode: Long by lazy {
         deviceInfoProvider.packageInfo?.run {

@@ -7,7 +7,7 @@ import java.io.IOException
 
 internal class RetryInterceptor(
     private val maxAttempts: Int = DEFAULT_MAX_ATTEMPTS,
-    private val sleepBetweenAttempts: Long = DEFAULT_SLEEP_MS
+    private val sleepBetweenAttempts: Long = DEFAULT_SLEEP_MS,
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()

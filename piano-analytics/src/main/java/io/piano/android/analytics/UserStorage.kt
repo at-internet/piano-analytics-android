@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit
 class UserStorage internal constructor(
     private val configuration: Configuration,
     private val prefsStorage: PrefsStorage,
-    private val userJsonAdapter: JsonAdapter<User>
+    private val userJsonAdapter: JsonAdapter<User>,
 ) {
     private var cachedUserPreference = prefsStorage.user
     private var storedUser: User? = cachedUserPreference?.parseUser()
