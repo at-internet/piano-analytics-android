@@ -1,6 +1,8 @@
 # Piano Analytics SDK for Android
 
-## v3.3.0-SNAPSHOT
-* Rewritten to Kotlin 1.7
+## v3.3.0
+* Changed package and artifact group: `io.piano.analytics` -> `io.piano.android.analytics`
+* Rewritten to Kotlin 1.8
 * Increased minSdkVersion from 16 to 21
-* Added compatibility with Android 13
+* Added compatibility with Android 14
+See migration steps [here] (https://github.com/at-internet/piano-analytics-android/tree/main#migration-from-320-and-older-to-330)

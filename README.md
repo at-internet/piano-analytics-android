@@ -160,10 +160,15 @@ _For more examples, please refer to the [Documentation](https://developers.atint
 
 ## Migration from 3.2.0 and older to 3.3.0+
 
-1. Replace all `withXXXX(...)` calls with `XXXX(...)` for `Configuration.Builder`
-2. Replace `pa.setConfiguration(configuration)` with `PianoAnalytics.init(applicationContext, configuration)`. Note: configuration can be set only once, at initialization.
-3. Replace `Event("some_event_name", new HashMap<String, Object>(){{ ... }})` with `Event.Builder("some_event_name").properties( ... ).build()`
-4. Replace `Media(pa)` with `PianoAnalytics.getInstance().mediaHelper("av_content_id_value")`. Note: `MediaHelper` instance is linked to `contentId` and adds it as `av_content_id` property automatically   
+1. Update all imports from `io.piano.analytics` to `io.piano.android.analytics`
+2. Replace all `withXXXX(...)` calls with `XXXX(...)` for `Configuration.Builder`
+3. Replace `pa.setConfiguration(configuration)` with `PianoAnalytics.init(applicationContext, configuration)`. Note: configuration can be set only once, at initialization.
+4. Replace `Event("some_event_name", new HashMap<String, Object>(){{ ... }})` with `Event.Builder("some_event_name").properties( ... ).build()`
+5. Replace `pa.setProperty(...)` with `contextPropertiesStorage.add(ContextProperty(...))`, where `contextPropertiesStorage` is `PianoAnalytics.getInstance().contextPropertiesStorage`
+6. Replace `pa.privacySetMode(...)` with `PianoAnalytics.getInstance().privacyModesStorage.currentMode = ...`
+7. Replace `Media(pa)` with `PianoAnalytics.getInstance().mediaHelper("av_content_id_value")`. Note: `MediaHelper` instance is linked to `contentId` and adds it as `av_content_id` property automatically
+
+You can find full list of changes [here](https://developers.atinternet-solutions.com/piano-analytics/data-collection/sdks/android-kotlin#migration-from--330)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
