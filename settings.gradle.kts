@@ -1,11 +1,11 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         mavenCentral()
-        maven("https://developer.huawei.com/repo/")
+        gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -15,5 +15,11 @@ dependencyResolutionManagement {
     }
 }
 
-include(":app", ":piano-analytics")
+plugins {
+    id("com.gradle.enterprise") version "3.13.3"
+}
+include(
+    ":app",
+    ":piano-analytics"
+)
 rootProject.name = "piano-analytics"

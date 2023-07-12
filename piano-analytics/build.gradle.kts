@@ -1,41 +1,65 @@
 plugins {
-    signing
-    id("com.android.library")
-    id("com.vanniktech.maven.publish")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.moshiIR)
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.mavenRelease)
 }
 
+val GROUP: String by project
+val VERSION_NAME: String by project
+group = GROUP
+version = VERSION_NAME
+
 android {
-    compileSdk = 32
-
     defaultConfig {
-
-        minSdk = 16
-        targetSdk = 32
+        minSdk = 21
+        compileSdk = 33
+        buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFile("consumer-rules.pro")
+        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildTypes {
-        release {
+        named("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    testOptions {
-        unitTests.isIncludeAndroidResources = true
+    namespace = "io.piano.android.analytics"
+}
+
+kotlin {
+    explicitApi()
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
 
-dependencies {
-    compileOnly("com.google.android.gms:play-services-ads:21.0.0")
-    compileOnly("com.huawei.hms:hms-ads-identifier:3.4.26.303")
+ktlint {
+    version.set("0.49.1")
+    android.set(true)
+}
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.test:core:1.4.0")
-    testImplementation("org.robolectric:robolectric:4.5.1")
+dependencies {
+    compileOnly(libs.googleAdsId)
+    compileOnly(libs.huaweiAdsId)
+    implementation(libs.lifecycleProcess)
+    implementation(libs.timber)
+    implementation(libs.okhttp)
+    implementation(libs.okhttpLogging)
+    implementation(libs.moshi)
+
+    testImplementation(libs.kotlinJunit)
+    testImplementation(libs.mockitoKotlin)
+    testImplementation(libs.mockitoCore)
+    testImplementation(libs.junit)
+    testImplementation(libs.androidxTestCore)
+    testImplementation(libs.okhttpMockServer)
 }

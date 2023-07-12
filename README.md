@@ -5,6 +5,10 @@
     <h1 align="center">Piano Analytics SDK Android</h1>
 </div>
 
+![GitHub](https://img.shields.io/github/license/at-internet/piano-analytics-android)
+![Maven Central](https://img.shields.io/maven-central/v/io.piano.android/analytics)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/actions/workflow/status/at-internet/piano-analytics-android/build.yml?branch=master)
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
@@ -19,93 +23,152 @@ It also includes [Privacy tagging methods](https://developers.atinternet-solutio
 
 <!-- GETTING STARTED -->
 ## Getting Started
+1. Add SDK dependency in your app script:
+```kotlin
+dependencies {
+    ...
+    implementation("io.piano.android:analytics:VERSION")
+}
+```
+2. Add required Google/Huawei ID libraries, if you want to use it as Visitor ID
+```kotlin
+dependencies {
+    ...
+    // for GOOGLE_ADVERTISING_ID or ADVERTISING_ID
+    implementation("com.google.android.gms:play-services-ads-identifier:GOOGLE_VERSION")
+    // for HUAWEI_OPEN_ADVERTISING_ID or ADVERTISING_ID
+    implementation("com.huawei.hms:hms-ads-identifier:HUAWEIVERSION")
+}
+```
+3. Add Huawei libraries repository (only if you've added Huawei ID library at the previous step)
+```kotlin
+    repositories {
+        ...
+        maven("https://developer.huawei.com/repo/")
+    }
+```
 
-- Install our library on your project (see below), you have a few possibilities :
-  - Using Maven (coming soon)
-  - Cloning the GitHub project and adding the library directly
-- Check the <a href="https://developers.atinternet-solutions.com/piano-analytics/"><strong>documentation</strong></a> for an overview of the functionalities and code examples
-
-## Using Maven
-
-Coming soon...
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-## Cloning the GitHub project and adding the library directly
-
-1. Clone the Android SDK from [here](https://github.com/at-internet/piano-analytics-android)
-    * SSH: git@github.com:at-internet/piano-analytics-android.git
-    * HTTPS: https://github.com/at-internet/piano-analytics-android.git
-
-2. From your Android Studio
-    * Go to **File** > **Project Structure** > **Modules**
-    * Click on the plus sign **+** and go to **Import...**
-    * Search for the cloned directory and select the **piano-analytics** folder
-    * Click on **Finish**
-
-3. After a sync of Gradle you might have an error like 'Build was configured to prefer settings repositories over project repositories'
-    * Open your project-level **settings.gradle** file and replace/add the repositoriesMode as below
-        * repositoriesMode.set(RepositoriesMode.**PREFER_SETTINGS**)
-    * Resync Gradle
-
-4. As a support to Huawei in our SDK, you might also have a warning on sync (error on build) talking about a library from com.huawei.hms
-    * For Gradle plugin earlier than 7.0
-        * Open your project-level **build.gradle** file
-        * Add the Maven repository as below under **buildscript** > **repositories** and **allproject** > **repositories**
-            * maven {url 'https://developer.huawei.com/repo/'}
-    * For Gradle plugin 7.0
-        * Open your project-level **build.gradle** file
-        * Add the Maven repository as below under **buildscript** > **repositories**
-            * maven {url 'https://developer.huawei.com/repo/'}
-        * Open your project-level **settings.gradle** file
-        * Add the Maven repository as below under **dependencyResolutionManagement** > **repositories**
-            * maven {url 'https://developer.huawei.com/repo/'}
-    * For Gradle plugin 7.1 or Later
-        * Open your project-level **settings.gradle** file
-        * Add the Maven repository as below under **pluginManagement** > **repositories** and **dependencyResolutionManagement** > **repositories**
-            * maven {url 'https://developer.huawei.com/repo/'}
-
-
-piano-analytics should now be recognized as a library
+Check the <a href="https://developers.atinternet-solutions.com/piano-analytics/"><strong>documentation</strong></a> for an overview of the functionalities and code examples
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Configure your site and collect domain in your application initialization
-    ```java
-    import io.piano.analytics.PianoAnalytics;
-    import io.piano.analytics.Configuration;
-    
-    ...
+### Configure SDK at your application initialization
+```kotlin
+val configuration = Configuration.Builder(
+    collectDomain = "logs.xiti.com",
+    site = 123456789,
+    // you can set other properties here 
+).defaultPrivacyMode(...)
+    // or set properties via builder methods
+    .build()
 
-   PianoAnalytics pa = PianoAnalytics.getInstance(getApplicationContext());
+PianoAnalytics.init(applicationContext, configuration)
+```
 
-    ...
-    
-    pa.setConfiguration(new Configuration.Builder()
-        .withCollectDomain("log.xiti.com")
-        .withSite(123456789)
+### Sending events
+```kotlin
+PianoAnalytics.getInstance().sendEvents(
+    Event.Builder(Event.CLICK_NAVIGATION)
+        .properties(
+            Property(PropertyName.CLICK, "value"),
+            // you can add other properties here
+        )
+        .build(),
+    // you can add other events here
+    Event.Builder("some_event_name")
+        .properties(
+            Property(PropertyName("some_property_name"), "value"),
+        )
         .build()
-    );
-    ```
+)
+```
+Some event names are predefined in `Event` class, some property names are predefined in `PropertyName` class also
 
-2. Send events
-    ```java
-   ...
-    import io.piano.analytics.Event;
-   ...
+### Working with privacy modes
+```kotlin
+val privacyModesStorage = PianoAnalytics.getInstance().privacyModesStorage
+// create new privacy mode
+val myCustomPrivacyMode = PrivacyMode(
+    visitorMode = "name",
+    visitorConsent = true
+)
+// forbid all storage features for new mode
+myCustomPrivacyMode.forbiddenStorageFeatures += PrivacyStorageFeature.ALL
+// register the new privacy mode
+privacyModesStorage.allModes += myCustomPrivacyMode
+// set current privacy mode (should be registered before, if custom)
+privacyModesStorage.currentMode = myCustomPrivacyMode
+```
 
-    pa.sendEvent(new Event("page.display", new HashMap<String, Object>(){{
-        put("page", "page name"); // Event properties
-        put("page_chapter1", "chapter 1");
-        put("page_chapter2", "chapter 2");
-        put("page_chapter3", "chapter 3");
-    }}));
-    ```
+### Working with custom properties
+```kotlin
+val contextPropertiesStorage = PianoAnalytics.getInstance().contextPropertiesStorage
+// add new context property
+contextPropertiesStorage.add(
+    ContextProperty(
+        properties = setOf(
+            Property(...),
+            Property(...)
+        ),
+        persistent = false,
+        eventNames = listOf(Event.CLICK_NAVIGATION, Event.CLICK_ACTION)
+    )
+)
+// remove some property added before
+contextPropertiesStorage.deleteByKey(PropertyName.CLICK)
+```
+
+### Working with user
+```kotlin
+val userStorage = PianoAnalytics.getInstance().userStorage
+// check that user was loaded from storage
+if (userStorage.userRecognized) {
+    ...
+}
+// set current user
+userStorage.currentUser = User("id", shouldBeStored = false)
+```
+
+### Working with AV Insights
+```kotlin
+val heartbeat = SparseLongArray()
+...
+val bufferHeartbeat = SparseLongArray()
+...
+val mediaHelper = PianoAnalytics.getInstance()
+    .mediaHelper("contentId")
+    .setHeartbeat(heartbeat)
+    .setBufferHeartbeat(bufferHeartbeat)
+// set playback speed
+mediaHelper.playbackSpeed = 2.5
+// post play event
+mediaHelper.play(
+    position,
+    Property(...)
+)
+// post share event
+mediaHelper.share()
+```
 
 _For more examples, please refer to the [Documentation](https://developers.atinternet-solutions.com/piano-analytics/)_
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+## Migration from 3.2.0 and older to 3.3.0+
+
+1. Update all imports from `io.piano.analytics` to `io.piano.android.analytics`
+2. Replace all `withXXXX(...)` calls with `XXXX(...)` for `Configuration.Builder`
+3. Replace `pa.setConfiguration(configuration)` with `PianoAnalytics.init(applicationContext, configuration)`. Note: configuration can be set only once, at initialization.
+4. Replace `Event("some_event_name", new HashMap<String, Object>(){{ ... }})` with `Event.Builder("some_event_name").properties( ... ).build()`
+5. Replace `pa.setProperty(...)` with `contextPropertiesStorage.add(ContextProperty(...))`, where `contextPropertiesStorage` is `PianoAnalytics.getInstance().contextPropertiesStorage`
+6. Replace `pa.privacySetMode(...)` with `PianoAnalytics.getInstance().privacyModesStorage.currentMode = ...`
+7. Replace `Media(pa)` with `PianoAnalytics.getInstance().mediaHelper("av_content_id_value")`. Note: `MediaHelper` instance is linked to `contentId` and adds it as `av_content_id` property automatically
+
+You can find full list of changes [here](https://developers.atinternet-solutions.com/piano-analytics/data-collection/sdks/android-kotlin#migration-from--330)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 

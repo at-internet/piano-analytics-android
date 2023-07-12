@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/media_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="@dimen/horizontal_padding"
+        tools:context="com.example.pianoanalytics.AnimalActivity">
+
+    <Button
+            android:id="@+id/play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play event" />
+    <Button
+            android:id="@+id/playback_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Playback start event" />
+    <Button
+            android:id="@+id/playback_stop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Playback stop event" />
+    <Button
+            android:id="@+id/buffer_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buffer start event" />
+    <Button
+            android:id="@+id/seek_start"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seek start event" />
+    <Button
+            android:id="@+id/volume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volume event" />
+    <Button
+            android:id="@+id/share"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Share event" />
+</LinearLayout>

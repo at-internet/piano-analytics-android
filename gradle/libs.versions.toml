@@ -1,0 +1,62 @@
+[versions]
+# Plugins
+kotlin = "1.8.22"
+android = "8.0.2"
+versionUpdater = "0.47.0"
+ktlint = "11.5.0"
+dokka = "1.8.20"
+mavenRelease = "0.25.3"
+moshiIR = "0.22.1"
+
+# AndroidX libraries
+compatLibrary = "1.6.1"
+annotationsLibrary = "1.6.0"
+lifecycle = "2.6.1"
+materialLibrary = "1.9.0"
+
+# Third party Libraries
+googleAdsId = "18.0.1"
+huaweiAdsId = "3.4.26.303"
+retrofit = "2.6.4"
+okhttp = "4.11.0"
+moshi = "1.15.0"
+timber = "5.0.1"
+viewBindingProperty = "1.5.9"
+
+# Test Libraries
+junit = "4.13.2"
+androidxTestCore = "1.5.0"
+mockitoKotlin = "2.2.0"
+mockitoCore = "5.4.0"
+
+[plugins]
+android-library = { id = "com.android.library", version.ref = "android" }
+android-app = { id = "com.android.application", version.ref = "android" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
+dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
+mavenRelease = { id = "com.vanniktech.maven.publish", version.ref = "mavenRelease" }
+moshiIR = { id = "dev.zacsweers.moshix", version.ref = "moshiIR"}
+versionUpdater = { id = "com.github.ben-manes.versions", version.ref = "versionUpdater" }
+
+[libraries]
+annotations = { module = "androidx.annotation:annotation", version.ref = "annotationsLibrary" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "compatLibrary" }
+lifecycleProcess = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle"}
+material = { module = "com.google.android.material:material", version.ref = "materialLibrary" }
+googleAdsId = { module = "com.google.android.gms:play-services-ads-identifier", version.ref = "googleAdsId" }
+huaweiAdsId = { module = "com.huawei.hms:hms-ads-identifier", version.ref = "huaweiAdsId" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+okhttpLogging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+moshiCodegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+viewBindingProperty = { module = "com.github.kirich1409:viewbindingpropertydelegate", version.ref = "viewBindingProperty" }
+
+kotlinJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+mockitoKotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+junit = { module = "junit:junit", version.ref = "junit" }
+androidxTestCore = { module = "androidx.test:core-ktx", version.ref = "androidxTestCore" }
+okhttpMockServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "okhttp" }
