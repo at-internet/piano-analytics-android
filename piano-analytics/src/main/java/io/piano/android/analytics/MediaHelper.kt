@@ -514,9 +514,9 @@ class MediaHelper internal constructor(
     internal fun buildEvent(eventName: String, addOptions: Boolean = false, vararg properties: Property): Event {
         val avProperties = if (addOptions) {
             setOf(
-                Property(PropertyName("av_previous_position"), 0),
-                Property(PropertyName("av_position"), 0),
-                Property(PropertyName("av_duration"), 0),
+                Property(PropertyName("av_previous_position"), previousCursorPositionMillis),
+                Property(PropertyName("av_position"), currentCursorPositionMillis),
+                Property(PropertyName("av_duration"), eventDurationMillis),
                 Property(PropertyName("av_previous_event"), previousEventName)
             ).also {
                 previousEventName = eventName
