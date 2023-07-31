@@ -15,6 +15,17 @@ class App: Application() {
             site = 552987,
             visitorIDType = VisitorIDType.ADVERTISING_ID
         ).ignoreLimitedAdTracking(true).build()
-        PianoAnalytics.init(applicationContext, configuration)
+        PianoAnalytics.init(applicationContext, configuration).apply {
+            // just an example of callback
+            eventProcessorCallback = PianoAnalytics.EventProcessorCallback { events ->
+                events.forEach { event ->
+                    val eventData = event.properties.joinToString(
+                        prefix = "[",
+                        postfix = "]"
+                    ) { p -> "${p.name.key}=${p.value}" }
+                    Timber.d("Visitor ID = '${visitorId}, event name = '${event.name}', event data = '$eventData'")
+                }
+            }
+        }
     }
 }

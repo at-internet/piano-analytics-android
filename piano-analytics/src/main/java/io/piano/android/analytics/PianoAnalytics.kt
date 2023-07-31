@@ -62,6 +62,11 @@ class PianoAnalytics internal constructor(
     val customEventProcessors: MutableList<EventProcessor> = customEventProcessorsGroup
 
     /**
+     * Callback, which will be called after all events' processors and before sending event.
+     */
+    var eventProcessorCallback: EventProcessorCallback = EventProcessorCallback { _ -> }
+
+    /**
      * Sets current screen name.
      * It will be automatically added as property for event [Event.PAGE_DISPLAY]
      *
@@ -119,6 +124,7 @@ class PianoAnalytics internal constructor(
             {
                 val processedEvents = eventProcessorsGroup.process(events.toList())
                 eventRepository.putEvents(processedEvents)
+                eventProcessorCallback.onProcess(processedEvents)
                 if (configuration.offlineStorageMode != OfflineStorageMode.ALWAYS) {
                     sendTask.run()
                 }
@@ -146,6 +152,10 @@ class PianoAnalytics internal constructor(
         executor.submit {
             eventRepository.deleteOldEvents(remaining)
         }
+    }
+
+    fun interface EventProcessorCallback {
+        fun onProcess(events: List<Event>)
     }
 
     companion object {
