@@ -9,9 +9,7 @@ import io.piano.android.analytics.model.VisitorStorageMode
  * Class for storing all configuration
  */
 class Configuration private constructor(
-    val collectDomain: String,
-    val site: Int,
-    val path: String,
+    val reportUrlProvider: ReportUrlProvider,
     val defaultPrivacyMode: PrivacyMode,
     val visitorIDType: VisitorIDType,
     val offlineStorageMode: OfflineStorageMode,
@@ -24,10 +22,10 @@ class Configuration private constructor(
     val detectCrashes: Boolean,
     val ignoreLimitedAdTracking: Boolean,
     val sendEventWhenOptOut: Boolean,
-) {
+) : ReportUrlProvider by reportUrlProvider {
     class Builder @JvmOverloads constructor(
-        var collectDomain: String,
-        var site: Int,
+        var collectDomain: String = "",
+        var site: Int = 0,
         var path: String = DEFAULT_PATH,
         var defaultPrivacyMode: PrivacyMode = PrivacyMode.OPTIN,
         var visitorIDType: VisitorIDType = VisitorIDType.UUID,
@@ -41,6 +39,7 @@ class Configuration private constructor(
         var detectCrashes: Boolean = true,
         var ignoreLimitedAdTracking: Boolean = false,
         var sendEventWhenOptOut: Boolean = true,
+        var reportUrlProvider: ReportUrlProvider? = null,
     ) {
 
         /**
@@ -180,27 +179,39 @@ class Configuration private constructor(
         fun sendEventWhenOptOut(sendEventWhenOptOut: Boolean) = apply { this.sendEventWhenOptOut = sendEventWhenOptOut }
 
         /**
+         * Sets a custom [ReportUrlProvider], which overrides [collectDomain], [site] and [path] for [Configuration]
+         * @param reportUrlProvider [ReportUrlProvider] instance
+         * @return updated Builder instance
+         */
+        fun reportUrlProvider(reportUrlProvider: ReportUrlProvider?) = apply {
+            this.reportUrlProvider = reportUrlProvider
+        }
+
+        /**
          * Get a new Configuration instance from Builder data set
          * @return an Configuration instance
          */
         @Suppress("unused") // Public API.
-        fun build() = Configuration(
-            collectDomain,
-            site,
-            path,
-            defaultPrivacyMode,
-            visitorIDType,
-            offlineStorageMode,
-            visitorStorageMode,
-            eventsOfflineStorageLifetime,
-            privacyStorageLifetime,
-            visitorStorageLifetime,
-            userStorageLifetime,
-            sessionBackgroundDuration.coerceAtLeast(MIN_SESSION_BACKGROUND_DURATION),
-            detectCrashes,
-            ignoreLimitedAdTracking,
-            sendEventWhenOptOut
-        )
+        fun build(): Configuration {
+            check(reportUrlProvider != null || (collectDomain.isNotEmpty() && site > 0)) {
+                "You have to provide collectDomain and site or reportUrlProvider"
+            }
+            return Configuration(
+                reportUrlProvider ?: StaticReportUrlProvider(collectDomain, site, path),
+                defaultPrivacyMode,
+                visitorIDType,
+                offlineStorageMode,
+                visitorStorageMode,
+                eventsOfflineStorageLifetime,
+                privacyStorageLifetime,
+                visitorStorageLifetime,
+                userStorageLifetime,
+                sessionBackgroundDuration.coerceAtLeast(MIN_SESSION_BACKGROUND_DURATION),
+                detectCrashes,
+                ignoreLimitedAdTracking,
+                sendEventWhenOptOut
+            )
+        }
     }
 
     companion object {
