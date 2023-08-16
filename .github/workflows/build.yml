@@ -24,7 +24,7 @@ jobs:
         run: chmod +x gradlew
     -   name: Check code style
         run: ./gradlew ktlintCheck --continue
-    -   name: Run tests`
+    -   name: Run tests
         run: ./gradlew testDebug
     -   name: Build project
         run: ./gradlew app:asDeb
