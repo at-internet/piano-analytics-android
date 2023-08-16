@@ -32,22 +32,22 @@ internal class SendTask(
     }
 
     internal fun send(events: List<EventRecord>) {
-        val url = HttpUrl.Builder()
-            .scheme("https")
-            .host(configuration.collectDomain)
-            .addEncodedPathSegment(configuration.path)
-            .addQueryParameter("s", configuration.site.toString())
-            .addQueryParameter("idclient", visitorIdProvider.visitorId)
-            .build()
-        val requestBody = with(Buffer()) {
-            eventsJsonAdapter.toJson(JsonWriter.of(this), EventsRequest(events.map { it.data }))
-            readByteString().toRequestBody(MEDIA_TYPE)
-        }
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
         runCatching {
+            val url = HttpUrl.Builder()
+                .scheme("https")
+                .host(configuration.collectDomain)
+                .addEncodedPathSegment(configuration.path)
+                .addQueryParameter("s", configuration.site.toString())
+                .addQueryParameter("idclient", visitorIdProvider.visitorId)
+                .build()
+            val requestBody = with(Buffer()) {
+                eventsJsonAdapter.toJson(JsonWriter.of(this), EventsRequest(events.map { it.data }))
+                readByteString().toRequestBody(MEDIA_TYPE)
+            }
+            val request = Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build()
             okHttpClient.newCall(request).execute()
         }.onFailure {
             Timber.w(it)
