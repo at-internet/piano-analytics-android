@@ -31,8 +31,8 @@ class MediaHelper internal constructor(
     private var previousHeartbeatDelay = 0L
     private var previousBufferHeartbeatDelay = 0L
     private var previousEventName = ""
-    private var previousCursorPositionMillis = 0
-    private var currentCursorPositionMillis = 0
+    private var previousCursorPositionMillis = 0L
+    private var currentCursorPositionMillis = 0L
     private var sessionDurationMillis = 0L
     private var eventDurationMillis = 0L
     private var startSessionTimeMillis by resettableProperty(0L) {
@@ -132,7 +132,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun heartbeat(cursorPosition: Int, vararg properties: Property) =
+    fun heartbeat(cursorPosition: Long, vararg properties: Property) =
         processHeartbeat(cursorPosition, false, *properties)
 
     /**
@@ -160,7 +160,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun play(cursorPosition: Int, vararg properties: Property) {
+    fun play(cursorPosition: Long, vararg properties: Property) {
         eventDurationMillis = 0
         previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
         currentCursorPositionMillis = previousCursorPositionMillis
@@ -179,7 +179,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun bufferStart(cursorPosition: Int, vararg properties: Property) {
+    fun bufferStart(cursorPosition: Long, vararg properties: Property) {
         val (eventName, runnable) = if (isPlaybackActivated) {
             "av.rebuffer.start" to rebufferHeartbeatRunnable
         } else {
@@ -210,7 +210,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackStart(cursorPosition: Int, vararg properties: Property) =
+    fun playbackStart(cursorPosition: Long, vararg properties: Property) =
         processEvent("av.start", properties) {
             previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
             currentCursorPositionMillis = previousCursorPositionMillis
@@ -237,7 +237,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackPaused(cursorPosition: Int, vararg properties: Property) =
+    fun playbackPaused(cursorPosition: Long, vararg properties: Property) =
         processEvent("av.pause", properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
@@ -254,7 +254,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackResumed(cursorPosition: Int, vararg properties: Property) =
+    fun playbackResumed(cursorPosition: Long, vararg properties: Property) =
         processEvent("av.resume", properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
@@ -281,7 +281,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackStopped(cursorPosition: Int, vararg properties: Property) {
+    fun playbackStopped(cursorPosition: Long, vararg properties: Property) {
         processEvent("av.stop", properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
@@ -311,7 +311,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun seek(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
+    fun seek(oldCursorPosition: Long, newCursorPosition: Long, vararg properties: Property) =
         if (oldCursorPosition > newCursorPosition) {
             seekBackward(oldCursorPosition, newCursorPosition, *properties)
         } else {
@@ -326,7 +326,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun seekBackward(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
+    fun seekBackward(oldCursorPosition: Long, newCursorPosition: Long, vararg properties: Property) =
         processSeek("av.backward", oldCursorPosition, newCursorPosition, properties)
 
     /**
@@ -337,7 +337,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun seekForward(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
+    fun seekForward(oldCursorPosition: Long, newCursorPosition: Long, vararg properties: Property) =
         processSeek("av.forward", oldCursorPosition, newCursorPosition, properties)
 
     /**
@@ -347,7 +347,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun seekStart(oldCursorPosition: Int, vararg properties: Property) =
+    fun seekStart(oldCursorPosition: Long, vararg properties: Property) =
         pianoAnalytics.sendEvents(buildSeekStartEvent(oldCursorPosition, properties))
 
     /**
@@ -483,8 +483,8 @@ class MediaHelper internal constructor(
 
     internal fun processSeek(
         eventName: String,
-        oldCursorPosition: Int,
-        newCursorPosition: Int,
+        oldCursorPosition: Long,
+        newCursorPosition: Long,
         properties: Array<out Property>,
     ) {
         val startSeekEvent = buildSeekStartEvent(oldCursorPosition, properties)
@@ -498,7 +498,7 @@ class MediaHelper internal constructor(
         )
     }
 
-    internal fun buildSeekStartEvent(oldCursorPosition: Int, properties: Array<out Property>): Event {
+    internal fun buildSeekStartEvent(oldCursorPosition: Long, properties: Array<out Property>): Event {
         previousCursorPositionMillis = currentCursorPositionMillis
         currentCursorPositionMillis = oldCursorPosition.coerceAtLeast(0)
 
@@ -543,7 +543,7 @@ class MediaHelper internal constructor(
         pianoAnalytics.sendEvents(buildEvent(eventName, true, *properties))
     }
 
-    internal fun processHeartbeat(cursorPosition: Int = -1, isAutomatic: Boolean, vararg properties: Property) =
+    internal fun processHeartbeat(cursorPosition: Long = -1, isAutomatic: Boolean, vararg properties: Property) =
         processEvent("av.heartbeat", properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = if (cursorPosition < 0) {

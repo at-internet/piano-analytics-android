@@ -24,21 +24,21 @@ class MediaActivity: AppCompatActivity(R.layout.activity_media) {
         binding.apply {
             play.setOnClickListener {
                 mediaHelper.play(
-                    Random.Default.nextInt(),
+                    Random.Default.nextLong(),
                     Property(PropertyName("av_content"), contentId)
                 )
             }
             playbackStart.setOnClickListener {
-                mediaHelper.playbackStart(Random.Default.nextInt())
+                mediaHelper.playbackStart(Random.Default.nextLong())
             }
             playbackStop.setOnClickListener {
-                mediaHelper.playbackStopped(Random.Default.nextInt())
+                mediaHelper.playbackStopped(Random.Default.nextLong())
             }
             bufferStart.setOnClickListener {
-                mediaHelper.bufferStart(Random.Default.nextInt())
+                mediaHelper.bufferStart(Random.Default.nextLong())
             }
             seekStart.setOnClickListener {
-                mediaHelper.seekStart(Random.Default.nextInt())
+                mediaHelper.seekStart(Random.Default.nextLong())
             }
             volume.setOnClickListener {
                 mediaHelper.volume(Property(PropertyName("av_content_duration"), Random.Default.nextInt()))
