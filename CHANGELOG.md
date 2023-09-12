@@ -1,5 +1,9 @@
 # Piano Analytics SDK for Android
 
+## v3.3.3-SNAPSHOT
+* Added `track` function to `MediaHelper` for tracking custom media events.
+* Changed behavior: `extraProps` in `MediaHelper` are added to all events, not only to "heartbeat" events.
+
 ## v3.3.2
 * Added `ReportUrlProvider` to `Configuration` for case "switching between several site ids for one app at runtime"
 

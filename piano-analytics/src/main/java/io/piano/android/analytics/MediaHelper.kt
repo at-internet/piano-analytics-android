@@ -42,13 +42,13 @@ class MediaHelper internal constructor(
         getCurrentTimestamp()
     }
     private val heartbeatRunnable: Runnable = Runnable {
-        processHeartbeat(-1, true, *extraProps)
+        processHeartbeat(-1, true)
     }
     private val bufferHeartbeatRunnable: Runnable = Runnable {
-        processBufferHeartbeat(true, *extraProps)
+        processBufferHeartbeat(true)
     }
     private val rebufferHeartbeatRunnable: Runnable = Runnable {
-        processRebufferHeartbeat(true, *extraProps)
+        processRebufferHeartbeat(true)
     }
 
     /**
@@ -169,7 +169,7 @@ class MediaHelper internal constructor(
         isPlaybackActivated = false
 
         restartHeartbeatExecutor()
-        pianoAnalytics.sendEvents(buildEvent("av.play", true, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_PLAY, true, *properties))
     }
 
     /**
@@ -181,9 +181,9 @@ class MediaHelper internal constructor(
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun bufferStart(cursorPosition: Int, vararg properties: Property) {
         val (eventName, runnable) = if (isPlaybackActivated) {
-            "av.rebuffer.start" to rebufferHeartbeatRunnable
+            AV_REBUFFER_START to rebufferHeartbeatRunnable
         } else {
-            "av.buffer.start" to bufferHeartbeatRunnable
+            AV_BUFFER_START to bufferHeartbeatRunnable
         }
 
         processEvent(eventName, properties) {
@@ -211,7 +211,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun playbackStart(cursorPosition: Int, vararg properties: Property) =
-        processEvent("av.start", properties) {
+        processEvent(AV_START, properties) {
             previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
             currentCursorPositionMillis = previousCursorPositionMillis
             bufferTimeMillis = 0
@@ -238,7 +238,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun playbackPaused(cursorPosition: Int, vararg properties: Property) =
-        processEvent("av.pause", properties) {
+        processEvent(AV_PAUSE, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
             bufferTimeMillis = 0
@@ -255,7 +255,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun playbackResumed(cursorPosition: Int, vararg properties: Property) =
-        processEvent("av.resume", properties) {
+        processEvent(AV_RESUME, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
             bufferTimeMillis = 0
@@ -282,7 +282,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun playbackStopped(cursorPosition: Int, vararg properties: Property) {
-        processEvent("av.stop", properties) {
+        processEvent(AV_STOP, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
             bufferTimeMillis = 0
@@ -327,7 +327,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun seekBackward(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
-        processSeek("av.backward", oldCursorPosition, newCursorPosition, properties)
+        processSeek(AV_BACKWARD, oldCursorPosition, newCursorPosition, properties)
 
     /**
      * Measuring seek forward.
@@ -338,7 +338,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun seekForward(oldCursorPosition: Int, newCursorPosition: Int, vararg properties: Property) =
-        processSeek("av.forward", oldCursorPosition, newCursorPosition, properties)
+        processSeek(AV_FORWARD, oldCursorPosition, newCursorPosition, properties)
 
     /**
      * Measuring seek start.
@@ -357,7 +357,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun adClick(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.ad.click", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_AD_CLICK, false, *properties))
 
     /**
      * Measuring media skip (especially for ads).
@@ -366,7 +366,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun adSkip(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.ad.skip", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_AD_SKIP, false, *properties))
 
     /**
      * Measuring reco or Ad display.
@@ -375,7 +375,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun display(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.display", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_DISPLAY, false, *properties))
 
     /**
      * Measuring close action.
@@ -384,7 +384,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun close(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.close", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_CLOSE, false, *properties))
 
     /**
      * Measurement of a volume change action.
@@ -393,7 +393,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun volume(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.volume", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_VOLUME, false, *properties))
 
     /**
      * Measurement of activated subtitles.
@@ -402,7 +402,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun subtitleOn(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.subtitle.on", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_SUBTITLE_ON, false, *properties))
 
     /**
      * Measurement of deactivated subtitles.
@@ -411,7 +411,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun subtitleOff(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.subtitle.off", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_SUBTITLE_OFF, false, *properties))
 
     /**
      * Measuring a full-screen display.
@@ -420,7 +420,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun fullscreenOn(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.fullscreen.on", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_FULLSCREEN_ON, false, *properties))
 
     /**
      * Measuring a full screen deactivation.
@@ -429,7 +429,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun fullscreenOff(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.fullscreen.off", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_FULLSCREEN_OFF, false, *properties))
 
     /**
      * Measurement of a quality change action.
@@ -438,7 +438,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun quality(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.quality", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_QUALITY, false, *properties))
 
     /**
      * Measurement of a speed change action.
@@ -447,7 +447,7 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun speed(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.speed", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_SPEED, false, *properties))
 
     /**
      * Measurement of a sharing action.
@@ -456,23 +456,38 @@ class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun share(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent("av.share", false, *properties))
+        pianoAnalytics.sendEvents(buildEvent(AV_SHARE, false, *properties))
 
     /**
      * Error measurement preventing reading from continuing.
      *
+     * @param message error message
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     fun error(message: String, vararg properties: Property) =
         pianoAnalytics.sendEvents(
             buildEvent(
-                "av.error",
+                AV_ERROR,
                 false,
                 Property(PropertyName("av_player_error"), message),
                 *properties
             )
         )
+
+    /**
+     * Track custom event, don't use it for built-in events.
+     *
+     * @param eventName name of custom event
+     * @param properties extra properties for event
+     */
+    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    fun track(eventName: String, vararg properties: Property) {
+        require(eventName !in BUILTIN_EVENTS) {
+            "customEvent should be used only for custom events, not for built-in"
+        }
+        pianoAnalytics.sendEvents(buildEvent(eventName, false, *properties))
+    }
 
     internal fun restartHeartbeatExecutor() {
         if (!executor.isShutdown) {
@@ -508,7 +523,7 @@ class MediaHelper internal constructor(
         } else {
             eventDurationMillis = 0
         }
-        return buildEvent("av.seek.start", true, *properties)
+        return buildEvent(AV_SEEK_START, true, *properties)
     }
 
     internal fun buildEvent(eventName: String, addOptions: Boolean = false, vararg properties: Property): Event {
@@ -526,6 +541,7 @@ class MediaHelper internal constructor(
         }
         return Event.Builder(eventName)
             .properties(
+                *extraProps,
                 *properties,
                 Property(PropertyName("av_session_id"), sessionId),
                 Property(PropertyName("av_content_id"), contentId)
@@ -544,7 +560,7 @@ class MediaHelper internal constructor(
     }
 
     internal fun processHeartbeat(cursorPosition: Int = -1, isAutomatic: Boolean, vararg properties: Property) =
-        processEvent("av.heartbeat", properties) {
+        processEvent(AV_HEARTBEAT, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             currentCursorPositionMillis = if (cursorPosition < 0) {
                 currentCursorPositionMillis + (eventDurationMillis * playbackSpeed).toInt()
@@ -564,7 +580,7 @@ class MediaHelper internal constructor(
         }
 
     internal fun processBufferHeartbeat(isAutomatic: Boolean, vararg properties: Property) =
-        processEvent("av.buffer.heartbeat", properties) {
+        processEvent(AV_BUFFER_HEARTBEAT, properties) {
             if (isAutomatic) {
                 previousBufferHeartbeatDelay = rescheduleRunnable(
                     previousBufferHeartbeatDelay,
@@ -577,7 +593,7 @@ class MediaHelper internal constructor(
         }
 
     internal fun processRebufferHeartbeat(isAutomatic: Boolean, vararg properties: Property) =
-        processEvent("av.rebuffer.heartbeat", properties) {
+        processEvent(AV_REBUFFER_HEARTBEAT, properties) {
             previousCursorPositionMillis = currentCursorPositionMillis
             if (isAutomatic) {
                 previousBufferHeartbeatDelay = rescheduleRunnable(
@@ -621,5 +637,59 @@ class MediaHelper internal constructor(
     companion object {
         internal const val MIN_HEARTBEAT_DURATION = 5L
         internal const val MIN_BUFFER_HEARTBEAT_DURATION = 1L
+        private const val AV_PLAY = "av.play"
+        private const val AV_REBUFFER_START = "av.rebuffer.start"
+        private const val AV_BUFFER_START = "av.buffer.start"
+        private const val AV_START = "av.start"
+        private const val AV_PAUSE = "av.pause"
+        private const val AV_RESUME = "av.resume"
+        private const val AV_STOP = "av.stop"
+        private const val AV_BACKWARD = "av.backward"
+        private const val AV_FORWARD = "av.forward"
+        private const val AV_AD_CLICK = "av.ad.click"
+        private const val AV_AD_SKIP = "av.ad.skip"
+        private const val AV_DISPLAY = "av.display"
+        private const val AV_CLOSE = "av.close"
+        private const val AV_VOLUME = "av.volume"
+        private const val AV_SUBTITLE_ON = "av.subtitle.on"
+        private const val AV_SUBTITLE_OFF = "av.subtitle.off"
+        private const val AV_FULLSCREEN_ON = "av.fullscreen.on"
+        private const val AV_FULLSCREEN_OFF = "av.fullscreen.off"
+        private const val AV_QUALITY = "av.quality"
+        private const val AV_SPEED = "av.speed"
+        private const val AV_SHARE = "av.share"
+        private const val AV_ERROR = "av.error"
+        private const val AV_SEEK_START = "av.seek.start"
+        private const val AV_HEARTBEAT = "av.heartbeat"
+        private const val AV_BUFFER_HEARTBEAT = "av.buffer.heartbeat"
+        private const val AV_REBUFFER_HEARTBEAT = "av.rebuffer.heartbeat"
+        private val BUILTIN_EVENTS = arrayOf(
+            AV_PLAY,
+            AV_REBUFFER_START,
+            AV_BUFFER_START,
+            AV_START,
+            AV_PAUSE,
+            AV_RESUME,
+            AV_STOP,
+            AV_BACKWARD,
+            AV_FORWARD,
+            AV_AD_CLICK,
+            AV_AD_SKIP,
+            AV_DISPLAY,
+            AV_CLOSE,
+            AV_VOLUME,
+            AV_SUBTITLE_ON,
+            AV_SUBTITLE_OFF,
+            AV_FULLSCREEN_ON,
+            AV_FULLSCREEN_OFF,
+            AV_QUALITY,
+            AV_SPEED,
+            AV_SHARE,
+            AV_ERROR,
+            AV_SEEK_START,
+            AV_HEARTBEAT,
+            AV_BUFFER_HEARTBEAT,
+            AV_REBUFFER_HEARTBEAT
+        )
     }
 }
