@@ -3,6 +3,8 @@
 ## v3.3.3-SNAPSHOT
 * Added `track` function to `MediaHelper` for tracking custom media events.
 * Changed behavior: `extraProps` in `MediaHelper` are added to all events, not only to "heartbeat" events.
+* Fixed bug with clearing storage at setting `PrivacyMode` with only `PrivacyStorageFeature.ALL` allowed.
+* Fixed bug with incorrect default values for `LIFECYCLE` properties
 
 ## v3.3.2
 * Added `ReportUrlProvider` to `Configuration` for case "switching between several site ids for one app at runtime"
