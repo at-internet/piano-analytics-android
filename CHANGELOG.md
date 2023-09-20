@@ -1,6 +1,6 @@
 # Piano Analytics SDK for Android
 
-## v3.3.3-SNAPSHOT
+## v3.3.3
 * Added `track` function to `MediaHelper` for tracking custom media events.
 * Changed behavior: `extraProps` in `MediaHelper` are added to all events, not only to "heartbeat" events.
 * Fixed bug with clearing storage at setting `PrivacyMode` with only `PrivacyStorageFeature.ALL` allowed.
