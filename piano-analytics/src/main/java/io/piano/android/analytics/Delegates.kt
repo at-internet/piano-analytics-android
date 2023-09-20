@@ -2,7 +2,22 @@ package io.piano.android.analytics
 
 import android.content.SharedPreferences
 import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KMutableProperty0
 import kotlin.reflect.KProperty
+
+internal inline fun <T> delegatedPropertyWithDefaultValue(
+    delegateProperty: KMutableProperty0<T>,
+    crossinline defaultValue: () -> T,
+    crossinline valueFilter: (T) -> Boolean,
+) = object : ReadWriteProperty<Any, T> {
+    override fun getValue(thisRef: Any, property: KProperty<*>): T {
+        return delegateProperty.get().takeIf(valueFilter) ?: defaultValue().also { setValue(thisRef, property, it) }
+    }
+
+    override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
+        delegateProperty.set(value)
+    }
+}
 
 internal fun <T> resettableProperty(
     resetValue: T,

@@ -12,13 +12,14 @@ class PrivacyModesStorage internal constructor(
     private val prefsStorage: PrefsStorage,
 ) {
     init {
-        prefsStorage.privacyStorageFilter = { privacyStorageFeature ->
-            val isNotForbidden = PrivacyStorageFeature.ALL !in currentMode.forbiddenStorageFeatures ||
-                privacyStorageFeature !in currentMode.forbiddenStorageFeatures
-            val isAllowed = PrivacyStorageFeature.ALL in currentMode.allowedStorageFeatures ||
-                privacyStorageFeature in currentMode.allowedStorageFeatures
-            isNotForbidden && isAllowed
-        }
+        prefsStorage.privacyStorageFilter = ::isFeatureAllowed
+    }
+    private fun isFeatureAllowed(privacyStorageFeature: PrivacyStorageFeature): Boolean {
+        val isNotForbidden = PrivacyStorageFeature.ALL !in currentMode.forbiddenStorageFeatures ||
+            privacyStorageFeature !in currentMode.forbiddenStorageFeatures
+        val isAllowed = PrivacyStorageFeature.ALL in currentMode.allowedStorageFeatures ||
+            privacyStorageFeature in currentMode.allowedStorageFeatures
+        return isNotForbidden && isAllowed
     }
 
     /**
@@ -64,15 +65,15 @@ class PrivacyModesStorage internal constructor(
         System.currentTimeMillis() + TimeUnit.DAYS.toMillis(configuration.privacyStorageLifetime.toLong())
 
     internal fun updatePrefs(mode: PrivacyMode) {
-        cachedPrivacyStorageFeatures.filter {
-            it in mode.forbiddenStorageFeatures || it !in mode.allowedStorageFeatures
-        }.forEach {
-            prefsStorage.cleanStorageFeature(it)
-        }
         prefsStorage.apply {
             privacyMode = mode.visitorMode
             privacyExpirationTimestamp = getNewExpirationTimestamp()
             privacyVisitorConsent = mode.visitorConsent
+            cachedPrivacyStorageFeatures.filter {
+                !isFeatureAllowed(it)
+            }.forEach {
+                cleanStorageFeature(it)
+            }
         }
     }
 

@@ -21,13 +21,25 @@ internal class SessionStorage(
     private var savedVersionCode: Long by prefsStorage::versionCode
     private var lastSessionTimestamp: Long by prefsStorage::lastSessionDate
 
-    var sessionCount: Int by prefsStorage::sessionCount
+    var sessionCount: Int by delegatedPropertyWithDefaultValue(
+        prefsStorage::sessionCount,
+        { 1 }
+    ) { it > 0 }
         private set
-    var sessionCountAfterUpdate: Int by prefsStorage::sessionCountAfterUpdate
+    var sessionCountAfterUpdate: Int by delegatedPropertyWithDefaultValue(
+        prefsStorage::sessionCountAfterUpdate,
+        { 1 }
+    ) { it > 0 }
         private set
-    var firstSessionTimestamp: Long by prefsStorage::firstSessionDate
+    var firstSessionTimestamp: Long by delegatedPropertyWithDefaultValue(
+        prefsStorage::firstSessionDate,
+        this::getCurrentTimestamp
+    ) { it > 0 }
         private set
-    var firstSessionTimestampAfterUpdate: Long by prefsStorage::firstSessionDateAfterUpdate
+    var firstSessionTimestampAfterUpdate: Long by delegatedPropertyWithDefaultValue(
+        prefsStorage::firstSessionDateAfterUpdate,
+        this::getCurrentTimestamp
+    ) { it > 0 }
         private set
 
     var sessionId: String = ""
@@ -46,7 +58,7 @@ internal class SessionStorage(
     init {
         sessionLifecycleListener.sessionExpiredCallback = this::initNewSession
         addLifecycleObserver(sessionLifecycleListener)
-        if (sessionCount == 0) {
+        if (prefsStorage.sessionCount == 0) {
             // first session
             sessionCount = 1
             sessionCountAfterUpdate = 1
