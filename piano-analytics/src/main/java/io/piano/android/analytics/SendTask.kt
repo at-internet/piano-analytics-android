@@ -28,7 +28,9 @@ internal class SendTask(
             Timber.w("Can't send events - no connection")
             return
         }
-        send(eventRepository.getNotSentEvents())
+        eventRepository.getNotSentEvents().chunked(CHUNK_SIZE).forEach {
+            send(it)
+        }
     }
 
     internal fun send(events: List<EventRecord>) {
@@ -58,5 +60,6 @@ internal class SendTask(
 
     companion object {
         internal val MEDIA_TYPE by lazy(LazyThreadSafetyMode.NONE) { "application/json; charset=UTF-8".toMediaType() }
+        private const val CHUNK_SIZE = 50
     }
 }

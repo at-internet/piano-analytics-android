@@ -1,5 +1,10 @@
 # Piano Analytics SDK for Android
 
+## v3.3.4-SNAPSHOT
+* Updated dependencies:
+    - com.squareup.okhttp3:okhttp [4.11.0 -> 4.12.0]
+      https://square.github.io/okhttp/
+
 ## v3.3.3
 * Added `track` function to `MediaHelper` for tracking custom media events.
 * Changed behavior: `extraProps` in `MediaHelper` are added to all events, not only to "heartbeat" events.
