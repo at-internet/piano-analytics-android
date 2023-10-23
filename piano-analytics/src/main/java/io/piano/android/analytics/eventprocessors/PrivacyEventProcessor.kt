@@ -47,12 +47,11 @@ internal class PrivacyEventProcessor(
     }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun Set<String>.simplify(): Set<String> =
-        if (contains(WILDCARD)) {
-            setOf(WILDCARD)
-        } else {
-            toSet()
-        }
+    private inline fun Set<String>.simplify(): Set<String> = if (contains(WILDCARD)) {
+        setOf(WILDCARD)
+    } else {
+        toSet()
+    }
 
     @Suppress("NOTHING_TO_INLINE")
     private inline fun Map<String, Set<PropertyName>>.simplify(): Map<String, Set<PropertyName>> = mapValues {

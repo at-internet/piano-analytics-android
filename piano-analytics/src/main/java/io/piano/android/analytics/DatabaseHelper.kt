@@ -42,39 +42,35 @@ internal class DatabaseHelper(
         }
     }
 
-    internal fun EventRecord.toContentValues(): ContentValues =
-        ContentValues().apply {
-            put(EventRecord.DATA, dataEncoder.encode(data))
-            put(EventRecord.TIME, timestamp)
-            put(EventRecord.IS_SENT, isSent)
-        }
+    internal fun EventRecord.toContentValues(): ContentValues = ContentValues().apply {
+        put(EventRecord.DATA, dataEncoder.encode(data))
+        put(EventRecord.TIME, timestamp)
+        put(EventRecord.IS_SENT, isSent)
+    }
 
-    fun ContentValues.toEventRecord(): EventRecord =
-        EventRecord(
-            dataEncoder.decode(getAsString(EventRecord.DATA)),
-            getAsLong(EventRecord.TIME),
-            getAsLong(EventRecord.ID),
-            getAsBoolean(EventRecord.IS_SENT)
-        )
+    fun ContentValues.toEventRecord(): EventRecord = EventRecord(
+        dataEncoder.decode(getAsString(EventRecord.DATA)),
+        getAsLong(EventRecord.TIME),
+        getAsLong(EventRecord.ID),
+        getAsBoolean(EventRecord.IS_SENT)
+    )
 
-    fun save(eventRecord: EventRecord): Long =
-        eventRecord.id?.let { id ->
-            writableDatabase.update(
-                EventRecord.TABLE_NAME,
-                eventRecord.toContentValues(),
-                "${EventRecord.ID} = ?",
-                arrayOf(id.toString())
-            ).toLong()
-        } ?: writableDatabase.insert(
+    fun save(eventRecord: EventRecord): Long = eventRecord.id?.let { id ->
+        writableDatabase.update(
             EventRecord.TABLE_NAME,
-            null,
-            eventRecord.toContentValues()
-        )
+            eventRecord.toContentValues(),
+            "${EventRecord.ID} = ?",
+            arrayOf(id.toString())
+        ).toLong()
+    } ?: writableDatabase.insert(
+        EventRecord.TABLE_NAME,
+        null,
+        eventRecord.toContentValues()
+    )
 
-    fun delete(eventRecord: EventRecord): Int =
-        eventRecord.id?.let { id ->
-            delete("${EventRecord.ID} = ?", id.toString())
-        } ?: -1
+    fun delete(eventRecord: EventRecord): Int = eventRecord.id?.let { id ->
+        delete("${EventRecord.ID} = ?", id.toString())
+    } ?: -1
 
     fun delete(whereClause: String?, vararg whereArgs: String): Int =
         writableDatabase.delete(EventRecord.TABLE_NAME, whereClause, whereArgs)
@@ -87,42 +83,40 @@ internal class DatabaseHelper(
         having: String? = null,
         orderBy: String? = "${EventRecord.TIME} ASC",
         limit: String? = null,
-    ): List<EventRecord> =
-        readableDatabase.query(
-            EventRecord.TABLE_NAME,
-            columns,
-            selection,
-            selectionArgs,
-            groupBy,
-            having,
-            orderBy,
-            limit
-        ).use { c ->
-            generateSequence { if (c.moveToNext()) c else null }
-                .map(Companion::cursorRowToContentValues)
-                .map {
-                    it.toEventRecord()
-                }.filter {
-                    it.isValid
-                }.toList()
-        }
+    ): List<EventRecord> = readableDatabase.query(
+        EventRecord.TABLE_NAME,
+        columns,
+        selection,
+        selectionArgs,
+        groupBy,
+        having,
+        orderBy,
+        limit
+    ).use { c ->
+        generateSequence { if (c.moveToNext()) c else null }
+            .map(Companion::cursorRowToContentValues)
+            .map {
+                it.toEventRecord()
+            }.filter {
+                it.isValid
+            }.toList()
+    }
 
     companion object {
         const val DATABASE_VERSION = 1
         private const val DATABASE_NAME = "events.db"
 
         @JvmStatic
-        private fun cursorRowToContentValues(c: Cursor): ContentValues =
-            ContentValues().apply {
-                for (i in 0 until c.columnCount) {
-                    val name = c.columnNames[i]
-                    when (c.getType(i)) {
-                        Cursor.FIELD_TYPE_BLOB -> put(name, c.getBlob(i))
-                        Cursor.FIELD_TYPE_FLOAT -> put(name, c.getFloat(i))
-                        Cursor.FIELD_TYPE_INTEGER -> put(name, c.getLong(i))
-                        else -> put(name, c.getString(i))
-                    }
+        private fun cursorRowToContentValues(c: Cursor): ContentValues = ContentValues().apply {
+            for (i in 0 until c.columnCount) {
+                val name = c.columnNames[i]
+                when (c.getType(i)) {
+                    Cursor.FIELD_TYPE_BLOB -> put(name, c.getBlob(i))
+                    Cursor.FIELD_TYPE_FLOAT -> put(name, c.getFloat(i))
+                    Cursor.FIELD_TYPE_INTEGER -> put(name, c.getLong(i))
+                    else -> put(name, c.getString(i))
                 }
             }
+        }
     }
 }

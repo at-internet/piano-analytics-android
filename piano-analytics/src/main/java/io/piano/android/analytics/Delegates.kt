@@ -19,10 +19,7 @@ internal inline fun <T> delegatedPropertyWithDefaultValue(
     }
 }
 
-internal fun <T> resettableProperty(
-    resetValue: T,
-    initializer: () -> T,
-) = ResettableProperty(resetValue, initializer)
+internal fun <T> resettableProperty(resetValue: T, initializer: () -> T) = ResettableProperty(resetValue, initializer)
 
 internal class ResettableProperty<T>(
     private val resetValue: T,
@@ -48,29 +45,25 @@ internal class SharedPreferenceDelegates(private val prefs: SharedPreferences) {
         default: Boolean = false,
         key: String? = null,
         canBeSaved: (key: String) -> Boolean = DEFAULT_SAVE_FILTER,
-    ): ReadWriteProperty<Any, Boolean> =
-        create(default, key, canBeSaved, prefs::getBoolean, prefs.edit()::putBoolean)
+    ): ReadWriteProperty<Any, Boolean> = create(default, key, canBeSaved, prefs::getBoolean, prefs.edit()::putBoolean)
 
     fun int(
         default: Int = 0,
         key: String? = null,
         canBeSaved: (key: String) -> Boolean = DEFAULT_SAVE_FILTER,
-    ): ReadWriteProperty<Any, Int> =
-        create(default, key, canBeSaved, prefs::getInt, prefs.edit()::putInt)
+    ): ReadWriteProperty<Any, Int> = create(default, key, canBeSaved, prefs::getInt, prefs.edit()::putInt)
 
     fun float(
         default: Float = 0f,
         key: String? = null,
         canBeSaved: (key: String) -> Boolean = DEFAULT_SAVE_FILTER,
-    ): ReadWriteProperty<Any, Float> =
-        create(default, key, canBeSaved, prefs::getFloat, prefs.edit()::putFloat)
+    ): ReadWriteProperty<Any, Float> = create(default, key, canBeSaved, prefs::getFloat, prefs.edit()::putFloat)
 
     fun long(
         default: Long = 0L,
         key: String? = null,
         canBeSaved: (key: String) -> Boolean = DEFAULT_SAVE_FILTER,
-    ): ReadWriteProperty<Any, Long> =
-        create(default, key, canBeSaved, prefs::getLong, prefs.edit()::putLong)
+    ): ReadWriteProperty<Any, Long> = create(default, key, canBeSaved, prefs::getLong, prefs.edit()::putLong)
 
     fun string(
         default: String = "",
@@ -86,19 +79,6 @@ internal class SharedPreferenceDelegates(private val prefs: SharedPreferences) {
     ): ReadWriteProperty<Any, String?> =
         create(default, key, canBeSaved, { k, d -> prefs.getString(k, d) }, prefs.edit()::putString)
 
-    fun stringSet(
-        default: Set<String> = emptySet(),
-        key: String? = null,
-        canBeSaved: (key: String) -> Boolean = DEFAULT_SAVE_FILTER,
-    ): ReadWriteProperty<Any, Set<String>> =
-        create(
-            default,
-            key,
-            canBeSaved,
-            { k, d -> prefs.getStringSet(k, d) as Set<String> },
-            prefs.edit()::putStringSet
-        )
-
     private fun <T> create(
         default: T,
         key: String? = null,
@@ -108,8 +88,7 @@ internal class SharedPreferenceDelegates(private val prefs: SharedPreferences) {
     ) = object : ReadWriteProperty<Any, T> {
         private fun key(property: KProperty<*>) = key ?: property.name
 
-        override fun getValue(thisRef: Any, property: KProperty<*>): T =
-            getter(key(property), default)
+        override fun getValue(thisRef: Any, property: KProperty<*>): T = getter(key(property), default)
 
         override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
             val propertyKey = key(property)

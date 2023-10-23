@@ -31,11 +31,14 @@ class PianoAnalytics internal constructor(
     private val visitorIdProvider: VisitorIdProvider,
     private val customIdProvider: CustomIdProvider,
     customEventProcessorsGroup: GroupEventProcessor,
-    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    // Public API.
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
     val privacyModesStorage: PrivacyModesStorage,
-    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    // Public API.
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
     val contextPropertiesStorage: ContextPropertiesStorage,
-    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    // Public API.
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
     val userStorage: UserStorage,
 ) {
     private val executor: ScheduledExecutorService = executorProvider()
@@ -116,9 +119,7 @@ class PianoAnalytics internal constructor(
      * @param events a custom event list
      */
     @Suppress("unused") // Public API.
-    fun sendEvents(
-        vararg events: Event,
-    ) {
+    fun sendEvents(vararg events: Event) {
         // delay is required, see androidx.lifecycle.ProcessLifecycleOwner.TIMEOUT_MS
         executor.schedule(
             {

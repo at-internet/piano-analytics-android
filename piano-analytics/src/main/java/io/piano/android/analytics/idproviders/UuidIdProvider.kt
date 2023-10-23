@@ -33,11 +33,10 @@ internal class UuidIdProvider(
         }
     override val isLimitAdTrackingEnabled: Boolean = false
 
-    internal fun createNewUuid() =
-        UUID.randomUUID().toString().also {
-            prefsStorage.visitorUuid = it
-            prefsStorage.visitorUuidGenerateTimestamp = getGenerationTimestamp()
-        }
+    internal fun createNewUuid() = UUID.randomUUID().toString().also {
+        prefsStorage.visitorUuid = it
+        prefsStorage.visitorUuidGenerateTimestamp = getGenerationTimestamp()
+    }
 
     // for mocking in tests
     internal fun getGenerationTimestamp() = System.currentTimeMillis()

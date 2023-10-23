@@ -6,8 +6,12 @@ plugins {
     alias(libs.plugins.mavenRelease)
 }
 
+@Suppress("PropertyName")
 val GROUP: String by project
+
+@Suppress("PropertyName")
 val VERSION_NAME: String by project
+
 group = GROUP
 version = VERSION_NAME
 
@@ -43,8 +47,8 @@ kotlin {
 }
 
 ktlint {
-    version.set("0.50.0")
-    android.set(true)
+    android = true
+    version = "1.0.1"
 }
 
 dependencies {

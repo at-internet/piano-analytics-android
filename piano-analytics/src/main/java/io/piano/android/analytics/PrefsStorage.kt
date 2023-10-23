@@ -17,16 +17,15 @@ internal class PrefsStorage(
 
     internal fun clear() = prefs.edit().clear().apply()
 
-    internal fun cleanStorageFeature(privacyStorageFeature: PrivacyStorageFeature) =
-        prefs.edit().apply {
-            if (privacyStorageFeature != PrivacyStorageFeature.ALL) {
-                keysByPrivacyStorageFeature[privacyStorageFeature]?.forEach {
-                    remove(it)
-                }
-            } else {
-                clear()
+    internal fun cleanStorageFeature(privacyStorageFeature: PrivacyStorageFeature) = prefs.edit().apply {
+        if (privacyStorageFeature != PrivacyStorageFeature.ALL) {
+            keysByPrivacyStorageFeature[privacyStorageFeature]?.forEach {
+                remove(it)
             }
-        }.apply()
+        } else {
+            clear()
+        }
+    }.apply()
 
     init {
         if (REMOVED_KEYS.any { prefs.contains(it) }) {

@@ -22,11 +22,10 @@ internal class EventRepository(
         )
     }
 
-    fun getNotSentEvents(): List<EventRecord> =
-        databaseHelper.query(
-            selection = "${EventRecord.IS_SENT} = 0",
-            orderBy = "${EventRecord.TIME} ASC"
-        )
+    fun getNotSentEvents(): List<EventRecord> = databaseHelper.query(
+        selection = "${EventRecord.IS_SENT} = 0",
+        orderBy = "${EventRecord.TIME} ASC"
+    )
 
     fun markEventsAsSent(events: Collection<EventRecord>) {
         events.forEach { e ->
