@@ -8,6 +8,7 @@ import java.util.Date
 class Property {
     val name: PropertyName
     val value: Any
+    val forceType: Type?
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -17,10 +18,11 @@ class Property {
 
     override fun hashCode(): Int = name.key.lowercase().hashCode()
 
-    internal constructor(name: PropertyName, value: Any) {
+    internal constructor(name: PropertyName, value: Any, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -29,10 +31,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: String) {
+    constructor(name: PropertyName, value: String, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -41,10 +44,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Int) {
+    constructor(name: PropertyName, value: Int, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -53,10 +57,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Long) {
+    constructor(name: PropertyName, value: Long, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -65,10 +70,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Double) {
+    constructor(name: PropertyName, value: Double, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -77,7 +83,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Date) : this(name, value.time / 1000)
+    constructor(name: PropertyName, value: Date) : this(name, value.time / 1000, Type.DATE)
 
     /**
      * Creates a new property
@@ -85,10 +91,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Boolean) {
+    constructor(name: PropertyName, value: Boolean, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -97,10 +104,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<String>) {
+    constructor(name: PropertyName, value: Array<String>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -109,10 +117,11 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<Int>) {
+    constructor(name: PropertyName, value: Array<Int>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
     }
 
     /**
@@ -121,9 +130,21 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<Double>) {
+    constructor(name: PropertyName, value: Array<Double>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
+        this.forceType = forceType
+    }
+
+    enum class Type(val prefix: String) {
+        STRING("s"),
+        INTEGER("n"),
+        FLOAT("f"),
+        DATE("d"),
+        BOOLEAN("b"),
+        STRING_ARRAY("a:s"),
+        INTEGER_ARRAY("a:n"),
+        FLOAT_ARRAY("a:f"),
     }
 }

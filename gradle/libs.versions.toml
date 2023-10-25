@@ -10,9 +10,8 @@ moshiIR = "0.22.1"
 
 # AndroidX libraries
 compatLibrary = "1.6.1"
-annotationsLibrary = "1.6.0"
 lifecycle = "2.6.2"
-materialLibrary = "1.9.0"
+materialLibrary = "1.10.0"
 
 # Third party Libraries
 googleAdsId = "18.0.1"
@@ -27,7 +26,7 @@ viewBindingProperty = "1.5.9"
 junit = "4.13.2"
 androidxTestCore = "1.5.0"
 mockitoKotlin = "2.2.0"
-mockitoCore = "5.5.0"
+mockitoCore = "5.6.0"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }
@@ -40,7 +39,6 @@ moshiIR = { id = "dev.zacsweers.moshix", version.ref = "moshiIR"}
 versionUpdater = { id = "com.github.ben-manes.versions", version.ref = "versionUpdater" }
 
 [libraries]
-annotations = { module = "androidx.annotation:annotation", version.ref = "annotationsLibrary" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "compatLibrary" }
 lifecycleProcess = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycle"}
 material = { module = "com.google.android.material:material", version.ref = "materialLibrary" }
