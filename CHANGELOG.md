@@ -1,6 +1,7 @@
 # Piano Analytics SDK for Android
 
 ## v3.3.4-SNAPSHOT
+* Added limit for event storage
 * Updated dependencies:
     - com.squareup.okhttp3:okhttp [4.11.0 -> 4.12.0]
       https://square.github.io/okhttp/
