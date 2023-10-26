@@ -22,11 +22,19 @@ internal class EventRepository(
         )
     }
 
-    fun getNotSentEvents(): List<EventRecord> =
-        databaseHelper.query(
-            selection = "${EventRecord.IS_SENT} = 0",
-            orderBy = "${EventRecord.TIME} ASC"
+    fun deleteOutOfLimitNotSentEvents(limit: Int) {
+        databaseHelper.delete(
+            "${EventRecord.IS_SENT} = 0 AND ${EventRecord.ID} <= (" +
+                "SELECT ${EventRecord.ID} FROM ${EventRecord.TABLE_NAME} WHERE ${EventRecord.IS_SENT} = 0 " +
+                "ORDER by ${EventRecord.ID} DESC LIMIT 1 OFFSET ?)",
+            limit.toString()
         )
+    }
+
+    fun getNotSentEvents(): List<EventRecord> = databaseHelper.query(
+        selection = "${EventRecord.IS_SENT} = 0",
+        orderBy = "${EventRecord.TIME} ASC"
+    )
 
     fun markEventsAsSent(events: Collection<EventRecord>) {
         events.forEach { e ->

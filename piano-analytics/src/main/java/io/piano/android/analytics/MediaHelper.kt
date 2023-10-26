@@ -141,8 +141,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun bufferHeartbeat(vararg properties: Property) =
-        processBufferHeartbeat(false, *properties)
+    fun bufferHeartbeat(vararg properties: Property) = processBufferHeartbeat(false, *properties)
 
     /**
      * Generate heartbeat during rebuffering.
@@ -150,8 +149,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun rebufferHeartbeat(vararg properties: Property) =
-        processRebufferHeartbeat(false, *properties)
+    fun rebufferHeartbeat(vararg properties: Property) = processRebufferHeartbeat(false, *properties)
 
     /**
      * Generate play event (play attempt).
@@ -210,25 +208,24 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackStart(cursorPosition: Int, vararg properties: Property) =
-        processEvent(AV_START, properties) {
-            previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
-            currentCursorPositionMillis = previousCursorPositionMillis
-            bufferTimeMillis = 0
-            isPlaying = true
-            isPlaybackActivated = true
+    fun playbackStart(cursorPosition: Int, vararg properties: Property) = processEvent(AV_START, properties) {
+        previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
+        currentCursorPositionMillis = previousCursorPositionMillis
+        bufferTimeMillis = 0
+        isPlaying = true
+        isPlaybackActivated = true
 
-            restartHeartbeatExecutor()
-            if (autoHeartbeat) {
-                previousHeartbeatDelay = rescheduleRunnable(
-                    previousHeartbeatDelay,
-                    startSessionTimeMillis,
-                    MIN_HEARTBEAT_DURATION,
-                    heartbeatDurations,
-                    heartbeatRunnable
-                )
-            }
+        restartHeartbeatExecutor()
+        if (autoHeartbeat) {
+            previousHeartbeatDelay = rescheduleRunnable(
+                previousHeartbeatDelay,
+                startSessionTimeMillis,
+                MIN_HEARTBEAT_DURATION,
+                heartbeatDurations,
+                heartbeatRunnable
+            )
         }
+    }
 
     /**
      * Media playback paused.
@@ -237,15 +234,14 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackPaused(cursorPosition: Int, vararg properties: Property) =
-        processEvent(AV_PAUSE, properties) {
-            previousCursorPositionMillis = currentCursorPositionMillis
-            currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
-            bufferTimeMillis = 0
-            isPlaying = false
-            isPlaybackActivated = true
-            restartHeartbeatExecutor()
-        }
+    fun playbackPaused(cursorPosition: Int, vararg properties: Property) = processEvent(AV_PAUSE, properties) {
+        previousCursorPositionMillis = currentCursorPositionMillis
+        currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
+        bufferTimeMillis = 0
+        isPlaying = false
+        isPlaybackActivated = true
+        restartHeartbeatExecutor()
+    }
 
     /**
      * Media playback restarted manually after a pause.
@@ -254,25 +250,24 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun playbackResumed(cursorPosition: Int, vararg properties: Property) =
-        processEvent(AV_RESUME, properties) {
-            previousCursorPositionMillis = currentCursorPositionMillis
-            currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
-            bufferTimeMillis = 0
-            isPlaying = true
-            isPlaybackActivated = true
+    fun playbackResumed(cursorPosition: Int, vararg properties: Property) = processEvent(AV_RESUME, properties) {
+        previousCursorPositionMillis = currentCursorPositionMillis
+        currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
+        bufferTimeMillis = 0
+        isPlaying = true
+        isPlaybackActivated = true
 
-            restartHeartbeatExecutor()
-            if (autoHeartbeat) {
-                previousHeartbeatDelay = rescheduleRunnable(
-                    previousHeartbeatDelay,
-                    startSessionTimeMillis,
-                    MIN_HEARTBEAT_DURATION,
-                    heartbeatDurations,
-                    heartbeatRunnable
-                )
-            }
+        restartHeartbeatExecutor()
+        if (autoHeartbeat) {
+            previousHeartbeatDelay = rescheduleRunnable(
+                previousHeartbeatDelay,
+                startSessionTimeMillis,
+                MIN_HEARTBEAT_DURATION,
+                heartbeatDurations,
+                heartbeatRunnable
+            )
         }
+    }
 
     /**
      * Media playback stopped.
@@ -356,8 +351,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun adClick(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_AD_CLICK, false, *properties))
+    fun adClick(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_AD_CLICK, false, *properties))
 
     /**
      * Measuring media skip (especially for ads).
@@ -365,8 +359,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun adSkip(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_AD_SKIP, false, *properties))
+    fun adSkip(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_AD_SKIP, false, *properties))
 
     /**
      * Measuring reco or Ad display.
@@ -374,8 +367,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun display(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_DISPLAY, false, *properties))
+    fun display(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_DISPLAY, false, *properties))
 
     /**
      * Measuring close action.
@@ -383,8 +375,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun close(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_CLOSE, false, *properties))
+    fun close(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_CLOSE, false, *properties))
 
     /**
      * Measurement of a volume change action.
@@ -392,8 +383,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun volume(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_VOLUME, false, *properties))
+    fun volume(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_VOLUME, false, *properties))
 
     /**
      * Measurement of activated subtitles.
@@ -437,8 +427,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun quality(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_QUALITY, false, *properties))
+    fun quality(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_QUALITY, false, *properties))
 
     /**
      * Measurement of a speed change action.
@@ -446,8 +435,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun speed(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_SPEED, false, *properties))
+    fun speed(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_SPEED, false, *properties))
 
     /**
      * Measurement of a sharing action.
@@ -455,8 +443,7 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun share(vararg properties: Property) =
-        pianoAnalytics.sendEvents(buildEvent(AV_SHARE, false, *properties))
+    fun share(vararg properties: Property) = pianoAnalytics.sendEvents(buildEvent(AV_SHARE, false, *properties))
 
     /**
      * Error measurement preventing reading from continuing.
@@ -465,15 +452,14 @@ class MediaHelper internal constructor(
      * @param properties extra properties for event
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun error(message: String, vararg properties: Property) =
-        pianoAnalytics.sendEvents(
-            buildEvent(
-                AV_ERROR,
-                false,
-                Property(PropertyName("av_player_error"), message),
-                *properties
-            )
+    fun error(message: String, vararg properties: Property) = pianoAnalytics.sendEvents(
+        buildEvent(
+            AV_ERROR,
+            false,
+            Property(PropertyName("av_player_error"), message),
+            *properties
         )
+    )
 
     /**
      * Track custom event, don't use it for built-in events.

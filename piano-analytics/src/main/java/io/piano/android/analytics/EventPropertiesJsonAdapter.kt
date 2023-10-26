@@ -20,7 +20,17 @@ internal class EventPropertiesJsonAdapter(
                 is Double,
                 is Boolean,
                 is Array<*>,
-                -> Property(PropertyName(entry.key), entry.value)
+                -> {
+                    val delimiterIndex = entry.key.lastIndexOf(DELIMITER)
+                    val key = entry.key.substring(delimiterIndex + 1)
+                    val type = if (delimiterIndex != -1) {
+                        val prefix = entry.key.substring(0, delimiterIndex)
+                        Property.Type.values().firstOrNull { it.prefix == prefix }
+                    } else {
+                        null
+                    }
+                    Property(PropertyName(key), entry.value, type)
+                }
 
                 else -> null
             }
@@ -29,6 +39,15 @@ internal class EventPropertiesJsonAdapter(
 
     override fun toJson(writer: JsonWriter, value: Set<Property>?) {
         requireNotNull(value)
-        mapAdapter.toJson(writer, value.associate { it.name.key.lowercase() to it.value })
+        mapAdapter.toJson(
+            writer,
+            value.associate {
+                it.forceType?.prefix?.plus(DELIMITER).orEmpty() + it.name.key.lowercase() to it.value
+            }
+        )
+    }
+
+    companion object {
+        private const val DELIMITER = ":"
     }
 }
