@@ -1,5 +1,8 @@
 # Piano Analytics SDK for Android
 
+## v3.3.5-SNAPSHOT
+* Decreased default offline storage lifetime for events
+
 ## v3.3.4
 * Added limit for event storage
 * Updated dependencies:
