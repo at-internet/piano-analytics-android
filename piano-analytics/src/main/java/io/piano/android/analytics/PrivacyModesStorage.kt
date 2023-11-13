@@ -15,12 +15,24 @@ class PrivacyModesStorage internal constructor(
         prefsStorage.privacyStorageFilter = ::isFeatureAllowed
     }
     private fun isFeatureAllowed(privacyStorageFeature: PrivacyStorageFeature): Boolean {
-        val isNotForbidden = PrivacyStorageFeature.ALL !in currentMode.forbiddenStorageFeatures ||
-            privacyStorageFeature !in currentMode.forbiddenStorageFeatures
-        val isAllowed = PrivacyStorageFeature.ALL in currentMode.allowedStorageFeatures ||
-            privacyStorageFeature in currentMode.allowedStorageFeatures
+        val isNotForbidden = PrivacyStorageFeature.ALL !in cachedMode.forbiddenStorageFeatures ||
+            privacyStorageFeature !in cachedMode.forbiddenStorageFeatures
+        val isAllowed = PrivacyStorageFeature.ALL in cachedMode.allowedStorageFeatures ||
+            privacyStorageFeature in cachedMode.allowedStorageFeatures
         return isNotForbidden && isAllowed
     }
+
+    /**
+     * All registered privacy modes. Add a [PrivacyMode] instance into [allModes] for registering it
+     */
+    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
+    val allModes = mutableSetOf(
+        PrivacyMode.NO_CONSENT,
+        PrivacyMode.NO_STORAGE,
+        PrivacyMode.OPTIN,
+        PrivacyMode.OPTOUT,
+        PrivacyMode.EXEMPT
+    )
 
     /**
      * Current privacy visitor mode
@@ -37,27 +49,19 @@ class PrivacyModesStorage internal constructor(
                     } ?: configuration.defaultPrivacyMode
                 }
             }
+            cachedMode = field
             return field
         }
         set(value) {
             require(value in allModes) {
                 "Privacy mode ${value.visitorMode} is not registered."
             }
+            cachedMode = value
             field = value
             updatePrefs(value)
         }
 
-    /**
-     * All registered privacy modes. Add a [PrivacyMode] instance into [allModes] for registering it
-     */
-    @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    val allModes = mutableSetOf(
-        PrivacyMode.NO_CONSENT,
-        PrivacyMode.NO_STORAGE,
-        PrivacyMode.OPTIN,
-        PrivacyMode.OPTOUT,
-        PrivacyMode.EXEMPT
-    )
+    private var cachedMode: PrivacyMode = currentMode
 
     // for mocking in tests
     @Suppress("NOTHING_TO_INLINE")
