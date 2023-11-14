@@ -1,6 +1,6 @@
 # Piano Analytics SDK for Android
 
-## v3.3.5-SNAPSHOT
+## v3.3.5
 * Decreased default offline storage lifetime for events
 * Fixed bug with cyclic read/save current privacy mode after its expiration
 
