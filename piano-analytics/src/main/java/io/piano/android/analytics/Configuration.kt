@@ -218,7 +218,7 @@ class Configuration private constructor(
         const val DEFAULT_PATH = "event"
         const val MIN_SESSION_BACKGROUND_DURATION = 2
         const val DEFAULT_SESSION_BACKGROUND_DURATION = 30
-        const val DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME = 30
+        const val DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME = 7
         const val DEFAULT_PRIVACY_STORAGE_LIFETIME = 395
         const val DEFAULT_VISITOR_STORAGE_LIFETIME = 395
         const val DEFAULT_USER_STORAGE_LIFETIME = 395
