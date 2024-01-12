@@ -1,13 +1,6 @@
 package io.piano.android.analytics.model
 
 internal enum class ConnectionType(val key: String) {
-    GPRS("GPRS"),
-    EDGE("EDGE"),
-    TWOG("2G"),
-    THREEG("3G"),
-    THREEGPLUS("3G+"),
-    FOURG("4G"),
-    FIVEG("5G"),
     MOBILE("MOBILE"),
     WIFI("WIFI"),
     OFFLINE("OFFLINE"),

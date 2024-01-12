@@ -1,5 +1,11 @@
 # Piano Analytics SDK for Android
 
+## v3.3.6-SNAPSHOT
+* Removed requirement for `READ_PHONE_STATE` permission for Android 6-9
+* Updated dependencies:
+    - androidx.lifecycle:lifecycle-process [2.6.2 -> 2.7.0]
+      https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0
+
 ## v3.3.5
 * Decreased default offline storage lifetime for events
 * Fixed bug with cyclic read/save current privacy mode after its expiration

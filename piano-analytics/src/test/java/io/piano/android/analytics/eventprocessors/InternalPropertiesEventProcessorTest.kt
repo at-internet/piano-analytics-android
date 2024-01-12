@@ -33,7 +33,7 @@ class InternalPropertiesEventProcessorTest {
                 packageName = DUMMY
                 versionName = DUMMY
             }
-            on { connectionType } doReturn ConnectionType.FIVEG
+            on { connectionType } doReturn ConnectionType.MOBILE
         }
         val processor = InternalPropertiesEventProcessor(configuration, deviceInfoProvider)
         val events = processor.process(listOf(event))

@@ -36,6 +36,9 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "io.piano.android.analytics"
 }
 
@@ -48,7 +51,7 @@ kotlin {
 
 ktlint {
     android = true
-    version = "1.0.1"
+    version = "1.1.1"
 }
 
 dependencies {
