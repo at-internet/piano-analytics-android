@@ -1,11 +1,10 @@
 [versions]
 # Plugins
 kotlin = "1.8.22"
-android = "8.2.1"
-versionUpdater = "0.50.0"
+android = "8.3.1"
+versionUpdater = "0.51.0"
 ktlint = "12.1.0"
-dokka = "1.8.20"
-mavenRelease = "0.27.0"
+mavenRelease = "0.28.0"
 moshiIR = "0.22.1"
 
 # AndroidX libraries
@@ -26,14 +25,13 @@ viewBindingProperty = "1.5.9"
 junit = "4.13.2"
 androidxTestCore = "1.5.0"
 mockitoKotlin = "2.2.0"
-mockitoCore = "5.8.0"
+mockitoCore = "5.11.0"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }
 android-app = { id = "com.android.application", version.ref = "android" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 mavenRelease = { id = "com.vanniktech.maven.publish", version.ref = "mavenRelease" }
 moshiIR = { id = "dev.zacsweers.moshix", version.ref = "moshiIR"}
 versionUpdater = { id = "com.github.ben-manes.versions", version.ref = "versionUpdater" }

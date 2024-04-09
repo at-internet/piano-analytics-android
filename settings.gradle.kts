@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.gradle.enterprise") version "3.16.1"
+    id("com.gradle.develocity") version "3.17"
 }
 include(
     ":app",
