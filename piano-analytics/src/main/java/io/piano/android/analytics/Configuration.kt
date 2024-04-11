@@ -8,38 +8,38 @@ import io.piano.android.analytics.model.VisitorStorageMode
 /**
  * Class for storing all configuration
  */
-class Configuration private constructor(
-    val reportUrlProvider: ReportUrlProvider,
-    val defaultPrivacyMode: PrivacyMode,
-    val visitorIDType: VisitorIDType,
-    val offlineStorageMode: OfflineStorageMode,
-    val visitorStorageMode: VisitorStorageMode,
-    val eventsOfflineStorageLifetime: Int,
-    val privacyStorageLifetime: Int,
-    val visitorStorageLifetime: Int,
-    val userStorageLifetime: Int,
-    val sessionBackgroundDuration: Int,
-    val detectCrashes: Boolean,
-    val ignoreLimitedAdTracking: Boolean,
-    val sendEventWhenOptOut: Boolean,
+public class Configuration private constructor(
+    public val reportUrlProvider: ReportUrlProvider,
+    public val defaultPrivacyMode: PrivacyMode,
+    public val visitorIDType: VisitorIDType,
+    public val offlineStorageMode: OfflineStorageMode,
+    public val visitorStorageMode: VisitorStorageMode,
+    public val eventsOfflineStorageLifetime: Int,
+    public val privacyStorageLifetime: Int,
+    public val visitorStorageLifetime: Int,
+    public val userStorageLifetime: Int,
+    public val sessionBackgroundDuration: Int,
+    public val detectCrashes: Boolean,
+    public val ignoreLimitedAdTracking: Boolean,
+    public val sendEventWhenOptOut: Boolean,
 ) : ReportUrlProvider by reportUrlProvider {
-    class Builder @JvmOverloads constructor(
-        var collectDomain: String = "",
-        var site: Int = 0,
-        var path: String = DEFAULT_PATH,
-        var defaultPrivacyMode: PrivacyMode = PrivacyMode.OPTIN,
-        var visitorIDType: VisitorIDType = VisitorIDType.UUID,
-        var offlineStorageMode: OfflineStorageMode = OfflineStorageMode.REQUIRED,
-        var visitorStorageMode: VisitorStorageMode = VisitorStorageMode.FIXED,
-        var eventsOfflineStorageLifetime: Int = DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME,
-        var privacyStorageLifetime: Int = DEFAULT_PRIVACY_STORAGE_LIFETIME,
-        var visitorStorageLifetime: Int = DEFAULT_VISITOR_STORAGE_LIFETIME,
-        var userStorageLifetime: Int = DEFAULT_USER_STORAGE_LIFETIME,
-        var sessionBackgroundDuration: Int = DEFAULT_SESSION_BACKGROUND_DURATION,
-        var detectCrashes: Boolean = true,
-        var ignoreLimitedAdTracking: Boolean = false,
-        var sendEventWhenOptOut: Boolean = true,
-        var reportUrlProvider: ReportUrlProvider? = null,
+    public class Builder @JvmOverloads constructor(
+        public var collectDomain: String = "",
+        public var site: Int = 0,
+        public var path: String = DEFAULT_PATH,
+        public var defaultPrivacyMode: PrivacyMode = PrivacyMode.OPTIN,
+        public var visitorIDType: VisitorIDType = VisitorIDType.UUID,
+        public var offlineStorageMode: OfflineStorageMode = OfflineStorageMode.REQUIRED,
+        public var visitorStorageMode: VisitorStorageMode = VisitorStorageMode.FIXED,
+        public var eventsOfflineStorageLifetime: Int = DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME,
+        public var privacyStorageLifetime: Int = DEFAULT_PRIVACY_STORAGE_LIFETIME,
+        public var visitorStorageLifetime: Int = DEFAULT_VISITOR_STORAGE_LIFETIME,
+        public var userStorageLifetime: Int = DEFAULT_USER_STORAGE_LIFETIME,
+        public var sessionBackgroundDuration: Int = DEFAULT_SESSION_BACKGROUND_DURATION,
+        public var detectCrashes: Boolean = true,
+        public var ignoreLimitedAdTracking: Boolean = false,
+        public var sendEventWhenOptOut: Boolean = true,
+        public var reportUrlProvider: ReportUrlProvider? = null,
     ) {
 
         /**
@@ -48,7 +48,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun collectDomain(collectDomain: String) = apply { this.collectDomain = collectDomain }
+        public fun collectDomain(collectDomain: String): Builder = apply { this.collectDomain = collectDomain }
 
         /**
          * Set a new site ID
@@ -56,7 +56,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun site(site: Int) = apply { this.site = site }
+        public fun site(site: Int): Builder = apply { this.site = site }
 
         /**
          * Set a new pixel path, to prevent potential tracking blockers by resource
@@ -64,7 +64,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun path(path: String) = apply { this.path = path }
+        public fun path(path: String): Builder = apply { this.path = path }
 
         /**
          * Set a default privacy mode, that will be used on sent event(s) if privacy mode is empty
@@ -72,7 +72,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun defaultPrivacyMode(defaultPrivacyMode: PrivacyMode) = apply {
+        public fun defaultPrivacyMode(defaultPrivacyMode: PrivacyMode): Builder = apply {
             this.defaultPrivacyMode = defaultPrivacyMode
         }
 
@@ -82,7 +82,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun visitorIDType(visitorIDType: VisitorIDType) = apply { this.visitorIDType = visitorIDType }
+        public fun visitorIDType(visitorIDType: VisitorIDType): Builder = apply { this.visitorIDType = visitorIDType }
 
         /**
          * Set an offline mode
@@ -90,7 +90,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun offlineStorageMode(offlineStorageMode: OfflineStorageMode) = apply {
+        public fun offlineStorageMode(offlineStorageMode: OfflineStorageMode): Builder = apply {
             this.offlineStorageMode = offlineStorageMode
         }
 
@@ -100,7 +100,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun visitorStorageMode(visitorStorageMode: VisitorStorageMode) = apply {
+        public fun visitorStorageMode(visitorStorageMode: VisitorStorageMode): Builder = apply {
             this.visitorStorageMode = visitorStorageMode
         }
 
@@ -110,7 +110,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun eventsOfflineStorageLifetime(eventsOfflineStorageLifetime: Int) = apply {
+        public fun eventsOfflineStorageLifetime(eventsOfflineStorageLifetime: Int): Builder = apply {
             this.eventsOfflineStorageLifetime = eventsOfflineStorageLifetime
         }
 
@@ -120,7 +120,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun privacyStorageLifetime(privacyStorageLifetime: Int) = apply {
+        public fun privacyStorageLifetime(privacyStorageLifetime: Int): Builder = apply {
             this.privacyStorageLifetime = privacyStorageLifetime
         }
 
@@ -130,7 +130,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun visitorStorageLifetime(visitorStorageLifetime: Int) = apply {
+        public fun visitorStorageLifetime(visitorStorageLifetime: Int): Builder = apply {
             this.visitorStorageLifetime = visitorStorageLifetime
         }
 
@@ -140,7 +140,9 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun userStorageLifetime(userStorageLifetime: Int) = apply { this.userStorageLifetime = userStorageLifetime }
+        public fun userStorageLifetime(userStorageLifetime: Int): Builder = apply {
+            this.userStorageLifetime = userStorageLifetime
+        }
 
         /**
          * Set a new session background duration before a new session will be created
@@ -148,7 +150,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun sessionBackgroundDuration(sessionBackgroundDuration: Int) = apply {
+        public fun sessionBackgroundDuration(sessionBackgroundDuration: Int): Builder = apply {
             this.sessionBackgroundDuration = sessionBackgroundDuration
         }
 
@@ -158,7 +160,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun detectCrashes(detectCrashes: Boolean) = apply { this.detectCrashes = detectCrashes }
+        public fun detectCrashes(detectCrashes: Boolean): Builder = apply { this.detectCrashes = detectCrashes }
 
         /**
          * Enable/disable ignorance advertising tracking limitation
@@ -166,7 +168,7 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun ignoreLimitedAdTracking(ignoreLimitedAdTracking: Boolean) = apply {
+        public fun ignoreLimitedAdTracking(ignoreLimitedAdTracking: Boolean): Builder = apply {
             this.ignoreLimitedAdTracking = ignoreLimitedAdTracking
         }
 
@@ -176,14 +178,16 @@ class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
-        fun sendEventWhenOptOut(sendEventWhenOptOut: Boolean) = apply { this.sendEventWhenOptOut = sendEventWhenOptOut }
+        public fun sendEventWhenOptOut(sendEventWhenOptOut: Boolean): Builder = apply {
+            this.sendEventWhenOptOut = sendEventWhenOptOut
+        }
 
         /**
          * Sets a custom [ReportUrlProvider], which overrides [collectDomain], [site] and [path] for [Configuration]
          * @param reportUrlProvider [ReportUrlProvider] instance
          * @return updated Builder instance
          */
-        fun reportUrlProvider(reportUrlProvider: ReportUrlProvider?) = apply {
+        public fun reportUrlProvider(reportUrlProvider: ReportUrlProvider?): Builder = apply {
             this.reportUrlProvider = reportUrlProvider
         }
 
@@ -192,7 +196,7 @@ class Configuration private constructor(
          * @return an Configuration instance
          */
         @Suppress("unused") // Public API.
-        fun build(): Configuration {
+        public fun build(): Configuration {
             check(reportUrlProvider != null || (collectDomain.isNotEmpty() && site > 0)) {
                 "You have to provide collectDomain and site or reportUrlProvider"
             }
@@ -214,13 +218,13 @@ class Configuration private constructor(
         }
     }
 
-    companion object {
-        const val DEFAULT_PATH = "event"
-        const val MIN_SESSION_BACKGROUND_DURATION = 2
-        const val DEFAULT_SESSION_BACKGROUND_DURATION = 30
-        const val DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME = 7
-        const val DEFAULT_PRIVACY_STORAGE_LIFETIME = 395
-        const val DEFAULT_VISITOR_STORAGE_LIFETIME = 395
-        const val DEFAULT_USER_STORAGE_LIFETIME = 395
+    public companion object {
+        public const val DEFAULT_PATH: String = "event"
+        public const val MIN_SESSION_BACKGROUND_DURATION: Int = 2
+        public const val DEFAULT_SESSION_BACKGROUND_DURATION: Int = 30
+        public const val DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME: Int = 7
+        public const val DEFAULT_PRIVACY_STORAGE_LIFETIME: Int = 395
+        public const val DEFAULT_VISITOR_STORAGE_LIFETIME: Int = 395
+        public const val DEFAULT_USER_STORAGE_LIFETIME: Int = 395
     }
 }

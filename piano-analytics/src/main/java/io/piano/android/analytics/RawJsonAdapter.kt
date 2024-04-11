@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
 import okio.Buffer
 
-object RawJsonAdapter {
+internal object RawJsonAdapter {
     @FromJson
     @RawJson
     fun fromJson(reader: JsonReader): List<String> = buildList {

@@ -1,8 +1,8 @@
 package io.piano.android.analytics.model
 
 @JvmInline
-value class PropertyName(
-    val key: String,
+public value class PropertyName(
+    public val key: String,
 ) {
     init {
         require(
@@ -16,7 +16,7 @@ value class PropertyName(
         }
     }
 
-    companion object {
+    public companion object {
         internal const val PREFIX_M = "m_"
         internal const val PREFIX_VISIT = "visit_"
         internal const val MAX_LENGTH = 40
@@ -30,336 +30,336 @@ value class PropertyName(
         }
 
         @JvmStatic
-        val ANY_PROPERTY = PropertyName("*")
+        public val ANY_PROPERTY: PropertyName = PropertyName("*")
 
         @JvmStatic
-        val APP_CRASH = PropertyName("app_crash")
+        public val APP_CRASH: PropertyName = PropertyName("app_crash")
 
         @JvmStatic
-        val APP_CRASH_CLASS = PropertyName("app_crash_class")
+        public val APP_CRASH_CLASS: PropertyName = PropertyName("app_crash_class")
 
         @JvmStatic
-        val APP_CRASH_SCREEN = PropertyName("app_crash_screen")
+        public val APP_CRASH_SCREEN: PropertyName = PropertyName("app_crash_screen")
 
         @JvmStatic
-        val APP_DAYS_SINCE_FIRST_SESSION = PropertyName("app_dsfs")
+        public val APP_DAYS_SINCE_FIRST_SESSION: PropertyName = PropertyName("app_dsfs")
 
         @JvmStatic
-        val APP_DAYS_SINCE_LAST_SESSION = PropertyName("app_dsls")
+        public val APP_DAYS_SINCE_LAST_SESSION: PropertyName = PropertyName("app_dsls")
 
         @JvmStatic
-        val APP_DAYS_SINCE_UPDATE = PropertyName("app_dsu")
+        public val APP_DAYS_SINCE_UPDATE: PropertyName = PropertyName("app_dsu")
 
         @JvmStatic
-        val APP_ID = PropertyName("app_id")
+        public val APP_ID: PropertyName = PropertyName("app_id")
 
         @JvmStatic
-        val APP_FIRST_SESSION = PropertyName("app_fs")
+        public val APP_FIRST_SESSION: PropertyName = PropertyName("app_fs")
 
         @JvmStatic
-        val APP_FIRST_SESSION_AFTER_UPDATE = PropertyName("app_fsau")
+        public val APP_FIRST_SESSION_AFTER_UPDATE: PropertyName = PropertyName("app_fsau")
 
         @JvmStatic
-        val APP_FIRST_SESSION_DATE = PropertyName("app_fsd")
+        public val APP_FIRST_SESSION_DATE: PropertyName = PropertyName("app_fsd")
 
         @JvmStatic
-        val APP_FIRST_SESSION_DATE_AFTER_UPDATE = PropertyName("app_fsdau")
+        public val APP_FIRST_SESSION_DATE_AFTER_UPDATE: PropertyName = PropertyName("app_fsdau")
 
         @JvmStatic
-        val APP_SESSION_COUNT = PropertyName("app_sc")
+        public val APP_SESSION_COUNT: PropertyName = PropertyName("app_sc")
 
         @JvmStatic
-        val APP_SESSION_COUNT_SINCE_UPDATE = PropertyName("app_scsu")
+        public val APP_SESSION_COUNT_SINCE_UPDATE: PropertyName = PropertyName("app_scsu")
 
         @JvmStatic
-        val APP_SESSION_ID = PropertyName("app_sessionid")
+        public val APP_SESSION_ID: PropertyName = PropertyName("app_sessionid")
 
         @JvmStatic
-        val APP_VERSION = PropertyName("app_version")
+        public val APP_VERSION: PropertyName = PropertyName("app_version")
 
         @JvmStatic
-        val BROWSER = PropertyName("browser")
+        public val BROWSER: PropertyName = PropertyName("browser")
 
         @JvmStatic
-        val BROWSER_LANGUAGE = PropertyName("browser_language")
+        public val BROWSER_LANGUAGE: PropertyName = PropertyName("browser_language")
 
         @JvmStatic
-        val BROWSER_LANGUAGE_LOCAL = PropertyName("browser_language_local")
+        public val BROWSER_LANGUAGE_LOCAL: PropertyName = PropertyName("browser_language_local")
 
         @JvmStatic
-        val BROWSER_COOKIE_ACCEPTANCE = PropertyName("browser_cookie_acceptance")
+        public val BROWSER_COOKIE_ACCEPTANCE: PropertyName = PropertyName("browser_cookie_acceptance")
 
         @JvmStatic
-        val BROWSER_GROUP = PropertyName("browser_group")
+        public val BROWSER_GROUP: PropertyName = PropertyName("browser_group")
 
         @JvmStatic
-        val BROWSER_VERSION = PropertyName("browser_version")
+        public val BROWSER_VERSION: PropertyName = PropertyName("browser_version")
 
         @JvmStatic
-        val CLICK = PropertyName("click")
+        public val CLICK: PropertyName = PropertyName("click")
 
         @JvmStatic
-        val CLICK_CHAPTER1 = PropertyName("click_chapter1")
+        public val CLICK_CHAPTER1: PropertyName = PropertyName("click_chapter1")
 
         @JvmStatic
-        val CLICK_CHAPTER2 = PropertyName("click_chapter2")
+        public val CLICK_CHAPTER2: PropertyName = PropertyName("click_chapter2")
 
         @JvmStatic
-        val CLICK_CHAPTER3 = PropertyName("click_chapter3")
+        public val CLICK_CHAPTER3: PropertyName = PropertyName("click_chapter3")
 
         @JvmStatic
-        val CLICK_FULL_NAME = PropertyName("click_full_name")
+        public val CLICK_FULL_NAME: PropertyName = PropertyName("click_full_name")
 
         @JvmStatic
-        val CONNECTION_MONITOR = PropertyName("connection_monitor")
+        public val CONNECTION_MONITOR: PropertyName = PropertyName("connection_monitor")
 
         @JvmStatic
-        val CONNECTION_ORGANISATION = PropertyName("connection_organisation")
+        public val CONNECTION_ORGANISATION: PropertyName = PropertyName("connection_organisation")
 
         @JvmStatic
-        val CONNECTION_TYPE = PropertyName("connection_type")
+        public val CONNECTION_TYPE: PropertyName = PropertyName("connection_type")
 
         @JvmStatic
-        val DATE = PropertyName("date")
+        public val DATE: PropertyName = PropertyName("date")
 
         @JvmStatic
-        val DATE_DAY = PropertyName("date_day")
+        public val DATE_DAY: PropertyName = PropertyName("date_day")
 
         @JvmStatic
-        val DATE_DAYNUMBER = PropertyName("date_daynumber")
+        public val DATE_DAYNUMBER: PropertyName = PropertyName("date_daynumber")
 
         @JvmStatic
-        val DATE_MONTH = PropertyName("date_month")
+        public val DATE_MONTH: PropertyName = PropertyName("date_month")
 
         @JvmStatic
-        val DATE_MONTHNUMBER = PropertyName("date_monthnumber")
+        public val DATE_MONTHNUMBER: PropertyName = PropertyName("date_monthnumber")
 
         @JvmStatic
-        val DATE_WEEK = PropertyName("date_week")
+        public val DATE_WEEK: PropertyName = PropertyName("date_week")
 
         @JvmStatic
-        val DATE_YEAR = PropertyName("date_year")
+        public val DATE_YEAR: PropertyName = PropertyName("date_year")
 
         @JvmStatic
-        val DATE_YEAROFWEEK = PropertyName("date_yearofweek")
+        public val DATE_YEAROFWEEK: PropertyName = PropertyName("date_yearofweek")
 
         @JvmStatic
-        val DEVICE_BRAND = PropertyName("device_brand")
+        public val DEVICE_BRAND: PropertyName = PropertyName("device_brand")
 
         @JvmStatic
-        val DEVICE_DISPLAY_HEIGHT = PropertyName("device_display_height")
+        public val DEVICE_DISPLAY_HEIGHT: PropertyName = PropertyName("device_display_height")
 
         @JvmStatic
-        val DEVICE_DISPLAY_WIDTH = PropertyName("device_display_width")
+        public val DEVICE_DISPLAY_WIDTH: PropertyName = PropertyName("device_display_width")
 
         @JvmStatic
-        val DEVICE_NAME = PropertyName("device_name")
+        public val DEVICE_NAME: PropertyName = PropertyName("device_name")
 
         @JvmStatic
-        val DEVICE_NAME_TECH = PropertyName("device_name_tech")
+        public val DEVICE_NAME_TECH: PropertyName = PropertyName("device_name_tech")
 
         @JvmStatic
-        val DEVICE_SCREEN_DIAGONAL = PropertyName("device_screen_diagonal")
+        public val DEVICE_SCREEN_DIAGONAL: PropertyName = PropertyName("device_screen_diagonal")
 
         @JvmStatic
-        val DEVICE_SCREEN_HEIGHT = PropertyName("device_screen_height")
+        public val DEVICE_SCREEN_HEIGHT: PropertyName = PropertyName("device_screen_height")
 
         @JvmStatic
-        val DEVICE_SCREEN_WIDTH = PropertyName("device_screen_width")
+        public val DEVICE_SCREEN_WIDTH: PropertyName = PropertyName("device_screen_width")
 
         @JvmStatic
-        val DEVICE_TIMESTAMP_UTC = PropertyName("device_timestamp_utc")
+        public val DEVICE_TIMESTAMP_UTC: PropertyName = PropertyName("device_timestamp_utc")
 
         @JvmStatic
-        val DEVICE_TYPE = PropertyName("device_type")
+        public val DEVICE_TYPE: PropertyName = PropertyName("device_type")
 
         @JvmStatic
-        val EVENT_COLLECTION_PLATFORM = PropertyName("event_collection_platform")
+        public val EVENT_COLLECTION_PLATFORM: PropertyName = PropertyName("event_collection_platform")
 
         @JvmStatic
-        val EVENT_COLLECTION_VERSION = PropertyName("event_collection_version")
+        public val EVENT_COLLECTION_VERSION: PropertyName = PropertyName("event_collection_version")
 
         @JvmStatic
-        val EVENT_HOUR = PropertyName("event_hour")
+        public val EVENT_HOUR: PropertyName = PropertyName("event_hour")
 
         @JvmStatic
-        val EVENT_ID = PropertyName("event_id")
+        public val EVENT_ID: PropertyName = PropertyName("event_id")
 
         @JvmStatic
-        val EVENT_MINUTE = PropertyName("event_minute")
+        public val EVENT_MINUTE: PropertyName = PropertyName("event_minute")
 
         @JvmStatic
-        val EVENT_NAME = PropertyName("event_name")
+        public val EVENT_NAME: PropertyName = PropertyName("event_name")
 
         @JvmStatic
-        val EVENT_POSITION = PropertyName("event_position")
+        public val EVENT_POSITION: PropertyName = PropertyName("event_position")
 
         @JvmStatic
-        val EVENT_SECOND = PropertyName("event_second")
+        public val EVENT_SECOND: PropertyName = PropertyName("event_second")
 
         @JvmStatic
-        val EVENT_TIME = PropertyName("event_time")
+        public val EVENT_TIME: PropertyName = PropertyName("event_time")
 
         @JvmStatic
-        val EVENT_TIME_UTC = PropertyName("event_time_utc")
+        public val EVENT_TIME_UTC: PropertyName = PropertyName("event_time_utc")
 
         @JvmStatic
-        val EVENT_URL = PropertyName("event_url")
+        public val EVENT_URL: PropertyName = PropertyName("event_url")
 
         @JvmStatic
-        val EVENT_URL_DOMAIN = PropertyName("event_url_domain")
+        public val EVENT_URL_DOMAIN: PropertyName = PropertyName("event_url_domain")
 
         @JvmStatic
-        val EVENT_URL_FULL = PropertyName("event_url_full")
+        public val EVENT_URL_FULL: PropertyName = PropertyName("event_url_full")
 
         @JvmStatic
-        val EXCLUSION_CAUSE = PropertyName("exclusion_cause")
+        public val EXCLUSION_CAUSE: PropertyName = PropertyName("exclusion_cause")
 
         @JvmStatic
-        val EXCLUSION_TYPE = PropertyName("exclusion_type")
+        public val EXCLUSION_TYPE: PropertyName = PropertyName("exclusion_type")
 
         @JvmStatic
-        val GEO_CITY = PropertyName("geo_city")
+        public val GEO_CITY: PropertyName = PropertyName("geo_city")
 
         @JvmStatic
-        val GEO_CONTINENT = PropertyName("geo_continent")
+        public val GEO_CONTINENT: PropertyName = PropertyName("geo_continent")
 
         @JvmStatic
-        val GEO_COUNTRY = PropertyName("geo_country")
+        public val GEO_COUNTRY: PropertyName = PropertyName("geo_country")
 
         @JvmStatic
-        val GEO_METRO = PropertyName("geo_metro")
+        public val GEO_METRO: PropertyName = PropertyName("geo_metro")
 
         @JvmStatic
-        val GEO_REGION = PropertyName("geo_region")
+        public val GEO_REGION: PropertyName = PropertyName("geo_region")
 
         @JvmStatic
-        val HIT_TIME_UTC = PropertyName("hit_time_utc")
+        public val HIT_TIME_UTC: PropertyName = PropertyName("hit_time_utc")
 
         @JvmStatic
-        val DEVICE_MANUFACTURER = PropertyName("device_manufacturer")
+        public val DEVICE_MANUFACTURER: PropertyName = PropertyName("device_manufacturer")
 
         @JvmStatic
-        val DEVICE_MODEL = PropertyName("device_model")
+        public val DEVICE_MODEL: PropertyName = PropertyName("device_model")
 
         @JvmStatic
-        val OS = PropertyName("os")
+        public val OS: PropertyName = PropertyName("os")
 
         @JvmStatic
-        val OS_GROUP = PropertyName("os_group")
+        public val OS_GROUP: PropertyName = PropertyName("os_group")
 
         @JvmStatic
-        val OS_VERSION = PropertyName("os_version")
+        public val OS_VERSION: PropertyName = PropertyName("os_version")
 
         @JvmStatic
-        val OS_VERSION_NAME = PropertyName("os_version_name")
+        public val OS_VERSION_NAME: PropertyName = PropertyName("os_version_name")
 
         @JvmStatic
-        val PAGE = PropertyName("page")
+        public val PAGE: PropertyName = PropertyName("page")
 
         @JvmStatic
-        val PAGE_CHAPTER1 = PropertyName("page_chapter1")
+        public val PAGE_CHAPTER1: PropertyName = PropertyName("page_chapter1")
 
         @JvmStatic
-        val PAGE_CHAPTER2 = PropertyName("page_chapter2")
+        public val PAGE_CHAPTER2: PropertyName = PropertyName("page_chapter2")
 
         @JvmStatic
-        val PAGE_CHAPTER3 = PropertyName("page_chapter3")
+        public val PAGE_CHAPTER3: PropertyName = PropertyName("page_chapter3")
 
         @JvmStatic
-        val PAGE_DURATION = PropertyName("page_duration")
+        public val PAGE_DURATION: PropertyName = PropertyName("page_duration")
 
         @JvmStatic
-        val PAGE_FULL_NAME = PropertyName("page_full_name")
+        public val PAGE_FULL_NAME: PropertyName = PropertyName("page_full_name")
 
         @JvmStatic
-        val PAGE_POSITION = PropertyName("page_position")
+        public val PAGE_POSITION: PropertyName = PropertyName("page_position")
 
         @JvmStatic
-        val PRIVACY_STATUS = PropertyName("privacy_status")
+        public val PRIVACY_STATUS: PropertyName = PropertyName("privacy_status")
 
         @JvmStatic
-        val SITE = PropertyName("site")
+        public val SITE: PropertyName = PropertyName("site")
 
         @JvmStatic
-        val SITE_ENV = PropertyName("site_env")
+        public val SITE_ENV: PropertyName = PropertyName("site_env")
 
         @JvmStatic
-        val SITE_ID = PropertyName("site_id")
+        public val SITE_ID: PropertyName = PropertyName("site_id")
 
         @JvmStatic
-        val SITE_PLATFORM = PropertyName("site_platform")
+        public val SITE_PLATFORM: PropertyName = PropertyName("site_platform")
 
         @JvmStatic
-        val SRC = PropertyName("src")
+        public val SRC: PropertyName = PropertyName("src")
 
         @JvmStatic
-        val SRC_DETAIL = PropertyName("src_detail")
+        public val SRC_DETAIL: PropertyName = PropertyName("src_detail")
 
         @JvmStatic
-        val SRC_DIRECT_ACCESS = PropertyName("src_direct_access")
+        public val SRC_DIRECT_ACCESS: PropertyName = PropertyName("src_direct_access")
 
         @JvmStatic
-        val SRC_ORGANIC = PropertyName("src_organic")
+        public val SRC_ORGANIC: PropertyName = PropertyName("src_organic")
 
         @JvmStatic
-        val SRC_ORGANIC_DETAIL = PropertyName("src_organic_detail")
+        public val SRC_ORGANIC_DETAIL: PropertyName = PropertyName("src_organic_detail")
 
         @JvmStatic
-        val SRC_PORTAL_DOMAIN = PropertyName("src_portal_domain")
+        public val SRC_PORTAL_DOMAIN: PropertyName = PropertyName("src_portal_domain")
 
         @JvmStatic
-        val SRC_PORTAL_SITE = PropertyName("src_portal_site")
+        public val SRC_PORTAL_SITE: PropertyName = PropertyName("src_portal_site")
 
         @JvmStatic
-        val SRC_PORTAL_SITE_ID = PropertyName("src_portal_site_id")
+        public val SRC_PORTAL_SITE_ID: PropertyName = PropertyName("src_portal_site_id")
 
         @JvmStatic
-        val SRC_PORTAL_URL = PropertyName("src_portal_url")
+        public val SRC_PORTAL_URL: PropertyName = PropertyName("src_portal_url")
 
         @JvmStatic
-        val SRC_REFERRER_SITE_DOMAIN = PropertyName("src_referrer_site_domain")
+        public val SRC_REFERRER_SITE_DOMAIN: PropertyName = PropertyName("src_referrer_site_domain")
 
         @JvmStatic
-        val SRC_REFERRER_SITE_URL = PropertyName("src_referrer_site_url")
+        public val SRC_REFERRER_SITE_URL: PropertyName = PropertyName("src_referrer_site_url")
 
         @JvmStatic
-        val SRC_REFERRER_URL = PropertyName("src_referrer_url")
+        public val SRC_REFERRER_URL: PropertyName = PropertyName("src_referrer_url")
 
         @JvmStatic
-        val SRC_SE = PropertyName("src_se")
+        public val SRC_SE: PropertyName = PropertyName("src_se")
 
         @JvmStatic
-        val SRC_SE_CATEGORY = PropertyName("src_se_category")
+        public val SRC_SE_CATEGORY: PropertyName = PropertyName("src_se_category")
 
         @JvmStatic
-        val SRC_SE_COUNTRY = PropertyName("src_se_country")
+        public val SRC_SE_COUNTRY: PropertyName = PropertyName("src_se_country")
 
         @JvmStatic
-        val SRC_TYPE = PropertyName("src_type")
+        public val SRC_TYPE: PropertyName = PropertyName("src_type")
 
         @JvmStatic
-        val SRC_URL = PropertyName("src_url")
+        public val SRC_URL: PropertyName = PropertyName("src_url")
 
         @JvmStatic
-        val SRC_URL_DOMAIN = PropertyName("src_url_domain")
+        public val SRC_URL_DOMAIN: PropertyName = PropertyName("src_url_domain")
 
         @JvmStatic
-        val SRC_WEBMAIL = PropertyName("src_webmail")
+        public val SRC_WEBMAIL: PropertyName = PropertyName("src_webmail")
 
         @JvmStatic
-        val USER_ID = PropertyName("user_id")
+        public val USER_ID: PropertyName = PropertyName("user_id")
 
         @JvmStatic
-        val USER_RECOGNITION = PropertyName("user_recognition")
+        public val USER_RECOGNITION: PropertyName = PropertyName("user_recognition")
 
         @JvmStatic
-        val USER_CATEGORY = PropertyName("user_category")
+        public val USER_CATEGORY: PropertyName = PropertyName("user_category")
 
         @JvmStatic
-        val VISITOR_PRIVACY_CONSENT = PropertyName("visitor_privacy_consent")
+        public val VISITOR_PRIVACY_CONSENT: PropertyName = PropertyName("visitor_privacy_consent")
 
         @JvmStatic
-        val VISITOR_PRIVACY_MODE = PropertyName("visitor_privacy_mode")
+        public val VISITOR_PRIVACY_MODE: PropertyName = PropertyName("visitor_privacy_mode")
     }
 }

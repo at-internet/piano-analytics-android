@@ -13,17 +13,17 @@ package io.piano.android.analytics.model
  * @param forbiddenPropertyKeys set of forbidden property names for mode
  * @constructor Creates a new privacy mode
  */
-class PrivacyMode(
-    val visitorMode: String,
-    val visitorConsent: Boolean = false,
-    val allowedEventNames: MutableSet<String> = DEFAULT_EVENT_NAMES.toMutableSet(),
-    val forbiddenEventNames: MutableSet<String> = mutableSetOf(),
-    val allowedStorageFeatures: MutableSet<PrivacyStorageFeature> = DEFAULT_STORAGE_FEATURES.toMutableSet(),
-    val forbiddenStorageFeatures: MutableSet<PrivacyStorageFeature> = mutableSetOf(),
-    val allowedPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(
+public class PrivacyMode(
+    public val visitorMode: String,
+    public val visitorConsent: Boolean = false,
+    public val allowedEventNames: MutableSet<String> = DEFAULT_EVENT_NAMES.toMutableSet(),
+    public val forbiddenEventNames: MutableSet<String> = mutableSetOf(),
+    public val allowedStorageFeatures: MutableSet<PrivacyStorageFeature> = DEFAULT_STORAGE_FEATURES.toMutableSet(),
+    public val forbiddenStorageFeatures: MutableSet<PrivacyStorageFeature> = mutableSetOf(),
+    public val allowedPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(
         Event.ANY to EXEMPT_DEFAULT_PROPERTY_KEYS.toMutableSet()
     ),
-    val forbiddenPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(),
+    public val forbiddenPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(),
 ) {
 
     override fun equals(other: Any?): Boolean {
@@ -37,7 +37,7 @@ class PrivacyMode(
 
     override fun toString(): String = visitorMode
 
-    companion object {
+    public companion object {
         @JvmStatic
         internal val DEFAULT_EVENT_NAMES = setOf(
             Event.CLICK_ACTION,
@@ -159,7 +159,7 @@ class PrivacyMode(
          * Opt-in privacy mode
          */
         @JvmStatic
-        val OPTIN = PrivacyMode(
+        public val OPTIN: PrivacyMode = PrivacyMode(
             visitorMode = "optin",
             visitorConsent = true,
             allowedEventNames = mutableSetOf(Event.ANY),
@@ -171,7 +171,7 @@ class PrivacyMode(
          * Opt-out privacy mode
          */
         @JvmStatic
-        val OPTOUT = PrivacyMode(
+        public val OPTOUT: PrivacyMode = PrivacyMode(
             visitorMode = "optout",
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet())
@@ -181,13 +181,13 @@ class PrivacyMode(
          * Exempt privacy mode
          */
         @JvmStatic
-        val EXEMPT = PrivacyMode(visitorMode = "exempt")
+        public val EXEMPT: PrivacyMode = PrivacyMode(visitorMode = "exempt")
 
         /**
          * No consent privacy mode
          */
         @JvmStatic
-        val NO_CONSENT = PrivacyMode(
+        public val NO_CONSENT: PrivacyMode = PrivacyMode(
             visitorMode = "no-consent",
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(),
@@ -199,7 +199,7 @@ class PrivacyMode(
          * No storage privacy mode
          */
         @JvmStatic
-        val NO_STORAGE = PrivacyMode(
+        public val NO_STORAGE: PrivacyMode = PrivacyMode(
             visitorMode = "no-storage",
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(),

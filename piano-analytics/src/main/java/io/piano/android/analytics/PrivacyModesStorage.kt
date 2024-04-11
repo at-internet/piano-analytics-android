@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Stores information about privacy modes
  */
-class PrivacyModesStorage internal constructor(
+public class PrivacyModesStorage internal constructor(
     private val configuration: Configuration,
     private val prefsStorage: PrefsStorage,
 ) {
@@ -26,7 +26,7 @@ class PrivacyModesStorage internal constructor(
      * All registered privacy modes. Add a [PrivacyMode] instance into [allModes] for registering it
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    val allModes = mutableSetOf(
+    public val allModes: MutableSet<PrivacyMode> = mutableSetOf(
         PrivacyMode.NO_CONSENT,
         PrivacyMode.NO_STORAGE,
         PrivacyMode.OPTIN,
@@ -38,7 +38,7 @@ class PrivacyModesStorage internal constructor(
      * Current privacy visitor mode
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    var currentMode: PrivacyMode = configuration.defaultPrivacyMode
+    public var currentMode: PrivacyMode = configuration.defaultPrivacyMode
         get() {
             if (field != PrivacyMode.NO_CONSENT && field != PrivacyMode.NO_STORAGE) {
                 if (prefsStorage.privacyExpirationTimestamp in 1..System.currentTimeMillis()) {
@@ -81,7 +81,7 @@ class PrivacyModesStorage internal constructor(
         }
     }
 
-    companion object {
+    private companion object {
         @JvmStatic
         private val cachedPrivacyStorageFeatures = enumValues<PrivacyStorageFeature>().filter {
             it != PrivacyStorageFeature.ALL

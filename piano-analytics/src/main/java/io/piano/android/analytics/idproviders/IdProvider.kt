@@ -1,6 +1,6 @@
 package io.piano.android.analytics.idproviders
 
-interface IdProvider {
+internal interface IdProvider {
     val visitorId: String?
     val isLimitAdTrackingEnabled: Boolean
 }

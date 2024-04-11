@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.moshiIR)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.mavenRelease)
@@ -51,7 +52,7 @@ kotlin {
 
 ktlint {
     android = true
-    version = "1.1.1"
+    version = "1.2.1"
 }
 
 dependencies {

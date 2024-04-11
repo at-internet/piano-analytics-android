@@ -5,10 +5,10 @@ import java.util.Date
 /**
  * Event property
  */
-class Property {
-    val name: PropertyName
-    val value: Any
-    val forceType: Type?
+public class Property {
+    public val name: PropertyName
+    public val value: Any
+    public val forceType: Type?
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -31,7 +31,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: String, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: String, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -44,7 +44,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Int, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Int, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -57,7 +57,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Long, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Long, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -70,7 +70,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Double, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Double, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -83,7 +83,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Date) : this(name, value.time / 1000, Type.DATE)
+    public constructor(name: PropertyName, value: Date) : this(name, value.time / 1000, Type.DATE)
 
     /**
      * Creates a new property
@@ -91,7 +91,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Boolean, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Boolean, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -104,7 +104,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<String>, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Array<String>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -117,7 +117,7 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<Int>, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Array<Int>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
@@ -130,14 +130,14 @@ class Property {
      * @param name property name
      * @param value property value
      */
-    constructor(name: PropertyName, value: Array<Double>, forceType: Type? = null) {
+    public constructor(name: PropertyName, value: Array<Double>, forceType: Type? = null) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value
         this.forceType = forceType
     }
 
-    enum class Type(val prefix: String) {
+    public enum class Type(public val prefix: String) {
         STRING("s"),
         INTEGER("n"),
         FLOAT("f"),
