@@ -25,7 +25,7 @@ internal class EventPropertiesJsonAdapter(
                     val key = entry.key.substring(delimiterIndex + 1)
                     val type = if (delimiterIndex != -1) {
                         val prefix = entry.key.substring(0, delimiterIndex)
-                        Property.Type.values().firstOrNull { it.prefix == prefix }
+                        Property.Type.entries.firstOrNull { it.prefix == prefix }
                     } else {
                         null
                     }

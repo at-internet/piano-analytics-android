@@ -18,7 +18,7 @@ public class Property {
 
     override fun hashCode(): Int = name.key.lowercase().hashCode()
 
-    internal constructor(name: PropertyName, value: Any, forceType: Type? = null) {
+    internal constructor(name: PropertyName, value: Any, forceType: Type?) {
         require(name != PropertyName.ANY_PROPERTY)
         this.name = name
         this.value = value

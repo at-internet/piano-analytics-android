@@ -19,6 +19,7 @@ import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.EventsRequest
 import io.piano.android.analytics.model.User
 import io.piano.android.analytics.model.VisitorIDType
+import io.piano.android.consents.PianoConsents
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import java.util.concurrent.Executors
@@ -29,12 +30,13 @@ import java.util.concurrent.TimeUnit
 internal class DependenciesProvider private constructor(
     context: Context,
     configuration: Configuration,
+    pianoConsents: PianoConsents? = null,
     dataEncoder: DataEncoder,
 ) {
     private val userAgent = "Piano Analytics SDK ${BuildConfig.SDK_VERSION}"
     private val executorProvider: () -> ScheduledExecutorService = { Executors.newSingleThreadScheduledExecutor() }
     private val prefsStorage = PrefsStorage(context)
-    private val privacyModesStorage = PrivacyModesStorage(configuration, prefsStorage)
+    private val privacyModesStorage = PrivacyModesStorage(configuration, prefsStorage, pianoConsents)
     private val screenNameProvider = ScreenNameProvider()
     private val contextPropertiesStorage = ContextPropertiesStorage()
 
@@ -146,7 +148,8 @@ internal class DependenciesProvider private constructor(
         customEventProcessors,
         privacyModesStorage,
         contextPropertiesStorage,
-        userStorage
+        userStorage,
+        pianoConsents
     )
 
     companion object {
@@ -155,11 +158,21 @@ internal class DependenciesProvider private constructor(
         private var instance: DependenciesProvider? = null
 
         @JvmStatic
-        internal fun init(context: Context, configuration: Configuration, dataEncoder: DataEncoder) {
+        internal fun init(
+            context: Context,
+            configuration: Configuration,
+            pianoConsents: PianoConsents?,
+            dataEncoder: DataEncoder,
+        ) {
             if (instance == null) {
                 synchronized(this) {
                     if (instance == null) {
-                        instance = DependenciesProvider(context.applicationContext, configuration, dataEncoder).also {
+                        instance = DependenciesProvider(
+                            context.applicationContext,
+                            configuration,
+                            pianoConsents,
+                            dataEncoder
+                        ).also {
                             Thread.setDefaultUncaughtExceptionHandler(it.crashHandler)
                         }
                     }

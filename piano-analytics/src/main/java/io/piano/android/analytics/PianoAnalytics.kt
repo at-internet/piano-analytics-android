@@ -10,6 +10,7 @@ import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.OfflineStorageMode
 import io.piano.android.analytics.model.Property
 import io.piano.android.analytics.model.PropertyName
+import io.piano.android.consents.PianoConsents
 import java.util.UUID
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -20,6 +21,7 @@ import java.util.concurrent.TimeUnit
  * @property privacyModesStorage Storage for privacy modes
  * @property contextPropertiesStorage Storage for context properties
  * @property userStorage Storage for user data
+ * @property pianoConsents [PianoConsents] instance for managing user consent.
  */
 public class PianoAnalytics internal constructor(
     private val executorProvider: () -> ScheduledExecutorService,
@@ -33,6 +35,7 @@ public class PianoAnalytics internal constructor(
     customEventProcessorsGroup: GroupEventProcessor,
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
+    @Deprecated("Use `pianoConsents` for managing consents instead")
     public val privacyModesStorage: PrivacyModesStorage,
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
@@ -40,6 +43,9 @@ public class PianoAnalytics internal constructor(
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
     public val userStorage: UserStorage,
+    // Public API.
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
+    public val pianoConsents: PianoConsents?,
 ) {
     private val executor: ScheduledExecutorService = executorProvider()
 
@@ -165,6 +171,7 @@ public class PianoAnalytics internal constructor(
          *
          * @param context Activity or Application context
          * @param configuration [Configuration] object
+         * @param pianoConsents [PianoConsents] instance for managing user consent. Default is null.
          * @param dataEncoder custom [DataEncoder] for encrypting/decrypting events' data, default is [PlainDataEncoder]
          */
         @Suppress("unused") // Public API.
@@ -173,9 +180,10 @@ public class PianoAnalytics internal constructor(
         public fun init(
             context: Context,
             configuration: Configuration,
+            pianoConsents: PianoConsents? = null,
             dataEncoder: DataEncoder = PlainDataEncoder,
         ): PianoAnalytics {
-            DependenciesProvider.init(context, configuration, dataEncoder)
+            DependenciesProvider.init(context, configuration, pianoConsents, dataEncoder)
             return getInstance()
         }
 

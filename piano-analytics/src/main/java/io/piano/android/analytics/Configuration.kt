@@ -10,11 +10,13 @@ import io.piano.android.analytics.model.VisitorStorageMode
  */
 public class Configuration private constructor(
     public val reportUrlProvider: ReportUrlProvider,
+    @Deprecated("Use `PianoConsents` for managing consents instead")
     public val defaultPrivacyMode: PrivacyMode,
     public val visitorIDType: VisitorIDType,
     public val offlineStorageMode: OfflineStorageMode,
     public val visitorStorageMode: VisitorStorageMode,
     public val eventsOfflineStorageLifetime: Int,
+    @Deprecated("Use `PianoConsents` for managing consents instead")
     public val privacyStorageLifetime: Int,
     public val visitorStorageLifetime: Int,
     public val userStorageLifetime: Int,
@@ -27,11 +29,13 @@ public class Configuration private constructor(
         public var collectDomain: String = "",
         public var site: Int = 0,
         public var path: String = DEFAULT_PATH,
+        @Deprecated("Use `PianoConsents` for managing consents instead")
         public var defaultPrivacyMode: PrivacyMode = PrivacyMode.OPTIN,
         public var visitorIDType: VisitorIDType = VisitorIDType.UUID,
         public var offlineStorageMode: OfflineStorageMode = OfflineStorageMode.REQUIRED,
         public var visitorStorageMode: VisitorStorageMode = VisitorStorageMode.FIXED,
         public var eventsOfflineStorageLifetime: Int = DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME,
+        @Deprecated("Use `PianoConsents` for managing consents instead")
         public var privacyStorageLifetime: Int = DEFAULT_PRIVACY_STORAGE_LIFETIME,
         public var visitorStorageLifetime: Int = DEFAULT_VISITOR_STORAGE_LIFETIME,
         public var userStorageLifetime: Int = DEFAULT_USER_STORAGE_LIFETIME,
@@ -72,6 +76,7 @@ public class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
+        @Deprecated("Use `PianoConsents` for managing consents instead")
         public fun defaultPrivacyMode(defaultPrivacyMode: PrivacyMode): Builder = apply {
             this.defaultPrivacyMode = defaultPrivacyMode
         }
@@ -120,6 +125,7 @@ public class Configuration private constructor(
          * @return updated Builder instance
          */
         @Suppress("unused") // Public API.
+        @Deprecated("Use `PianoConsents` for managing consents instead")
         public fun privacyStorageLifetime(privacyStorageLifetime: Int): Builder = apply {
             this.privacyStorageLifetime = privacyStorageLifetime
         }

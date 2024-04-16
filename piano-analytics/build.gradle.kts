@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.moshiIR)
+    alias(libs.plugins.binaryCompatibility)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.mavenRelease)
 }
@@ -58,6 +59,7 @@ ktlint {
 dependencies {
     compileOnly(libs.googleAdsId)
     compileOnly(libs.huaweiAdsId)
+    api(libs.pianoConsents)
     implementation(libs.lifecycleProcess)
     implementation(libs.timber)
     implementation(libs.okhttp)

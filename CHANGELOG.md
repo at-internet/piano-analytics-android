@@ -1,8 +1,15 @@
 # Piano Analytics SDK for Android
 
-## v3.3.6-SNAPSHOT
+## v3.4.0-SNAPSHOT
+* Updated to Kotlin 1.9
+* Added support for `PianoConsents`
+* Added `PrivacyMode.CUSTOM`, that will be used if set `ConsentMode.CUSTOM`
+* Deprecated `PrivacyModesStorage`, use `PianoConsents` instead
 * Removed requirement for `READ_PHONE_STATE` permission for Android 6-9
 * Updated dependencies:
+    - Kotlin [1.8.22 -> 1.9.23]
+    - com.squareup.moshi:moshi [1.15.0 -> 1.15.1]
+      https://github.com/square/moshi/
     - androidx.lifecycle:lifecycle-process [2.6.2 -> 2.7.0]
       https://developer.android.com/jetpack/androidx/releases/lifecycle#2.7.0
 

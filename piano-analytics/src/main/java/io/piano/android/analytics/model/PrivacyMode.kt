@@ -1,5 +1,7 @@
 package io.piano.android.analytics.model
 
+import io.piano.android.consents.models.ConsentMode
+
 /**
  * A privacy visitor mode
  *
@@ -184,6 +186,12 @@ public class PrivacyMode(
         public val EXEMPT: PrivacyMode = PrivacyMode(visitorMode = "exempt")
 
         /**
+         * Custom privacy mode
+         */
+        @JvmStatic
+        public val CUSTOM: PrivacyMode = PrivacyMode(visitorMode = "custom")
+
+        /**
          * No consent privacy mode
          */
         @JvmStatic
@@ -206,5 +214,14 @@ public class PrivacyMode(
             forbiddenStorageFeatures = mutableSetOf(PrivacyStorageFeature.ALL),
             allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY))
         )
+
+        @JvmStatic
+        internal fun ConsentMode.toPrivacyMode(): PrivacyMode = when (this) {
+            ConsentMode.OPT_IN -> OPTIN
+            ConsentMode.ESSENTIAL -> EXEMPT
+            ConsentMode.OPT_OUT -> OPTOUT
+            ConsentMode.NOT_ACQUIRED -> NO_CONSENT
+            ConsentMode.CUSTOM -> CUSTOM
+        }
     }
 }
