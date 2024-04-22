@@ -1,7 +1,6 @@
 package io.piano.android.analytics
 
 import io.piano.android.analytics.model.PrivacyMode
-import io.piano.android.analytics.model.PrivacyMode.Companion.NO_CONSENT
 import io.piano.android.analytics.model.PrivacyMode.Companion.toPrivacyMode
 import io.piano.android.analytics.model.PrivacyStorageFeature
 import io.piano.android.consents.PianoConsents
@@ -52,7 +51,7 @@ public class PrivacyModesStorage internal constructor(
             if (consentsEnabled) {
                 return pianoConsents?.let {
                     it.consents[it.productsToPurposesMapping[Product.PA]]?.mode
-                }?.toPrivacyMode() ?: NO_CONSENT
+                }?.toPrivacyMode() ?: PrivacyMode.NO_CONSENT
             }
             if (field != PrivacyMode.NO_CONSENT && field != PrivacyMode.NO_STORAGE) {
                 if (prefsStorage.privacyExpirationTimestamp in 1..System.currentTimeMillis()) {
