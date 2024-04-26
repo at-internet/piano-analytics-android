@@ -1,6 +1,8 @@
 package io.piano.android.analytics
 
 import android.annotation.SuppressLint
+import android.os.Handler
+import android.os.Looper
 import timber.log.Timber
 
 internal fun String.wildcardMatches(string: String): Boolean {
@@ -21,3 +23,14 @@ private fun getProperty(key: String): String? = runCatching {
 }.getOrNull()
 
 private const val LOG_HTTP_KEY = "debug.piano.sdk"
+
+internal fun runOnMainThread(action: () -> Unit) {
+    val mainLooper = Looper.getMainLooper()
+    if (mainLooper.thread == Thread.currentThread()) {
+        action()
+    } else {
+        Handler(mainLooper).post {
+            action()
+        }
+    }
+}
