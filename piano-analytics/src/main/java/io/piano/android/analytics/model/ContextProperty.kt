@@ -8,7 +8,7 @@ package io.piano.android.analytics.model
  * @param eventNames specifies with which events the [properties] will be sent
  * @constructor Creates a customer context property
  */
-data class ContextProperty @JvmOverloads constructor(
+public data class ContextProperty @JvmOverloads constructor(
     val properties: Set<Property>,
     val persistent: Boolean = false,
     val eventNames: Collection<String> = emptyList(),

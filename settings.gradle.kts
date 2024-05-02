@@ -16,8 +16,15 @@ dependencyResolutionManagement {
 }
 
 plugins {
-    id("com.gradle.enterprise") version "3.13.3"
+    id("com.gradle.develocity") version "3.17.1"
 }
+
+develocity {
+    buildScan {
+        publishing.onlyIf { false }
+    }
+}
+
 include(
     ":app",
     ":piano-analytics"

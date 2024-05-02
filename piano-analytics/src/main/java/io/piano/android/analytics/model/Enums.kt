@@ -1,20 +1,13 @@
 package io.piano.android.analytics.model
 
 internal enum class ConnectionType(val key: String) {
-    GPRS("GPRS"),
-    EDGE("EDGE"),
-    TWOG("2G"),
-    THREEG("3G"),
-    THREEGPLUS("3G+"),
-    FOURG("4G"),
-    FIVEG("5G"),
     MOBILE("MOBILE"),
     WIFI("WIFI"),
     OFFLINE("OFFLINE"),
     UNKNOWN("UNKNOWN"),
 }
 
-enum class VisitorIDType {
+public enum class VisitorIDType {
     ADVERTISING_ID,
     GOOGLE_ADVERTISING_ID,
     HUAWEI_OPEN_ADVERTISING_ID,
@@ -22,7 +15,7 @@ enum class VisitorIDType {
     CUSTOM,
 }
 
-enum class PrivacyStorageFeature {
+public enum class PrivacyStorageFeature {
     VISITOR,
     CRASH,
     LIFECYCLE,
@@ -31,7 +24,7 @@ enum class PrivacyStorageFeature {
     ALL,
 }
 
-enum class OfflineStorageMode {
+public enum class OfflineStorageMode {
     /**
      * Hits are stored in all cases and requires calling method to send
      */
@@ -43,7 +36,7 @@ enum class OfflineStorageMode {
     REQUIRED,
 }
 
-enum class VisitorStorageMode {
+public enum class VisitorStorageMode {
     /**
      * FIXED : UUID will expires in all cases
      */

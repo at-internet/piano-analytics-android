@@ -1,7 +1,9 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.moshiIR)
+    alias(libs.plugins.binaryCompatibility)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.mavenRelease)
 }
@@ -36,6 +38,9 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    buildFeatures {
+        buildConfig = true
+    }
     namespace = "io.piano.android.analytics"
 }
 
@@ -48,12 +53,13 @@ kotlin {
 
 ktlint {
     android = true
-    version = "1.0.1"
+    version = "1.2.1"
 }
 
 dependencies {
     compileOnly(libs.googleAdsId)
     compileOnly(libs.huaweiAdsId)
+    api(libs.pianoConsents)
     implementation(libs.lifecycleProcess)
     implementation(libs.timber)
     implementation(libs.okhttp)

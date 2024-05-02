@@ -12,11 +12,11 @@ import com.squareup.moshi.JsonClass
  * @constructor Creates user object
  */
 @JsonClass(generateAdapter = true)
-class User(
+public class User(
     @Json(name = "id")
-    val id: String,
+    public val id: String,
     @Json(name = "category")
-    val category: String?,
+    public val category: String?,
     @Json(ignore = true)
-    val shouldBeStored: Boolean = true,
+    public val shouldBeStored: Boolean = true,
 )

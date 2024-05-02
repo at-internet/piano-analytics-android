@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+        <item
+                android:id="@+id/consent_opt_in"
+                android:title="opt in" />
+        <item
+                android:id="@+id/consent_essential"
+                android:title="essential" />
+        <item
+                android:id="@+id/consent_opt_out"
+                android:title="opt out" />
+        <item
+                android:id="@+id/consent_custom"
+                android:title="custom" />
+    </group>
+</menu>

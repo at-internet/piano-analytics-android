@@ -24,6 +24,8 @@ jobs:
         run: chmod +x gradlew
     -   name: Check code style
         run: ./gradlew ktlintCheck --continue
+    -   name: Check API binary compatibility
+        run: ./gradlew apiCheck
     -   name: Run tests
         run: ./gradlew testDebug
     -   name: Build project

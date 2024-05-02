@@ -92,6 +92,7 @@ internal class SessionStorage(
     internal inline fun getCurrentTimestamp() = System.currentTimeMillis()
 
     // for mocking in tests
-    internal fun addLifecycleObserver(observer: DefaultLifecycleObserver) =
+    internal fun addLifecycleObserver(observer: DefaultLifecycleObserver) = runOnMainThread {
         ProcessLifecycleOwner.get().lifecycle.addObserver(observer)
+    }
 }

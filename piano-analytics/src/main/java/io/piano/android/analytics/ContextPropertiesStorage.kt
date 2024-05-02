@@ -8,7 +8,7 @@ import io.piano.android.analytics.model.PropertyName
 /**
  * Stores all customer context properties. Automatically removes non-persistent properties at adding them to event
  */
-class ContextPropertiesStorage internal constructor(
+public class ContextPropertiesStorage internal constructor(
     private val contextProperties: MutableList<ContextProperty> = mutableListOf(),
 ) {
 
@@ -16,13 +16,13 @@ class ContextPropertiesStorage internal constructor(
      * Clears storage
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun clear() = contextProperties.clear()
+    public fun clear(): Unit = contextProperties.clear()
 
     /**
      * Adds a [ContextProperty] into storage
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun add(property: ContextProperty) {
+    public fun add(property: ContextProperty) {
         val p = if (property.eventNames.isEmpty()) property.copy(eventNames = listOf(Event.ANY)) else property
         contextProperties.add(p)
     }
@@ -32,7 +32,7 @@ class ContextPropertiesStorage internal constructor(
      * @param key property key
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    fun deleteByKey(key: PropertyName) {
+    public fun deleteByKey(key: PropertyName) {
         contextProperties.forEachIndexed { index, contextProperty ->
             contextProperty.properties.filterNotTo(mutableSetOf()) {
                 it.name == key

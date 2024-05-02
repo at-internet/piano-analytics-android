@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 /**
  * Stores user information
  */
-class UserStorage internal constructor(
+public class UserStorage internal constructor(
     private val configuration: Configuration,
     private val prefsStorage: PrefsStorage,
     private val userJsonAdapter: JsonAdapter<User>,
@@ -36,7 +36,7 @@ class UserStorage internal constructor(
     /**
      * Current [User], set null for removing
      */
-    var currentUser: User? = null
+    public var currentUser: User? = null
         get() = field ?: storedUser
         set(value) {
             userRecognized = false
@@ -48,7 +48,7 @@ class UserStorage internal constructor(
     /**
      * Returns true, if [currentUser] was loaded from storage
      */
-    var userRecognized: Boolean = storedUser != null
+    public var userRecognized: Boolean = storedUser != null
         private set
 
     @Suppress("NOTHING_TO_INLINE")

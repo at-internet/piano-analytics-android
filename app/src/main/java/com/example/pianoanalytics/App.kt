@@ -4,6 +4,8 @@ import android.app.Application
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.PianoAnalytics
 import io.piano.android.analytics.model.VisitorIDType
+import io.piano.android.consents.PianoConsents
+import io.piano.android.consents.models.ConsentConfiguration
 import timber.log.Timber
 
 class App: Application() {
@@ -15,7 +17,11 @@ class App: Application() {
             site = 552987,
             visitorIDType = VisitorIDType.ADVERTISING_ID
         ).ignoreLimitedAdTracking(true).build()
-        PianoAnalytics.init(applicationContext, configuration).apply {
+        val pianoConsents = PianoConsents.init(
+            applicationContext,
+            ConsentConfiguration(requireConsent = true)
+        )
+        PianoAnalytics.init(applicationContext, configuration, pianoConsents).apply {
             // just an example of callback
             eventProcessorCallback = PianoAnalytics.EventProcessorCallback { events ->
                 events.forEach { event ->

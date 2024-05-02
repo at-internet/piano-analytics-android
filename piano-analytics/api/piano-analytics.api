@@ -1,0 +1,674 @@
+public final class io/piano/android/analytics/BuildConfig {
+	public static final field BUILD_TYPE Ljava/lang/String;
+	public static final field DEBUG Z
+	public static final field LIBRARY_PACKAGE_NAME Ljava/lang/String;
+	public static final field SDK_VERSION Ljava/lang/String;
+	public fun <init> ()V
+}
+
+public final class io/piano/android/analytics/Configuration : io/piano/android/analytics/ReportUrlProvider {
+	public static final field Companion Lio/piano/android/analytics/Configuration$Companion;
+	public static final field DEFAULT_EVENTS_OFFLINE_STORAGE_LIFETIME I
+	public static final field DEFAULT_PATH Ljava/lang/String;
+	public static final field DEFAULT_PRIVACY_STORAGE_LIFETIME I
+	public static final field DEFAULT_SESSION_BACKGROUND_DURATION I
+	public static final field DEFAULT_USER_STORAGE_LIFETIME I
+	public static final field DEFAULT_VISITOR_STORAGE_LIFETIME I
+	public static final field MIN_SESSION_BACKGROUND_DURATION I
+	public synthetic fun <init> (Lio/piano/android/analytics/ReportUrlProvider;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZZZLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getCollectDomain ()Ljava/lang/String;
+	public final fun getDefaultPrivacyMode ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getDetectCrashes ()Z
+	public final fun getEventsOfflineStorageLifetime ()I
+	public final fun getIgnoreLimitedAdTracking ()Z
+	public final fun getOfflineStorageMode ()Lio/piano/android/analytics/model/OfflineStorageMode;
+	public fun getPath ()Ljava/lang/String;
+	public final fun getPrivacyStorageLifetime ()I
+	public final fun getReportUrlProvider ()Lio/piano/android/analytics/ReportUrlProvider;
+	public final fun getSendEventWhenOptOut ()Z
+	public final fun getSessionBackgroundDuration ()I
+	public fun getSite ()I
+	public final fun getUserStorageLifetime ()I
+	public final fun getVisitorIDType ()Lio/piano/android/analytics/model/VisitorIDType;
+	public final fun getVisitorStorageLifetime ()I
+	public final fun getVisitorStorageMode ()Lio/piano/android/analytics/model/VisitorStorageMode;
+}
+
+public final class io/piano/android/analytics/Configuration$Builder {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;)V
+	public fun <init> (Ljava/lang/String;I)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;I)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;II)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;III)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIII)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIII)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZ)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZZ)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZZZ)V
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZZZLio/piano/android/analytics/ReportUrlProvider;)V
+	public synthetic fun <init> (Ljava/lang/String;ILjava/lang/String;Lio/piano/android/analytics/model/PrivacyMode;Lio/piano/android/analytics/model/VisitorIDType;Lio/piano/android/analytics/model/OfflineStorageMode;Lio/piano/android/analytics/model/VisitorStorageMode;IIIIIZZZLio/piano/android/analytics/ReportUrlProvider;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun build ()Lio/piano/android/analytics/Configuration;
+	public final fun collectDomain (Ljava/lang/String;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun defaultPrivacyMode (Lio/piano/android/analytics/model/PrivacyMode;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun detectCrashes (Z)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun eventsOfflineStorageLifetime (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun getCollectDomain ()Ljava/lang/String;
+	public final fun getDefaultPrivacyMode ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getDetectCrashes ()Z
+	public final fun getEventsOfflineStorageLifetime ()I
+	public final fun getIgnoreLimitedAdTracking ()Z
+	public final fun getOfflineStorageMode ()Lio/piano/android/analytics/model/OfflineStorageMode;
+	public final fun getPath ()Ljava/lang/String;
+	public final fun getPrivacyStorageLifetime ()I
+	public final fun getReportUrlProvider ()Lio/piano/android/analytics/ReportUrlProvider;
+	public final fun getSendEventWhenOptOut ()Z
+	public final fun getSessionBackgroundDuration ()I
+	public final fun getSite ()I
+	public final fun getUserStorageLifetime ()I
+	public final fun getVisitorIDType ()Lio/piano/android/analytics/model/VisitorIDType;
+	public final fun getVisitorStorageLifetime ()I
+	public final fun getVisitorStorageMode ()Lio/piano/android/analytics/model/VisitorStorageMode;
+	public final fun ignoreLimitedAdTracking (Z)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun offlineStorageMode (Lio/piano/android/analytics/model/OfflineStorageMode;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun path (Ljava/lang/String;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun privacyStorageLifetime (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun reportUrlProvider (Lio/piano/android/analytics/ReportUrlProvider;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun sendEventWhenOptOut (Z)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun sessionBackgroundDuration (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun setCollectDomain (Ljava/lang/String;)V
+	public final fun setDefaultPrivacyMode (Lio/piano/android/analytics/model/PrivacyMode;)V
+	public final fun setDetectCrashes (Z)V
+	public final fun setEventsOfflineStorageLifetime (I)V
+	public final fun setIgnoreLimitedAdTracking (Z)V
+	public final fun setOfflineStorageMode (Lio/piano/android/analytics/model/OfflineStorageMode;)V
+	public final fun setPath (Ljava/lang/String;)V
+	public final fun setPrivacyStorageLifetime (I)V
+	public final fun setReportUrlProvider (Lio/piano/android/analytics/ReportUrlProvider;)V
+	public final fun setSendEventWhenOptOut (Z)V
+	public final fun setSessionBackgroundDuration (I)V
+	public final fun setSite (I)V
+	public final fun setUserStorageLifetime (I)V
+	public final fun setVisitorIDType (Lio/piano/android/analytics/model/VisitorIDType;)V
+	public final fun setVisitorStorageLifetime (I)V
+	public final fun setVisitorStorageMode (Lio/piano/android/analytics/model/VisitorStorageMode;)V
+	public final fun site (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun userStorageLifetime (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun visitorIDType (Lio/piano/android/analytics/model/VisitorIDType;)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun visitorStorageLifetime (I)Lio/piano/android/analytics/Configuration$Builder;
+	public final fun visitorStorageMode (Lio/piano/android/analytics/model/VisitorStorageMode;)Lio/piano/android/analytics/Configuration$Builder;
+}
+
+public final class io/piano/android/analytics/Configuration$Companion {
+}
+
+public final class io/piano/android/analytics/ContextPropertiesStorage {
+	public fun <init> ()V
+	public final fun add (Lio/piano/android/analytics/model/ContextProperty;)V
+	public final fun clear ()V
+	public final fun deleteByKey-z4gBv5U (Ljava/lang/String;)V
+}
+
+public abstract interface class io/piano/android/analytics/DataEncoder {
+	public abstract fun decode (Ljava/lang/String;)Ljava/lang/String;
+	public abstract fun encode (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/MediaHelper {
+	public final fun adClick ([Lio/piano/android/analytics/model/Property;)V
+	public final fun adSkip ([Lio/piano/android/analytics/model/Property;)V
+	public final fun bufferHeartbeat ([Lio/piano/android/analytics/model/Property;)V
+	public final fun bufferStart (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun close ([Lio/piano/android/analytics/model/Property;)V
+	public final fun display ([Lio/piano/android/analytics/model/Property;)V
+	public final fun error (Ljava/lang/String;[Lio/piano/android/analytics/model/Property;)V
+	public final fun fullscreenOff ([Lio/piano/android/analytics/model/Property;)V
+	public final fun fullscreenOn ([Lio/piano/android/analytics/model/Property;)V
+	public final fun getPlaybackSpeed ()D
+	public final fun getSessionId ()Ljava/lang/String;
+	public final fun heartbeat (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun play (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun playbackPaused (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun playbackResumed (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun playbackStart (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun playbackStopped (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun quality ([Lio/piano/android/analytics/model/Property;)V
+	public final fun rebufferHeartbeat ([Lio/piano/android/analytics/model/Property;)V
+	public final fun seek (II[Lio/piano/android/analytics/model/Property;)V
+	public final fun seekBackward (II[Lio/piano/android/analytics/model/Property;)V
+	public final fun seekForward (II[Lio/piano/android/analytics/model/Property;)V
+	public final fun seekStart (I[Lio/piano/android/analytics/model/Property;)V
+	public final fun setBufferHeartbeat (Landroid/util/SparseLongArray;)Lio/piano/android/analytics/MediaHelper;
+	public final fun setExtraProps ([Lio/piano/android/analytics/model/Property;)Lio/piano/android/analytics/MediaHelper;
+	public final fun setHeartbeat (Landroid/util/SparseLongArray;)Lio/piano/android/analytics/MediaHelper;
+	public final fun setPlaybackSpeed (D)V
+	public final fun share ([Lio/piano/android/analytics/model/Property;)V
+	public final fun speed ([Lio/piano/android/analytics/model/Property;)V
+	public final fun subtitleOff ([Lio/piano/android/analytics/model/Property;)V
+	public final fun subtitleOn ([Lio/piano/android/analytics/model/Property;)V
+	public final fun track (Ljava/lang/String;[Lio/piano/android/analytics/model/Property;)V
+	public final fun volume ([Lio/piano/android/analytics/model/Property;)V
+}
+
+public final class io/piano/android/analytics/PianoAnalytics {
+	public static final field Companion Lio/piano/android/analytics/PianoAnalytics$Companion;
+	public final fun deleteOfflineStorage (I)V
+	public static synthetic fun deleteOfflineStorage$default (Lio/piano/android/analytics/PianoAnalytics;IILjava/lang/Object;)V
+	public final fun getContextPropertiesStorage ()Lio/piano/android/analytics/ContextPropertiesStorage;
+	public final fun getCustomEventProcessors ()Ljava/util/List;
+	public final fun getCustomVisitorId ()Ljava/lang/String;
+	public final fun getEventProcessorCallback ()Lio/piano/android/analytics/PianoAnalytics$EventProcessorCallback;
+	public static final fun getInstance ()Lio/piano/android/analytics/PianoAnalytics;
+	public final fun getPianoConsents ()Lio/piano/android/consents/PianoConsents;
+	public final fun getPrivacyModesStorage ()Lio/piano/android/analytics/PrivacyModesStorage;
+	public final fun getUserStorage ()Lio/piano/android/analytics/UserStorage;
+	public final fun getVisitorId ()Ljava/lang/String;
+	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;)Lio/piano/android/analytics/PianoAnalytics;
+	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;)Lio/piano/android/analytics/PianoAnalytics;
+	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;)Lio/piano/android/analytics/PianoAnalytics;
+	public final fun mediaHelper (Ljava/lang/String;)Lio/piano/android/analytics/MediaHelper;
+	public final fun mediaHelper (Ljava/lang/String;Ljava/lang/String;)Lio/piano/android/analytics/MediaHelper;
+	public static synthetic fun mediaHelper$default (Lio/piano/android/analytics/PianoAnalytics;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/piano/android/analytics/MediaHelper;
+	public final fun screenName (Ljava/lang/String;)V
+	public final fun sendEvents ([Lio/piano/android/analytics/model/Event;)V
+	public final fun sendOfflineData ()V
+	public final fun setCustomVisitorId (Ljava/lang/String;)V
+	public final fun setEventProcessorCallback (Lio/piano/android/analytics/PianoAnalytics$EventProcessorCallback;)V
+}
+
+public final class io/piano/android/analytics/PianoAnalytics$Companion {
+	public final fun getInstance ()Lio/piano/android/analytics/PianoAnalytics;
+	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;)Lio/piano/android/analytics/PianoAnalytics;
+	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;)Lio/piano/android/analytics/PianoAnalytics;
+	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;)Lio/piano/android/analytics/PianoAnalytics;
+	public static synthetic fun init$default (Lio/piano/android/analytics/PianoAnalytics$Companion;Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;ILjava/lang/Object;)Lio/piano/android/analytics/PianoAnalytics;
+}
+
+public abstract interface class io/piano/android/analytics/PianoAnalytics$EventProcessorCallback {
+	public abstract fun onProcess (Ljava/util/List;)V
+}
+
+public final class io/piano/android/analytics/PlainDataEncoder : io/piano/android/analytics/DataEncoder {
+	public static final field INSTANCE Lio/piano/android/analytics/PlainDataEncoder;
+	public fun decode (Ljava/lang/String;)Ljava/lang/String;
+	public fun encode (Ljava/lang/String;)Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/PrivacyModesStorage {
+	public final fun getAllModes ()Ljava/util/Set;
+	public final fun getCurrentMode ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun setCurrentMode (Lio/piano/android/analytics/model/PrivacyMode;)V
+}
+
+public abstract interface class io/piano/android/analytics/ReportUrlProvider {
+	public abstract fun getCollectDomain ()Ljava/lang/String;
+	public abstract fun getPath ()Ljava/lang/String;
+	public abstract fun getSite ()I
+}
+
+public final class io/piano/android/analytics/ReportUrlProvider$DefaultImpls {
+	public static fun getPath (Lio/piano/android/analytics/ReportUrlProvider;)Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/StaticReportUrlProvider : io/piano/android/analytics/ReportUrlProvider {
+	public fun <init> (Ljava/lang/String;ILjava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;ILjava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun getCollectDomain ()Ljava/lang/String;
+	public fun getPath ()Ljava/lang/String;
+	public fun getSite ()I
+}
+
+public final class io/piano/android/analytics/UserStorage {
+	public final fun getCurrentUser ()Lio/piano/android/analytics/model/User;
+	public final fun getUserRecognized ()Z
+	public final fun setCurrentUser (Lio/piano/android/analytics/model/User;)V
+}
+
+public abstract interface class io/piano/android/analytics/eventprocessors/EventProcessor {
+	public abstract fun process (Ljava/util/List;)Ljava/util/List;
+}
+
+public final class io/piano/android/analytics/model/ContextProperty {
+	public fun <init> (Ljava/util/Set;)V
+	public fun <init> (Ljava/util/Set;Z)V
+	public fun <init> (Ljava/util/Set;ZLjava/util/Collection;)V
+	public synthetic fun <init> (Ljava/util/Set;ZLjava/util/Collection;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/util/Set;
+	public final fun component2 ()Z
+	public final fun component3 ()Ljava/util/Collection;
+	public final fun copy (Ljava/util/Set;ZLjava/util/Collection;)Lio/piano/android/analytics/model/ContextProperty;
+	public static synthetic fun copy$default (Lio/piano/android/analytics/model/ContextProperty;Ljava/util/Set;ZLjava/util/Collection;ILjava/lang/Object;)Lio/piano/android/analytics/model/ContextProperty;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getEventNames ()Ljava/util/Collection;
+	public final fun getPersistent ()Z
+	public final fun getProperties ()Ljava/util/Set;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/Event {
+	public static final field ANY Ljava/lang/String;
+	public static final field CLICK_ACTION Ljava/lang/String;
+	public static final field CLICK_DOWNLOAD Ljava/lang/String;
+	public static final field CLICK_EXIT Ljava/lang/String;
+	public static final field CLICK_NAVIGATION Ljava/lang/String;
+	public static final field Companion Lio/piano/android/analytics/model/Event$Companion;
+	public static final field INTERNAL_SEARCH_RESULT_CLICK Ljava/lang/String;
+	public static final field INTERNAL_SEARCH_RESULT_DISPLAY Ljava/lang/String;
+	public static final field MV_TEST_DISPLAY Ljava/lang/String;
+	public static final field PAGE_DISPLAY Ljava/lang/String;
+	public static final field PUBLISHER_CLICK Ljava/lang/String;
+	public static final field PUBLISHER_IMPRESSION Ljava/lang/String;
+	public static final field SELF_PROMOTION_CLICK Ljava/lang/String;
+	public static final field SELF_PROMOTION_IMPRESSION Ljava/lang/String;
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Set;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProperties ()Ljava/util/Set;
+	public final fun newBuilder ()Lio/piano/android/analytics/model/Event$Builder;
+}
+
+public final class io/piano/android/analytics/model/Event$Builder {
+	public fun <init> (Ljava/lang/String;Ljava/util/Set;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Set;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun build ()Lio/piano/android/analytics/model/Event;
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/util/Set;
+	public final fun copy (Ljava/lang/String;Ljava/util/Set;)Lio/piano/android/analytics/model/Event$Builder;
+	public static synthetic fun copy$default (Lio/piano/android/analytics/model/Event$Builder;Ljava/lang/String;Ljava/util/Set;ILjava/lang/Object;)Lio/piano/android/analytics/model/Event$Builder;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getProperties ()Ljava/util/Set;
+	public fun hashCode ()I
+	public final fun name (Ljava/lang/String;)Lio/piano/android/analytics/model/Event$Builder;
+	public final fun properties (Ljava/util/Collection;)Lio/piano/android/analytics/model/Event$Builder;
+	public final fun properties ([Lio/piano/android/analytics/model/Property;)Lio/piano/android/analytics/model/Event$Builder;
+	public final fun setName (Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/Event$Companion {
+}
+
+public final class io/piano/android/analytics/model/EventsRequestJsonAdapter : com/squareup/moshi/JsonAdapter {
+	public fun <init> (Lcom/squareup/moshi/Moshi;)V
+	public fun fromJson (Lcom/squareup/moshi/JsonReader;)Ljava/lang/Object;
+	public fun toJson (Lcom/squareup/moshi/JsonWriter;Ljava/lang/Object;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/OfflineStorageMode : java/lang/Enum {
+	public static final field ALWAYS Lio/piano/android/analytics/model/OfflineStorageMode;
+	public static final field REQUIRED Lio/piano/android/analytics/model/OfflineStorageMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/OfflineStorageMode;
+	public static fun values ()[Lio/piano/android/analytics/model/OfflineStorageMode;
+}
+
+public final class io/piano/android/analytics/model/PrivacyMode {
+	public static final field Companion Lio/piano/android/analytics/model/PrivacyMode$Companion;
+	public fun <init> (Ljava/lang/String;ZLjava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/Map;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLjava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/Map;Ljava/util/Map;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAllowedEventNames ()Ljava/util/Set;
+	public final fun getAllowedPropertyKeys ()Ljava/util/Map;
+	public final fun getAllowedStorageFeatures ()Ljava/util/Set;
+	public static final fun getCUSTOM ()Lio/piano/android/analytics/model/PrivacyMode;
+	public static final fun getDEFAULT_EVENT_NAMES$piano_analytics_release ()Ljava/util/Set;
+	public static final fun getDEFAULT_STORAGE_FEATURES$piano_analytics_release ()Ljava/util/Set;
+	public static final fun getEXEMPT ()Lio/piano/android/analytics/model/PrivacyMode;
+	public static final fun getEXEMPT_DEFAULT_PROPERTY_KEYS$piano_analytics_release ()Ljava/util/Set;
+	public final fun getForbiddenEventNames ()Ljava/util/Set;
+	public final fun getForbiddenPropertyKeys ()Ljava/util/Map;
+	public final fun getForbiddenStorageFeatures ()Ljava/util/Set;
+	public static final fun getMINIMUM_DEFAULT_PROPERTY_KEYS$piano_analytics_release ()Ljava/util/Set;
+	public static final fun getNO_CONSENT ()Lio/piano/android/analytics/model/PrivacyMode;
+	public static final fun getNO_STORAGE ()Lio/piano/android/analytics/model/PrivacyMode;
+	public static final fun getOPTIN ()Lio/piano/android/analytics/model/PrivacyMode;
+	public static final fun getOPTOUT ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getVisitorConsent ()Z
+	public final fun getVisitorMode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static final fun toPrivacyMode$piano_analytics_release (Lio/piano/android/consents/models/ConsentMode;)Lio/piano/android/analytics/model/PrivacyMode;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/PrivacyMode$Companion {
+	public final fun getCUSTOM ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getEXEMPT ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getNO_CONSENT ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getNO_STORAGE ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getOPTIN ()Lio/piano/android/analytics/model/PrivacyMode;
+	public final fun getOPTOUT ()Lio/piano/android/analytics/model/PrivacyMode;
+}
+
+public final class io/piano/android/analytics/model/PrivacyStorageFeature : java/lang/Enum {
+	public static final field ALL Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static final field CRASH Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static final field LIFECYCLE Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static final field PRIVACY Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static final field USER Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static final field VISITOR Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/PrivacyStorageFeature;
+	public static fun values ()[Lio/piano/android/analytics/model/PrivacyStorageFeature;
+}
+
+public final class io/piano/android/analytics/model/Property {
+	public synthetic fun <init> (Ljava/lang/String;DLio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;DLio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;ILio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;ILio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;JLio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Lio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/util/Date;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;ZLio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/Double;Lio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/Double;Lio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/Integer;Lio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/Integer;Lio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/String;Lio/piano/android/analytics/model/Property$Type;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public synthetic fun <init> (Ljava/lang/String;[Ljava/lang/String;Lio/piano/android/analytics/model/Property$Type;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getForceType ()Lio/piano/android/analytics/model/Property$Type;
+	public final fun getName-t5hdzdk ()Ljava/lang/String;
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+}
+
+public final class io/piano/android/analytics/model/Property$Type : java/lang/Enum {
+	public static final field BOOLEAN Lio/piano/android/analytics/model/Property$Type;
+	public static final field DATE Lio/piano/android/analytics/model/Property$Type;
+	public static final field FLOAT Lio/piano/android/analytics/model/Property$Type;
+	public static final field FLOAT_ARRAY Lio/piano/android/analytics/model/Property$Type;
+	public static final field INTEGER Lio/piano/android/analytics/model/Property$Type;
+	public static final field INTEGER_ARRAY Lio/piano/android/analytics/model/Property$Type;
+	public static final field STRING Lio/piano/android/analytics/model/Property$Type;
+	public static final field STRING_ARRAY Lio/piano/android/analytics/model/Property$Type;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public final fun getPrefix ()Ljava/lang/String;
+	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/Property$Type;
+	public static fun values ()[Lio/piano/android/analytics/model/Property$Type;
+}
+
+public final class io/piano/android/analytics/model/PropertyName {
+	public static final field Companion Lio/piano/android/analytics/model/PropertyName$Companion;
+	public static final synthetic fun box-impl (Ljava/lang/String;)Lio/piano/android/analytics/model/PropertyName;
+	public static fun constructor-impl (Ljava/lang/String;)Ljava/lang/String;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (Ljava/lang/String;Ljava/lang/Object;)Z
+	public static final fun equals-impl0 (Ljava/lang/String;Ljava/lang/String;)Z
+	public static final fun getANY_PROPERTY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_CRASH-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_CRASH_CLASS-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_CRASH_SCREEN-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_DAYS_SINCE_FIRST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_DAYS_SINCE_LAST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_DAYS_SINCE_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_FIRST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_FIRST_SESSION_AFTER_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_FIRST_SESSION_DATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_FIRST_SESSION_DATE_AFTER_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_SESSION_COUNT-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_SESSION_COUNT_SINCE_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_SESSION_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getAPP_VERSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER_COOKIE_ACCEPTANCE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER_GROUP-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER_LANGUAGE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER_LANGUAGE_LOCAL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getBROWSER_VERSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCLICK-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCLICK_CHAPTER1-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCLICK_CHAPTER2-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCLICK_CHAPTER3-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCLICK_FULL_NAME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCONNECTION_MONITOR-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCONNECTION_ORGANISATION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getCONNECTION_TYPE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_DAY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_DAYNUMBER-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_MONTH-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_MONTHNUMBER-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_WEEK-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_YEAR-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDATE_YEAROFWEEK-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_BRAND-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_DISPLAY_HEIGHT-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_DISPLAY_WIDTH-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_MANUFACTURER-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_MODEL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_NAME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_NAME_TECH-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_SCREEN_DIAGONAL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_SCREEN_HEIGHT-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_SCREEN_WIDTH-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_TIMESTAMP_UTC-t5hdzdk ()Ljava/lang/String;
+	public static final fun getDEVICE_TYPE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_COLLECTION_PLATFORM-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_COLLECTION_VERSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_HOUR-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_MINUTE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_NAME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_POSITION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_SECOND-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_TIME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_TIME_UTC-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_URL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_URL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEVENT_URL_FULL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEXCLUSION_CAUSE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getEXCLUSION_TYPE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getGEO_CITY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getGEO_CONTINENT-t5hdzdk ()Ljava/lang/String;
+	public static final fun getGEO_COUNTRY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getGEO_METRO-t5hdzdk ()Ljava/lang/String;
+	public static final fun getGEO_REGION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getHIT_TIME_UTC-t5hdzdk ()Ljava/lang/String;
+	public final fun getKey ()Ljava/lang/String;
+	public static final fun getOS-t5hdzdk ()Ljava/lang/String;
+	public static final fun getOS_GROUP-t5hdzdk ()Ljava/lang/String;
+	public static final fun getOS_VERSION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getOS_VERSION_NAME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_CHAPTER1-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_CHAPTER2-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_CHAPTER3-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_DURATION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_FULL_NAME-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPAGE_POSITION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getPRIVACY_STATUS-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSITE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSITE_ENV-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSITE_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSITE_PLATFORM-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_DETAIL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_DIRECT_ACCESS-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_ORGANIC-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_ORGANIC_DETAIL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_PORTAL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_PORTAL_SITE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_PORTAL_SITE_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_PORTAL_URL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_REFERRER_SITE_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_REFERRER_SITE_URL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_REFERRER_URL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_SE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_SE_CATEGORY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_SE_COUNTRY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_TYPE-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_URL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_URL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public static final fun getSRC_WEBMAIL-t5hdzdk ()Ljava/lang/String;
+	public static final fun getUSER_CATEGORY-t5hdzdk ()Ljava/lang/String;
+	public static final fun getUSER_ID-t5hdzdk ()Ljava/lang/String;
+	public static final fun getUSER_RECOGNITION-t5hdzdk ()Ljava/lang/String;
+	public static final fun getVISITOR_PRIVACY_CONSENT-t5hdzdk ()Ljava/lang/String;
+	public static final fun getVISITOR_PRIVACY_MODE-t5hdzdk ()Ljava/lang/String;
+	public fun hashCode ()I
+	public static fun hashCode-impl (Ljava/lang/String;)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (Ljava/lang/String;)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/PropertyName$Companion {
+	public final fun getANY_PROPERTY-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_CRASH-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_CRASH_CLASS-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_CRASH_SCREEN-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_DAYS_SINCE_FIRST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_DAYS_SINCE_LAST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_DAYS_SINCE_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_FIRST_SESSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_FIRST_SESSION_AFTER_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_FIRST_SESSION_DATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_FIRST_SESSION_DATE_AFTER_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_SESSION_COUNT-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_SESSION_COUNT_SINCE_UPDATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_SESSION_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getAPP_VERSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER_COOKIE_ACCEPTANCE-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER_GROUP-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER_LANGUAGE-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER_LANGUAGE_LOCAL-t5hdzdk ()Ljava/lang/String;
+	public final fun getBROWSER_VERSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getCLICK-t5hdzdk ()Ljava/lang/String;
+	public final fun getCLICK_CHAPTER1-t5hdzdk ()Ljava/lang/String;
+	public final fun getCLICK_CHAPTER2-t5hdzdk ()Ljava/lang/String;
+	public final fun getCLICK_CHAPTER3-t5hdzdk ()Ljava/lang/String;
+	public final fun getCLICK_FULL_NAME-t5hdzdk ()Ljava/lang/String;
+	public final fun getCONNECTION_MONITOR-t5hdzdk ()Ljava/lang/String;
+	public final fun getCONNECTION_ORGANISATION-t5hdzdk ()Ljava/lang/String;
+	public final fun getCONNECTION_TYPE-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_DAY-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_DAYNUMBER-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_MONTH-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_MONTHNUMBER-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_WEEK-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_YEAR-t5hdzdk ()Ljava/lang/String;
+	public final fun getDATE_YEAROFWEEK-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_BRAND-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_DISPLAY_HEIGHT-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_DISPLAY_WIDTH-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_MANUFACTURER-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_MODEL-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_NAME-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_NAME_TECH-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_SCREEN_DIAGONAL-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_SCREEN_HEIGHT-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_SCREEN_WIDTH-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_TIMESTAMP_UTC-t5hdzdk ()Ljava/lang/String;
+	public final fun getDEVICE_TYPE-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_COLLECTION_PLATFORM-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_COLLECTION_VERSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_HOUR-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_MINUTE-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_NAME-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_POSITION-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_SECOND-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_TIME-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_TIME_UTC-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_URL-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_URL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public final fun getEVENT_URL_FULL-t5hdzdk ()Ljava/lang/String;
+	public final fun getEXCLUSION_CAUSE-t5hdzdk ()Ljava/lang/String;
+	public final fun getEXCLUSION_TYPE-t5hdzdk ()Ljava/lang/String;
+	public final fun getGEO_CITY-t5hdzdk ()Ljava/lang/String;
+	public final fun getGEO_CONTINENT-t5hdzdk ()Ljava/lang/String;
+	public final fun getGEO_COUNTRY-t5hdzdk ()Ljava/lang/String;
+	public final fun getGEO_METRO-t5hdzdk ()Ljava/lang/String;
+	public final fun getGEO_REGION-t5hdzdk ()Ljava/lang/String;
+	public final fun getHIT_TIME_UTC-t5hdzdk ()Ljava/lang/String;
+	public final fun getOS-t5hdzdk ()Ljava/lang/String;
+	public final fun getOS_GROUP-t5hdzdk ()Ljava/lang/String;
+	public final fun getOS_VERSION-t5hdzdk ()Ljava/lang/String;
+	public final fun getOS_VERSION_NAME-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_CHAPTER1-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_CHAPTER2-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_CHAPTER3-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_DURATION-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_FULL_NAME-t5hdzdk ()Ljava/lang/String;
+	public final fun getPAGE_POSITION-t5hdzdk ()Ljava/lang/String;
+	public final fun getPRIVACY_STATUS-t5hdzdk ()Ljava/lang/String;
+	public final fun getSITE-t5hdzdk ()Ljava/lang/String;
+	public final fun getSITE_ENV-t5hdzdk ()Ljava/lang/String;
+	public final fun getSITE_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getSITE_PLATFORM-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_DETAIL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_DIRECT_ACCESS-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_ORGANIC-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_ORGANIC_DETAIL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_PORTAL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_PORTAL_SITE-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_PORTAL_SITE_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_PORTAL_URL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_REFERRER_SITE_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_REFERRER_SITE_URL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_REFERRER_URL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_SE-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_SE_CATEGORY-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_SE_COUNTRY-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_TYPE-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_URL-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_URL_DOMAIN-t5hdzdk ()Ljava/lang/String;
+	public final fun getSRC_WEBMAIL-t5hdzdk ()Ljava/lang/String;
+	public final fun getUSER_CATEGORY-t5hdzdk ()Ljava/lang/String;
+	public final fun getUSER_ID-t5hdzdk ()Ljava/lang/String;
+	public final fun getUSER_RECOGNITION-t5hdzdk ()Ljava/lang/String;
+	public final fun getVISITOR_PRIVACY_CONSENT-t5hdzdk ()Ljava/lang/String;
+	public final fun getVISITOR_PRIVACY_MODE-t5hdzdk ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/User {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCategory ()Ljava/lang/String;
+	public final fun getId ()Ljava/lang/String;
+	public final fun getShouldBeStored ()Z
+}
+
+public final class io/piano/android/analytics/model/UserJsonAdapter : com/squareup/moshi/JsonAdapter {
+	public fun <init> (Lcom/squareup/moshi/Moshi;)V
+	public fun fromJson (Lcom/squareup/moshi/JsonReader;)Ljava/lang/Object;
+	public fun toJson (Lcom/squareup/moshi/JsonWriter;Ljava/lang/Object;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/piano/android/analytics/model/VisitorIDType : java/lang/Enum {
+	public static final field ADVERTISING_ID Lio/piano/android/analytics/model/VisitorIDType;
+	public static final field CUSTOM Lio/piano/android/analytics/model/VisitorIDType;
+	public static final field GOOGLE_ADVERTISING_ID Lio/piano/android/analytics/model/VisitorIDType;
+	public static final field HUAWEI_OPEN_ADVERTISING_ID Lio/piano/android/analytics/model/VisitorIDType;
+	public static final field UUID Lio/piano/android/analytics/model/VisitorIDType;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/VisitorIDType;
+	public static fun values ()[Lio/piano/android/analytics/model/VisitorIDType;
+}
+
+public final class io/piano/android/analytics/model/VisitorStorageMode : java/lang/Enum {
+	public static final field FIXED Lio/piano/android/analytics/model/VisitorStorageMode;
+	public static final field RELATIVE Lio/piano/android/analytics/model/VisitorStorageMode;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/VisitorStorageMode;
+	public static fun values ()[Lio/piano/android/analytics/model/VisitorStorageMode;
+}
+

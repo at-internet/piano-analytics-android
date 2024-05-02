@@ -10,6 +10,7 @@ import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.OfflineStorageMode
 import io.piano.android.analytics.model.Property
 import io.piano.android.analytics.model.PropertyName
+import io.piano.android.consents.PianoConsents
 import java.util.UUID
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -20,8 +21,9 @@ import java.util.concurrent.TimeUnit
  * @property privacyModesStorage Storage for privacy modes
  * @property contextPropertiesStorage Storage for context properties
  * @property userStorage Storage for user data
+ * @property pianoConsents [PianoConsents] instance for managing user consent.
  */
-class PianoAnalytics internal constructor(
+public class PianoAnalytics internal constructor(
     private val executorProvider: () -> ScheduledExecutorService,
     private val configuration: Configuration,
     private val screenNameProvider: ScreenNameProvider,
@@ -33,13 +35,17 @@ class PianoAnalytics internal constructor(
     customEventProcessorsGroup: GroupEventProcessor,
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
-    val privacyModesStorage: PrivacyModesStorage,
+    @Deprecated("Use `pianoConsents` for managing consents instead")
+    public val privacyModesStorage: PrivacyModesStorage,
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
-    val contextPropertiesStorage: ContextPropertiesStorage,
+    public val contextPropertiesStorage: ContextPropertiesStorage,
     // Public API.
     @Suppress("unused", "MemberVisibilityCanBePrivate")
-    val userStorage: UserStorage,
+    public val userStorage: UserStorage,
+    // Public API.
+    @Suppress("unused", "MemberVisibilityCanBePrivate")
+    public val pianoConsents: PianoConsents?,
 ) {
     private val executor: ScheduledExecutorService = executorProvider()
 
@@ -47,13 +53,13 @@ class PianoAnalytics internal constructor(
      * Current visitor id, depends on [Configuration.visitorIDType]
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    val visitorId: String? by visitorIdProvider::visitorId
+    public val visitorId: String? by visitorIdProvider::visitorId
 
     /**
      * Custom visitor id, will be used if [Configuration.visitorIDType] is set to [VisitorIDType.CUSTOM]
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    var customVisitorId: String? by customIdProvider::visitorId
+    public var customVisitorId: String? by customIdProvider::visitorId
 
     /**
      * List of custom event processors, which can change sending events.
@@ -62,12 +68,12 @@ class PianoAnalytics internal constructor(
      * @see [EventProcessor]
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
-    val customEventProcessors: MutableList<EventProcessor> = customEventProcessorsGroup
+    public val customEventProcessors: MutableList<EventProcessor> = customEventProcessorsGroup
 
     /**
      * Callback, which will be called after all events' processors and before sending event.
      */
-    var eventProcessorCallback: EventProcessorCallback = EventProcessorCallback { _ -> }
+    public var eventProcessorCallback: EventProcessorCallback = EventProcessorCallback { _ -> }
 
     /**
      * Sets current screen name.
@@ -76,7 +82,7 @@ class PianoAnalytics internal constructor(
      * @param name screen name
      */
     @Suppress("unused") // Public API.
-    fun screenName(name: String) {
+    public fun screenName(name: String) {
         screenNameProvider.customScreenName = name
         contextPropertiesStorage.add(
             ContextProperty(
@@ -95,7 +101,7 @@ class PianoAnalytics internal constructor(
      */
     @Suppress("unused") // Public API.
     @JvmOverloads
-    fun mediaHelper(
+    public fun mediaHelper(
         contentId: String,
         mediaSessionId: String = UUID.randomUUID().toString(),
     ): MediaHelper {
@@ -119,7 +125,7 @@ class PianoAnalytics internal constructor(
      * @param events a custom event list
      */
     @Suppress("unused") // Public API.
-    fun sendEvents(vararg events: Event) {
+    public fun sendEvents(vararg events: Event) {
         // delay is required, see androidx.lifecycle.ProcessLifecycleOwner.TIMEOUT_MS
         executor.schedule(
             {
@@ -139,7 +145,7 @@ class PianoAnalytics internal constructor(
      * Send offline data stored on device
      */
     @Suppress("unused") // Public API.
-    fun sendOfflineData() {
+    public fun sendOfflineData() {
         executor.submit(sendTask)
     }
 
@@ -149,38 +155,45 @@ class PianoAnalytics internal constructor(
      * @param remaining age of data which have to be kept (in days)
      */
     @Suppress("unused") // Public API.
-    fun deleteOfflineStorage(remaining: Int = 0) {
+    public fun deleteOfflineStorage(remaining: Int = 0) {
         executor.submit {
             eventRepository.deleteOldEvents(remaining)
         }
     }
 
-    fun interface EventProcessorCallback {
-        fun onProcess(events: List<Event>)
+    public fun interface EventProcessorCallback {
+        public fun onProcess(events: List<Event>)
     }
 
-    companion object {
+    public companion object {
         /**
          * Initializes Piano Analytics SDK
          *
          * @param context Activity or Application context
          * @param configuration [Configuration] object
+         * @param pianoConsents [PianoConsents] instance for managing user consent. Default is null.
          * @param dataEncoder custom [DataEncoder] for encrypting/decrypting events' data, default is [PlainDataEncoder]
          */
         @Suppress("unused") // Public API.
         @JvmStatic
         @JvmOverloads
-        fun init(
+        public fun init(
             context: Context,
             configuration: Configuration,
+            pianoConsents: PianoConsents? = null,
             dataEncoder: DataEncoder = PlainDataEncoder,
         ): PianoAnalytics {
-            DependenciesProvider.init(context, configuration, dataEncoder)
+            DependenciesProvider.init(
+                context,
+                configuration,
+                pianoConsents ?: runCatching { PianoConsents.getInstance() }.getOrNull(),
+                dataEncoder
+            )
             return getInstance()
         }
 
         @Suppress("unused") // Public API.
         @JvmStatic
-        fun getInstance(): PianoAnalytics = DependenciesProvider.getInstance().pianoAnalytics
+        public fun getInstance(): PianoAnalytics = DependenciesProvider.getInstance().pianoAnalytics
     }
 }
