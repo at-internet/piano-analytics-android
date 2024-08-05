@@ -22,12 +22,18 @@ public class PrivacyModesStorage internal constructor(
         prefsStorage.privacyStorageFilter = ::isFeatureAllowed
     }
     private fun isFeatureAllowed(privacyStorageFeature: PrivacyStorageFeature): Boolean {
-        val isNotForbidden = PrivacyStorageFeature.ALL !in cachedMode.forbiddenStorageFeatures ||
-            privacyStorageFeature !in cachedMode.forbiddenStorageFeatures
-        val isAllowed = PrivacyStorageFeature.ALL in cachedMode.allowedStorageFeatures ||
-            privacyStorageFeature in cachedMode.allowedStorageFeatures
+        val privacyMode = if (consentsEnabled) consentsCurrentMode else cachedMode
+        val isNotForbidden = PrivacyStorageFeature.ALL !in privacyMode.forbiddenStorageFeatures ||
+            privacyStorageFeature !in privacyMode.forbiddenStorageFeatures
+        val isAllowed = PrivacyStorageFeature.ALL in privacyMode.allowedStorageFeatures ||
+            privacyStorageFeature in privacyMode.allowedStorageFeatures
         return isNotForbidden && isAllowed
     }
+
+    private val consentsCurrentMode
+        get() = pianoConsents?.let {
+            it.consents[it.productsToPurposesMapping[Product.PA]]?.mode
+        }?.toPrivacyMode() ?: PrivacyMode.NO_CONSENT
 
     /**
      * All registered privacy modes. Add a [PrivacyMode] instance into [allModes] for registering it
@@ -49,9 +55,7 @@ public class PrivacyModesStorage internal constructor(
     public var currentMode: PrivacyMode = configuration.defaultPrivacyMode
         get() {
             if (consentsEnabled) {
-                return pianoConsents?.let {
-                    it.consents[it.productsToPurposesMapping[Product.PA]]?.mode
-                }?.toPrivacyMode() ?: PrivacyMode.NO_CONSENT
+                return consentsCurrentMode
             }
             if (field != PrivacyMode.NO_CONSENT && field != PrivacyMode.NO_STORAGE) {
                 if (prefsStorage.privacyExpirationTimestamp in 1..System.currentTimeMillis()) {

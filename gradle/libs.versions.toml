@@ -1,7 +1,7 @@
 [versions]
 # Plugins
 kotlin = "1.9.23"
-android = "8.3.2"
+android = "8.4.2"
 binaryCompatibility = "0.14.0"
 versionUpdater = "0.51.0"
 ktlint = "12.1.0"
