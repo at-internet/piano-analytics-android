@@ -1,5 +1,8 @@
 # Piano Analytics SDK for Android
 
+## v3.4.1
+* Fixed bug with prefs for new `PianoConsents` mode
+
 ## v3.4.0
 * Updated to Kotlin 1.9
 * Added support for `PianoConsents`
