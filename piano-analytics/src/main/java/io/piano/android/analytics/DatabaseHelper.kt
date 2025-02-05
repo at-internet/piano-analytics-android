@@ -14,15 +14,17 @@ internal class DatabaseHelper(
 
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
-            for (v in 0 until DATABASE_VERSION)
+            for (v in 0 until DATABASE_VERSION) {
                 migrate(db, v)
+            }
         }
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         if (db != null) {
-            for (v in oldVersion until newVersion)
+            for (v in oldVersion until newVersion) {
                 migrate(db, v)
+            }
         }
     }
 
@@ -37,7 +39,7 @@ internal class DatabaseHelper(
                         ${EventRecord.TIME} INTEGER,
                         ${EventRecord.IS_SENT} INTEGER
                         );
-                    """.trimIndent()
+                    """.trimIndent(),
                 )
         }
     }
@@ -52,7 +54,7 @@ internal class DatabaseHelper(
         dataEncoder.decode(getAsString(EventRecord.DATA)),
         getAsLong(EventRecord.TIME),
         getAsLong(EventRecord.ID),
-        getAsBoolean(EventRecord.IS_SENT)
+        getAsBoolean(EventRecord.IS_SENT),
     )
 
     fun save(eventRecord: EventRecord): Long = eventRecord.id?.let { id ->
@@ -60,12 +62,12 @@ internal class DatabaseHelper(
             EventRecord.TABLE_NAME,
             eventRecord.toContentValues(),
             "${EventRecord.ID} = ?",
-            arrayOf(id.toString())
+            arrayOf(id.toString()),
         ).toLong()
     } ?: writableDatabase.insert(
         EventRecord.TABLE_NAME,
         null,
-        eventRecord.toContentValues()
+        eventRecord.toContentValues(),
     )
 
     fun delete(eventRecord: EventRecord): Int = eventRecord.id?.let { id ->
@@ -91,7 +93,7 @@ internal class DatabaseHelper(
         groupBy,
         having,
         orderBy,
-        limit
+        limit,
     ).use { c ->
         generateSequence { if (c.moveToNext()) c else null }
             .map(Companion::cursorRowToContentValues)

@@ -23,7 +23,7 @@ class EventRepositoryTest {
     fun putEvents() {
         val events = listOf(
             Event.Builder(DUMMY).build(),
-            Event.Builder(DUMMY).build()
+            Event.Builder(DUMMY).build(),
         )
         eventRepository.putEvents(events)
         verify(eventAdapter, times(events.size)).toJson(any())
@@ -41,7 +41,7 @@ class EventRepositoryTest {
         eventRepository.getNotSentEvents()
         verify(databaseHelper).query(
             selection = "${EventRecord.IS_SENT} = 0",
-            orderBy = "${EventRecord.TIME} ASC"
+            orderBy = "${EventRecord.TIME} ASC",
         )
     }
 
@@ -49,7 +49,7 @@ class EventRepositoryTest {
     fun markEventsAsSent() {
         val events = listOf(
             EventRecord(DUMMY),
-            EventRecord(DUMMY)
+            EventRecord(DUMMY),
         )
         eventRepository.markEventsAsSent(events)
         verify(databaseHelper, times(events.size)).save(any())

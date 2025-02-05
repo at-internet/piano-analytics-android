@@ -10,7 +10,7 @@ public value class PropertyName(
                 !key.startsWith(PREFIX_M, ignoreCase = true) &&
                 !key.startsWith(PREFIX_VISIT, ignoreCase = true) &&
                 // * is allowed for privacy filters
-                (key == "*" || PROPERTY_REGEX.matches(key))
+                (key == "*" || PROPERTY_REGEX.matches(key)),
         ) {
             PROPERTY_NAME_NOT_VALID
         }

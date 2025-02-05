@@ -137,7 +137,9 @@ public class Property {
         this.forceType = forceType
     }
 
-    public enum class Type(public val prefix: String) {
+    public enum class Type(
+        public val prefix: String,
+    ) {
         STRING("s"),
         INTEGER("n"),
         FLOAT("f"),

@@ -20,9 +20,9 @@ internal class SessionEventProcessor(
             Property(PropertyName.APP_DAYS_SINCE_FIRST_SESSION, sessionStorage.daysSinceFirstSession),
             Property(
                 PropertyName.APP_FIRST_SESSION_DATE,
-                sessionStorage.firstSessionTimestamp.asReportDate()
+                sessionStorage.firstSessionTimestamp.asReportDate(),
             ),
-            Property(PropertyName.APP_SESSION_ID, sessionStorage.sessionId)
+            Property(PropertyName.APP_SESSION_ID, sessionStorage.sessionId),
         )
 
         val afterUpdateProperties = if (sessionStorage.isFirstSessionAfterUpdate) {
@@ -30,9 +30,9 @@ internal class SessionEventProcessor(
                 Property(PropertyName.APP_SESSION_COUNT_SINCE_UPDATE, sessionStorage.sessionCountAfterUpdate),
                 Property(
                     PropertyName.APP_FIRST_SESSION_DATE_AFTER_UPDATE,
-                    sessionStorage.firstSessionTimestampAfterUpdate.asReportDate()
+                    sessionStorage.firstSessionTimestampAfterUpdate.asReportDate(),
                 ),
-                Property(PropertyName.APP_DAYS_SINCE_UPDATE, sessionStorage.daysSinceUpdate)
+                Property(PropertyName.APP_DAYS_SINCE_UPDATE, sessionStorage.daysSinceUpdate),
             )
         } else {
             emptySet()

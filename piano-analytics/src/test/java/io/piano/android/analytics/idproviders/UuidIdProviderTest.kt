@@ -29,7 +29,7 @@ class UuidIdProviderTest {
         whenever(prefsStorage.visitorUuidGenerateTimestamp).then {
             if (isFirstCall) {
                 isFirstCall = false
-                0
+                0L
             } else {
                 timestamp
             }

@@ -15,13 +15,13 @@ internal class EventJsonAdapterFactory : JsonAdapter.Factory {
                     Types.newParameterizedType(
                         Map::class.java,
                         String::class.java,
-                        Any::class.java
-                    )
-                )
+                        Any::class.java,
+                    ),
+                ),
             )
 
             Event::class.java -> EventJsonAdapter(
-                moshi.adapter(EVENT_PROPERTIES_TYPE)
+                moshi.adapter(EVENT_PROPERTIES_TYPE),
             )
 
             else -> null
@@ -31,7 +31,7 @@ internal class EventJsonAdapterFactory : JsonAdapter.Factory {
         @JvmStatic
         internal val EVENT_PROPERTIES_TYPE = Types.newParameterizedType(
             Set::class.java,
-            Property::class.java
+            Property::class.java,
         )
     }
 }

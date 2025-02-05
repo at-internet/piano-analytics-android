@@ -5,6 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import timber.log.Timber
 
+public typealias CrashListener = (Thread, Throwable) -> Unit
+
 internal fun String.wildcardMatches(string: String): Boolean {
     val index = indexOf("*")
     return index == 0 || (index == -1 && this == string) || (index > 0 && string.startsWith(substring(0, index)))

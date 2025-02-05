@@ -33,8 +33,8 @@ class PrivacyEventProcessorTest {
         val events = processor.process(
             listOf(
                 allowedEvent,
-                forbiddenEvent
-            )
+                forbiddenEvent,
+            ),
         )
         assertEquals(1, events.size)
         val eventNames = events.map { it.name }

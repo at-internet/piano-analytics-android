@@ -23,22 +23,25 @@ internal class SessionStorage(
 
     var sessionCount: Int by delegatedPropertyWithDefaultValue(
         prefsStorage::sessionCount,
-        { 1 }
+        { 1 },
     ) { it > 0 }
         private set
+
     var sessionCountAfterUpdate: Int by delegatedPropertyWithDefaultValue(
         prefsStorage::sessionCountAfterUpdate,
-        { 1 }
+        { 1 },
     ) { it > 0 }
         private set
+
     var firstSessionTimestamp: Long by delegatedPropertyWithDefaultValue(
         prefsStorage::firstSessionDate,
-        this::getCurrentTimestamp
+        this::getCurrentTimestamp,
     ) { it > 0 }
         private set
+
     var firstSessionTimestampAfterUpdate: Long by delegatedPropertyWithDefaultValue(
         prefsStorage::firstSessionDateAfterUpdate,
-        this::getCurrentTimestamp
+        this::getCurrentTimestamp,
     ) { it > 0 }
         private set
 

@@ -29,8 +29,8 @@ internal class CrashReporter(
             Property(PropertyName.APP_CRASH_SCREEN, screenNameProvider.screenName),
             Property(
                 PropertyName.APP_CRASH_CLASS,
-                exc.stackTrace.firstOrNull { it.className.startsWith(packageName) }?.className ?: ""
-            )
+                exc.stackTrace.firstOrNull { it.className.startsWith(packageName) }?.className ?: "",
+            ),
         )
         prefsStorage.crashInfo = propertiesJsonAdapter.toJson(data)
         contextPropertiesStorage.add(ContextProperty(data))

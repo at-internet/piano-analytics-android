@@ -22,7 +22,7 @@ public class Event private constructor(
             }
             return Event(
                 name,
-                Collections.unmodifiableSet(properties)
+                Collections.unmodifiableSet(properties),
             )
         }
     }

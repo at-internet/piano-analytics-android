@@ -19,7 +19,7 @@ public class UserStorage internal constructor(
             val generationTimestamp = prefsStorage.userGenerateTimestamp.takeUnless { it == 0L } ?: now
             prefsStorage.userGenerateTimestamp = generationTimestamp
             val expireTimestamp = generationTimestamp + TimeUnit.DAYS.toMillis(
-                configuration.userStorageLifetime.toLong()
+                configuration.userStorageLifetime.toLong(),
             )
             if (expireTimestamp > now) {
                 if (cachedUserPreference != prefsStorage.user) {

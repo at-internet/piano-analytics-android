@@ -43,7 +43,7 @@ internal class EventPropertiesJsonAdapter(
             writer,
             value.associate {
                 it.forceType?.prefix?.plus(DELIMITER).orEmpty() + it.name.key.lowercase() to it.value
-            }
+            },
         )
     }
 

@@ -39,7 +39,7 @@ internal class PrivacyEventProcessor(
                     .properties(event.properties.applyFilter(allowedProperties, forbiddenProperties))
                     .properties(
                         Property(PropertyName.VISITOR_PRIVACY_MODE, visitorMode),
-                        Property(PropertyName.VISITOR_PRIVACY_CONSENT, visitorConsent)
+                        Property(PropertyName.VISITOR_PRIVACY_CONSENT, visitorConsent),
                     )
                     .build()
             }

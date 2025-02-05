@@ -13,7 +13,7 @@ class UserEventProcessorTest {
     @Test
     fun process() {
         val events = listOf(
-            Event.Builder(DUMMY).build()
+            Event.Builder(DUMMY).build(),
         )
         val user = User(DUMMY, DUMMY2)
         val userStorage = mock<UserStorage> {

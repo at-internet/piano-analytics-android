@@ -24,10 +24,10 @@ class ContextPropertiesEventProcessorTest {
                 Event.Builder(DUMMY)
                     .properties(
                         Property(PropertyName.PAGE, DUMMY),
-                        existProperty
+                        existProperty,
                     )
-                    .build()
-            )
+                    .build(),
+            ),
         )
         assertEquals(1, events.size)
         events.first().apply {
@@ -38,7 +38,7 @@ class ContextPropertiesEventProcessorTest {
         val event = Event.Builder(DUMMY)
             .properties(
                 newProperty,
-                existProperty
+                existProperty,
             )
             .build()
         val events2 = processor.process(listOf(event))

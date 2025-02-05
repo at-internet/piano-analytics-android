@@ -18,7 +18,7 @@ internal class EventRepository(
     fun deleteOldEvents(eventsOfflineStorageLifetime: Int) {
         databaseHelper.delete(
             "${EventRecord.TIME} < ?",
-            (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(eventsOfflineStorageLifetime.toLong())).toString()
+            (System.currentTimeMillis() - TimeUnit.DAYS.toMillis(eventsOfflineStorageLifetime.toLong())).toString(),
         )
     }
 
@@ -27,13 +27,13 @@ internal class EventRepository(
             "${EventRecord.IS_SENT} = 0 AND ${EventRecord.ID} <= (" +
                 "SELECT ${EventRecord.ID} FROM ${EventRecord.TABLE_NAME} WHERE ${EventRecord.IS_SENT} = 0 " +
                 "ORDER by ${EventRecord.ID} DESC LIMIT 1 OFFSET ?)",
-            limit.toString()
+            limit.toString(),
         )
     }
 
     fun getNotSentEvents(): List<EventRecord> = databaseHelper.query(
         selection = "${EventRecord.IS_SENT} = 0",
-        orderBy = "${EventRecord.TIME} ASC"
+        orderBy = "${EventRecord.TIME} ASC",
     )
 
     fun markEventsAsSent(events: Collection<EventRecord>) {

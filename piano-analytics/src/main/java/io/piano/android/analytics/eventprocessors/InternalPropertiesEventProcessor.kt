@@ -20,7 +20,7 @@ internal class InternalPropertiesEventProcessor(
         val appProperties = deviceInfoProvider.packageInfo?.run {
             setOf(
                 Property(PropertyName.APP_ID, packageName),
-                Property(PropertyName.APP_VERSION, versionName)
+                Property(PropertyName.APP_VERSION, versionName),
             )
         } ?: emptySet()
         val (language, country) = Locale.getDefault().run { language to country }
@@ -46,7 +46,7 @@ internal class InternalPropertiesEventProcessor(
                     Property(PropertyName.BROWSER_LANGUAGE_LOCAL, country),
                     Property(PropertyName.CONNECTION_TYPE, connectionType.key),
                     Property(PropertyName.EVENT_COLLECTION_PLATFORM, PLATFORM),
-                    Property(PropertyName.EVENT_COLLECTION_VERSION, BuildConfig.SDK_VERSION)
+                    Property(PropertyName.EVENT_COLLECTION_VERSION, BuildConfig.SDK_VERSION),
                 )
                 .properties(appProperties)
                 .build()

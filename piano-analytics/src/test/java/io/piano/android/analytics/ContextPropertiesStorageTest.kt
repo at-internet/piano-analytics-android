@@ -27,7 +27,7 @@ class ContextPropertiesStorageTest {
     @Test
     fun add() {
         val contextProperty = ContextProperty(
-            setOf(Property(PropertyName.CLICK, DUMMY))
+            setOf(Property(PropertyName.CLICK, DUMMY)),
         )
         propertiesStorage.add(contextProperty)
         verify(properties).add(any())
@@ -39,7 +39,7 @@ class ContextPropertiesStorageTest {
     fun addWithEventNames() {
         val contextProperty = ContextProperty(
             setOf(Property(PropertyName.CLICK, DUMMY)),
-            eventNames = listOf(Event.PAGE_DISPLAY)
+            eventNames = listOf(Event.PAGE_DISPLAY),
         )
         propertiesStorage.add(contextProperty)
         verify(properties).add(any())
@@ -51,7 +51,7 @@ class ContextPropertiesStorageTest {
     fun deleteByKey() {
         val contextProperty = ContextProperty(
             setOf(Property(PropertyName.CLICK, DUMMY)),
-            eventNames = listOf(Event.PAGE_DISPLAY)
+            eventNames = listOf(Event.PAGE_DISPLAY),
         )
         properties.add(contextProperty)
         propertiesStorage.deleteByKey(PropertyName.PAGE)
@@ -67,22 +67,22 @@ class ContextPropertiesStorageTest {
         val property = Property(PropertyName.CLICK, DUMMY)
         val contextProperty = ContextProperty(
             setOf(property),
-            eventNames = listOf(Event.PAGE_DISPLAY)
+            eventNames = listOf(Event.PAGE_DISPLAY),
         )
         properties.add(contextProperty)
         assertEquals(
             emptyList(),
-            propertiesStorage.getByEventName("*test")
+            propertiesStorage.getByEventName("*test"),
         )
         assertTrue { properties.size == 1 }
         assertEquals(
             emptyList(),
-            propertiesStorage.getByEventName(Event.CLICK_ACTION)
+            propertiesStorage.getByEventName(Event.CLICK_ACTION),
         )
         assertTrue { properties.size == 1 }
         assertEquals(
             listOf(property),
-            propertiesStorage.getByEventName(Event.PAGE_DISPLAY)
+            propertiesStorage.getByEventName(Event.PAGE_DISPLAY),
         )
         assertTrue { properties.isEmpty() }
     }
@@ -92,12 +92,12 @@ class ContextPropertiesStorageTest {
         val property = Property(PropertyName.CLICK, DUMMY)
         val contextProperty = ContextProperty(
             setOf(property),
-            eventNames = listOf(Event.PAGE_DISPLAY)
+            eventNames = listOf(Event.PAGE_DISPLAY),
         )
         properties.add(contextProperty)
         assertEquals(
             listOf(property),
-            propertiesStorage.getByEventName(Event.ANY)
+            propertiesStorage.getByEventName(Event.ANY),
         )
         assertTrue { properties.isEmpty() }
     }
@@ -108,12 +108,12 @@ class ContextPropertiesStorageTest {
         val contextProperty = ContextProperty(
             setOf(property),
             persistent = true,
-            eventNames = listOf("page.*")
+            eventNames = listOf("page.*"),
         )
         properties.add(contextProperty)
         assertEquals(
             listOf(property),
-            propertiesStorage.getByEventName(Event.PAGE_DISPLAY)
+            propertiesStorage.getByEventName(Event.PAGE_DISPLAY),
         )
         assertTrue { properties.size == 1 }
     }

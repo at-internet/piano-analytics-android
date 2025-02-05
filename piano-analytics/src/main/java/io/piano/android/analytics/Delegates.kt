@@ -10,9 +10,8 @@ internal inline fun <T> delegatedPropertyWithDefaultValue(
     crossinline defaultValue: () -> T,
     crossinline valueFilter: (T) -> Boolean,
 ) = object : ReadWriteProperty<Any, T> {
-    override fun getValue(thisRef: Any, property: KProperty<*>): T {
-        return delegateProperty.get().takeIf(valueFilter) ?: defaultValue().also { setValue(thisRef, property, it) }
-    }
+    override fun getValue(thisRef: Any, property: KProperty<*>): T =
+        delegateProperty.get().takeIf(valueFilter) ?: defaultValue().also { setValue(thisRef, property, it) }
 
     override fun setValue(thisRef: Any, property: KProperty<*>, value: T) {
         delegateProperty.set(value)
@@ -40,7 +39,9 @@ internal class ResettableProperty<T>(
 
 internal val SharedPreferences.delegates get() = SharedPreferenceDelegates(this)
 
-internal class SharedPreferenceDelegates(private val prefs: SharedPreferences) {
+internal class SharedPreferenceDelegates(
+    private val prefs: SharedPreferences,
+) {
     fun boolean(
         default: Boolean = false,
         key: String? = null,
