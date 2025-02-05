@@ -114,6 +114,16 @@ public final class io/piano/android/analytics/ContextPropertiesStorage {
 	public final fun deleteByKey-z4gBv5U (Ljava/lang/String;)V
 }
 
+public abstract interface class io/piano/android/analytics/CustomHttpDataProvider {
+	public abstract fun headers ()Ljava/util/Map;
+	public abstract fun parameters ()Ljava/util/Map;
+}
+
+public final class io/piano/android/analytics/CustomHttpDataProvider$DefaultImpls {
+	public static fun headers (Lio/piano/android/analytics/CustomHttpDataProvider;)Ljava/util/Map;
+	public static fun parameters (Lio/piano/android/analytics/CustomHttpDataProvider;)Ljava/util/Map;
+}
+
 public abstract interface class io/piano/android/analytics/DataEncoder {
 	public abstract fun decode (Ljava/lang/String;)Ljava/lang/String;
 	public abstract fun encode (Ljava/lang/String;)Ljava/lang/String;
@@ -171,6 +181,7 @@ public final class io/piano/android/analytics/PianoAnalytics {
 	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;)Lio/piano/android/analytics/PianoAnalytics;
 	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;)Lio/piano/android/analytics/PianoAnalytics;
 	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;)Lio/piano/android/analytics/PianoAnalytics;
+	public static final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;Lio/piano/android/analytics/CustomHttpDataProvider;)Lio/piano/android/analytics/PianoAnalytics;
 	public final fun mediaHelper (Ljava/lang/String;)Lio/piano/android/analytics/MediaHelper;
 	public final fun mediaHelper (Ljava/lang/String;Ljava/lang/String;)Lio/piano/android/analytics/MediaHelper;
 	public static synthetic fun mediaHelper$default (Lio/piano/android/analytics/PianoAnalytics;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Lio/piano/android/analytics/MediaHelper;
@@ -186,7 +197,8 @@ public final class io/piano/android/analytics/PianoAnalytics$Companion {
 	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;)Lio/piano/android/analytics/PianoAnalytics;
 	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;)Lio/piano/android/analytics/PianoAnalytics;
 	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;)Lio/piano/android/analytics/PianoAnalytics;
-	public static synthetic fun init$default (Lio/piano/android/analytics/PianoAnalytics$Companion;Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;ILjava/lang/Object;)Lio/piano/android/analytics/PianoAnalytics;
+	public final fun init (Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;Lio/piano/android/analytics/CustomHttpDataProvider;)Lio/piano/android/analytics/PianoAnalytics;
+	public static synthetic fun init$default (Lio/piano/android/analytics/PianoAnalytics$Companion;Landroid/content/Context;Lio/piano/android/analytics/Configuration;Lio/piano/android/consents/PianoConsents;Lio/piano/android/analytics/DataEncoder;Lio/piano/android/analytics/CustomHttpDataProvider;ILjava/lang/Object;)Lio/piano/android/analytics/PianoAnalytics;
 }
 
 public abstract interface class io/piano/android/analytics/PianoAnalytics$EventProcessorCallback {

@@ -182,12 +182,14 @@ public class PianoAnalytics internal constructor(
             configuration: Configuration,
             pianoConsents: PianoConsents? = null,
             dataEncoder: DataEncoder = PlainDataEncoder,
+            customHttpDataProvider: CustomHttpDataProvider = EmptyCustomHttpDataProvider,
         ): PianoAnalytics {
             DependenciesProvider.init(
                 context,
                 configuration,
                 pianoConsents ?: runCatching { PianoConsents.getInstance() }.getOrNull(),
-                dataEncoder
+                dataEncoder,
+                customHttpDataProvider,
             )
             return getInstance()
         }

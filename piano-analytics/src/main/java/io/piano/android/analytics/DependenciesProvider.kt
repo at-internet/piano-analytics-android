@@ -32,6 +32,7 @@ internal class DependenciesProvider private constructor(
     configuration: Configuration,
     pianoConsents: PianoConsents? = null,
     dataEncoder: DataEncoder,
+    customHttpDataProvider: CustomHttpDataProvider,
 ) {
     private val userAgent = "Piano Analytics SDK ${BuildConfig.SDK_VERSION}"
     private val executorProvider: () -> ScheduledExecutorService = { Executors.newSingleThreadScheduledExecutor() }
@@ -121,7 +122,8 @@ internal class DependenciesProvider private constructor(
         deviceInfoProvider,
         visitorIdProvider,
         okHttpClient,
-        eventsAdapter
+        eventsAdapter,
+        customHttpDataProvider,
     )
 
     private val customEventProcessors = GroupEventProcessor()
@@ -163,6 +165,7 @@ internal class DependenciesProvider private constructor(
             configuration: Configuration,
             pianoConsents: PianoConsents?,
             dataEncoder: DataEncoder,
+            customHttpDataProvider: CustomHttpDataProvider,
         ) {
             if (instance == null) {
                 synchronized(this) {
@@ -171,7 +174,8 @@ internal class DependenciesProvider private constructor(
                             context.applicationContext,
                             configuration,
                             pianoConsents,
-                            dataEncoder
+                            dataEncoder,
+                            customHttpDataProvider,
                         ).also {
                             Thread.setDefaultUncaughtExceptionHandler(it.crashHandler)
                         }
