@@ -1,6 +1,6 @@
 # Piano Analytics SDK for Android
 
-## v3.4.2-SNAPSHOT
+## v3.5.0
 * Updated to Kotlin 2.0
 * Updated dependencies:
     - Kotlin [1.9.23 -> 2.0.21]
