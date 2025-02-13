@@ -45,7 +45,7 @@ public class PrivacyModesStorage internal constructor(
         PrivacyMode.OPTIN,
         PrivacyMode.OPTOUT,
         PrivacyMode.EXEMPT,
-        PrivacyMode.CUSTOM
+        PrivacyMode.CUSTOM,
     )
 
     /**

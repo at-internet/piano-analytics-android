@@ -219,7 +219,7 @@ public class Configuration private constructor(
                 sessionBackgroundDuration.coerceAtLeast(MIN_SESSION_BACKGROUND_DURATION),
                 detectCrashes,
                 ignoreLimitedAdTracking,
-                sendEventWhenOptOut
+                sendEventWhenOptOut,
             )
         }
     }

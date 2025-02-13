@@ -1,5 +1,18 @@
 # Piano Analytics SDK for Android
 
+## v3.5.0
+* Updated to Kotlin 2.0
+* Updated dependencies:
+    - Kotlin [1.9.23 -> 2.0.21]
+    - androidx.appcompat:appcompat [1.6.1 -> 1.7.0]
+      https://developer.android.com/jetpack/androidx/releases/appcompat#1.7.0
+    - androidx.databinding:viewbinding [8.4.2 -> 8.8.0]
+    - androidx.lifecycle:lifecycle-process [2.7.0 -> 2.8.7]
+      https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.7
+    - com.google.android.gms:play-services-ads-identifier [18.0.1 -> 18.2.0]
+    - com.squareup.moshi:moshi [1.15.1 -> 1.15.2]
+      https://github.com/square/moshi/
+
 ## v3.4.1
 * Fixed bug with prefs for new `PianoConsents` mode
 

@@ -87,8 +87,8 @@ public class PianoAnalytics internal constructor(
         contextPropertiesStorage.add(
             ContextProperty(
                 properties = setOf(Property(PropertyName.PAGE, name)),
-                eventNames = listOf(Event.PAGE_DISPLAY)
-            )
+                eventNames = listOf(Event.PAGE_DISPLAY),
+            ),
         )
     }
 
@@ -115,7 +115,7 @@ public class PianoAnalytics internal constructor(
             mediaSessionId,
             contentId,
             this,
-            executorProvider
+            executorProvider,
         )
     }
 
@@ -137,7 +137,7 @@ public class PianoAnalytics internal constructor(
                 }
             },
             1,
-            TimeUnit.SECONDS
+            TimeUnit.SECONDS,
         )
     }
 
@@ -182,12 +182,14 @@ public class PianoAnalytics internal constructor(
             configuration: Configuration,
             pianoConsents: PianoConsents? = null,
             dataEncoder: DataEncoder = PlainDataEncoder,
+            customHttpDataProvider: CustomHttpDataProvider = EmptyCustomHttpDataProvider,
         ): PianoAnalytics {
             DependenciesProvider.init(
                 context,
                 configuration,
                 pianoConsents ?: runCatching { PianoConsents.getInstance() }.getOrNull(),
-                dataEncoder
+                dataEncoder,
+                customHttpDataProvider,
             )
             return getInstance()
         }

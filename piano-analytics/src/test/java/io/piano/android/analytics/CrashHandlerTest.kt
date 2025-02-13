@@ -8,7 +8,12 @@ import org.junit.Test
 import java.lang.Thread.UncaughtExceptionHandler
 
 class CrashHandlerTest {
-    private val crashListener: (Thread, Throwable) -> Unit = spy({ _, _ -> })
+    private val crashListener: (Thread, Throwable) -> Unit = spy(
+        object : CrashListener {
+            override fun invoke(thread: Thread, throwable: Throwable) {
+            }
+        },
+    )
 
     @Test
     fun uncaughtException() {

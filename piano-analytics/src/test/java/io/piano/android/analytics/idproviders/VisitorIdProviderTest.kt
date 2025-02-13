@@ -28,7 +28,7 @@ class VisitorIdProviderTest {
         configuration,
         privacyModesStorage,
         limitedTrackingIdProvider,
-        idByTypeProvider
+        idByTypeProvider,
     )
 
     @Test

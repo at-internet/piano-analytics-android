@@ -9,7 +9,7 @@ import org.junit.Test
 
 class SessionEventProcessorTest {
     private val eventsSource = listOf(
-        Event.Builder(DUMMY).build()
+        Event.Builder(DUMMY).build(),
     )
 
     @Test

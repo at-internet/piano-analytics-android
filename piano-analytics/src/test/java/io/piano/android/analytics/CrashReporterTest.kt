@@ -33,7 +33,7 @@ class CrashReporterTest {
             DUMMY,
             mock(),
             storage,
-            jsonAdapter
+            jsonAdapter,
         )
         crashReporter.initialize()
         verify(prefsStorage).crashInfo
@@ -57,7 +57,7 @@ class CrashReporterTest {
             DUMMY,
             mock(),
             storage,
-            jsonAdapter
+            jsonAdapter,
         )
         assertFailsWith<IOException> {
             crashReporter.initialize()
@@ -80,7 +80,7 @@ class CrashReporterTest {
             DUMMY,
             mock(),
             storage,
-            jsonAdapter
+            jsonAdapter,
         )
         crashReporter.initialize()
         verify(prefsStorage).crashInfo
@@ -109,7 +109,7 @@ class CrashReporterTest {
             DUMMY,
             screenNameProvider,
             storage,
-            jsonAdapter
+            jsonAdapter,
         )
         val argumentCaptor = argumentCaptor<ContextProperty>()
         crashReporter.processUncaughtException(mock(), Exception())
@@ -135,7 +135,7 @@ class CrashReporterTest {
             DUMMY,
             mock(),
             storage,
-            jsonAdapter
+            jsonAdapter,
         )
         crashReporter.processUncaughtException(mock(), mock())
         verify(configuration).detectCrashes

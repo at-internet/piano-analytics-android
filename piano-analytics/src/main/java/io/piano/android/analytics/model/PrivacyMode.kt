@@ -23,7 +23,7 @@ public class PrivacyMode(
     public val allowedStorageFeatures: MutableSet<PrivacyStorageFeature> = DEFAULT_STORAGE_FEATURES.toMutableSet(),
     public val forbiddenStorageFeatures: MutableSet<PrivacyStorageFeature> = mutableSetOf(),
     public val allowedPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(
-        Event.ANY to EXEMPT_DEFAULT_PROPERTY_KEYS.toMutableSet()
+        Event.ANY to EXEMPT_DEFAULT_PROPERTY_KEYS.toMutableSet(),
     ),
     public val forbiddenPropertyKeys: MutableMap<String, MutableSet<PropertyName>> = mutableMapOf(),
 ) {
@@ -46,13 +46,13 @@ public class PrivacyMode(
             Event.CLICK_DOWNLOAD,
             Event.CLICK_EXIT,
             Event.CLICK_NAVIGATION,
-            Event.PAGE_DISPLAY
+            Event.PAGE_DISPLAY,
         )
 
         @JvmStatic
         internal val DEFAULT_STORAGE_FEATURES = setOf(
             PrivacyStorageFeature.VISITOR,
-            PrivacyStorageFeature.PRIVACY
+            PrivacyStorageFeature.PRIVACY,
         )
 
         @JvmStatic
@@ -60,7 +60,7 @@ public class PrivacyMode(
             PropertyName.CONNECTION_TYPE,
             PropertyName.DEVICE_TIMESTAMP_UTC,
             PropertyName.VISITOR_PRIVACY_CONSENT,
-            PropertyName.VISITOR_PRIVACY_MODE
+            PropertyName.VISITOR_PRIVACY_MODE,
         )
 
         @JvmStatic
@@ -154,7 +154,7 @@ public class PrivacyMode(
             PropertyName.SRC_TYPE,
             PropertyName.SRC_URL,
             PropertyName.SRC_URL_DOMAIN,
-            PropertyName.SRC_WEBMAIL
+            PropertyName.SRC_WEBMAIL,
         )
 
         /**
@@ -166,7 +166,7 @@ public class PrivacyMode(
             visitorConsent = true,
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(PrivacyStorageFeature.ALL),
-            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY))
+            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY)),
         )
 
         /**
@@ -176,7 +176,7 @@ public class PrivacyMode(
         public val OPTOUT: PrivacyMode = PrivacyMode(
             visitorMode = "optout",
             allowedEventNames = mutableSetOf(Event.ANY),
-            allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet())
+            allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet()),
         )
 
         /**
@@ -200,7 +200,7 @@ public class PrivacyMode(
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(),
             forbiddenStorageFeatures = mutableSetOf(PrivacyStorageFeature.ALL),
-            allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet())
+            allowedPropertyKeys = mutableMapOf(Event.ANY to MINIMUM_DEFAULT_PROPERTY_KEYS.toMutableSet()),
         )
 
         /**
@@ -212,7 +212,7 @@ public class PrivacyMode(
             allowedEventNames = mutableSetOf(Event.ANY),
             allowedStorageFeatures = mutableSetOf(),
             forbiddenStorageFeatures = mutableSetOf(PrivacyStorageFeature.ALL),
-            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY))
+            allowedPropertyKeys = mutableMapOf(Event.ANY to mutableSetOf(PropertyName.ANY_PROPERTY)),
         )
 
         @JvmStatic

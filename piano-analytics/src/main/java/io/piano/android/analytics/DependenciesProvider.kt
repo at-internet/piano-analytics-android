@@ -32,6 +32,7 @@ internal class DependenciesProvider private constructor(
     configuration: Configuration,
     pianoConsents: PianoConsents? = null,
     dataEncoder: DataEncoder,
+    customHttpDataProvider: CustomHttpDataProvider,
 ) {
     private val userAgent = "Piano Analytics SDK ${BuildConfig.SDK_VERSION}"
     private val executorProvider: () -> ScheduledExecutorService = { Executors.newSingleThreadScheduledExecutor() }
@@ -51,13 +52,13 @@ internal class DependenciesProvider private constructor(
         context.packageName,
         screenNameProvider,
         contextPropertiesStorage,
-        moshi.adapter(EventJsonAdapterFactory.EVENT_PROPERTIES_TYPE)
+        moshi.adapter(EventJsonAdapterFactory.EVENT_PROPERTIES_TYPE),
     ).apply {
         initialize()
     }
     private val crashHandler = CrashHandler(
         Thread.getDefaultUncaughtExceptionHandler(),
-        crashReporter::processUncaughtException
+        crashReporter::processUncaughtException,
     )
 
     private val deviceInfoProvider = DeviceInfoProvider(context)
@@ -81,7 +82,7 @@ internal class DependenciesProvider private constructor(
     private val visitorIdProvider = VisitorIdProvider(
         configuration,
         privacyModesStorage,
-        uuidIdProvider
+        uuidIdProvider,
     ) {
         when (it) {
             VisitorIDType.ADVERTISING_ID -> advertisingIdProvider
@@ -95,7 +96,7 @@ internal class DependenciesProvider private constructor(
     private val databaseHelper = DatabaseHelper(context, dataEncoder)
     private val eventRepository = EventRepository(
         databaseHelper,
-        moshi.adapter(Event::class.java)
+        moshi.adapter(Event::class.java),
     )
     private val eventsAdapter = moshi.adapter(EventsRequest::class.java)
 
@@ -110,8 +111,8 @@ internal class DependenciesProvider private constructor(
                     HttpLoggingInterceptor.Level.BODY
                 } else {
                     HttpLoggingInterceptor.Level.NONE
-                }
-            )
+                },
+            ),
         )
         .build()
 
@@ -121,7 +122,8 @@ internal class DependenciesProvider private constructor(
         deviceInfoProvider,
         visitorIdProvider,
         okHttpClient,
-        eventsAdapter
+        eventsAdapter,
+        customHttpDataProvider,
     )
 
     private val customEventProcessors = GroupEventProcessor()
@@ -132,8 +134,8 @@ internal class DependenciesProvider private constructor(
             ContextPropertiesEventProcessor(contextPropertiesStorage),
             UserEventProcessor(userStorage),
             customEventProcessors,
-            PrivacyEventProcessor(configuration, privacyModesStorage)
-        )
+            PrivacyEventProcessor(configuration, privacyModesStorage),
+        ),
     )
 
     internal val pianoAnalytics = PianoAnalytics(
@@ -149,7 +151,7 @@ internal class DependenciesProvider private constructor(
         privacyModesStorage,
         contextPropertiesStorage,
         userStorage,
-        pianoConsents
+        pianoConsents,
     )
 
     companion object {
@@ -163,6 +165,7 @@ internal class DependenciesProvider private constructor(
             configuration: Configuration,
             pianoConsents: PianoConsents?,
             dataEncoder: DataEncoder,
+            customHttpDataProvider: CustomHttpDataProvider,
         ) {
             if (instance == null) {
                 synchronized(this) {
@@ -171,7 +174,8 @@ internal class DependenciesProvider private constructor(
                             context.applicationContext,
                             configuration,
                             pianoConsents,
-                            dataEncoder
+                            dataEncoder,
+                            customHttpDataProvider,
                         ).also {
                             Thread.setDefaultUncaughtExceptionHandler(it.crashHandler)
                         }

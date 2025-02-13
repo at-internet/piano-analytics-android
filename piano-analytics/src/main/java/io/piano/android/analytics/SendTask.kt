@@ -6,6 +6,7 @@ import io.piano.android.analytics.idproviders.VisitorIdProvider
 import io.piano.android.analytics.model.ConnectionType
 import io.piano.android.analytics.model.EventRecord
 import io.piano.android.analytics.model.EventsRequest
+import okhttp3.Headers.Companion.toHeaders
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -21,6 +22,7 @@ internal class SendTask(
     private val visitorIdProvider: VisitorIdProvider,
     private val okHttpClient: OkHttpClient,
     private val eventsJsonAdapter: JsonAdapter<EventsRequest>,
+    private val customHttpDataProvider: CustomHttpDataProvider,
 ) : Runnable {
     override fun run() {
         eventRepository.deleteOldEvents(configuration.eventsOfflineStorageLifetime)
@@ -40,6 +42,11 @@ internal class SendTask(
                 .scheme("https")
                 .host(configuration.collectDomain)
                 .addEncodedPathSegment(configuration.path)
+                .apply {
+                    customHttpDataProvider.parameters().forEach { (key, value) ->
+                        addQueryParameter(key, value)
+                    }
+                }
                 .addQueryParameter("s", configuration.site.toString())
                 .addQueryParameter("idclient", visitorIdProvider.visitorId)
                 .build()
@@ -48,6 +55,7 @@ internal class SendTask(
                 readByteString().toRequestBody(MEDIA_TYPE)
             }
             val request = Request.Builder()
+                .headers(customHttpDataProvider.headers().toHeaders())
                 .url(url)
                 .post(requestBody)
                 .build()

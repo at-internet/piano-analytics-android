@@ -41,31 +41,31 @@ internal class PrefsStorage(
     var firstSessionDate: Long by prefs.delegates.long(key = FIRST_SESSION_DATE, canBeSaved = privacyFilter)
     var firstSessionDateAfterUpdate: Long by prefs.delegates.long(
         key = FIRST_SESSION_DATE_AFTER_UPDATE,
-        canBeSaved = privacyFilter
+        canBeSaved = privacyFilter,
     )
     var lastSessionDate: Long by prefs.delegates.long(key = LAST_SESSION_DATE, canBeSaved = privacyFilter)
     var sessionCount: Int by prefs.delegates.int(key = SESSION_COUNT, canBeSaved = privacyFilter)
     var sessionCountAfterUpdate: Int by prefs.delegates.int(
         key = SESSION_COUNT_SINCE_UPDATE,
-        canBeSaved = privacyFilter
+        canBeSaved = privacyFilter,
     )
 
     // Visitor ID
     var visitorUuid: String? by prefs.delegates.nullableString(key = VISITOR_UUID, canBeSaved = privacyFilter)
     var visitorUuidGenerateTimestamp: Long by prefs.delegates.long(
         key = VISITOR_UUID_GENERATION_TIMESTAMP,
-        canBeSaved = privacyFilter
+        canBeSaved = privacyFilter,
     )
 
     // Privacy
     var privacyMode: String by prefs.delegates.string(key = PRIVACY_MODE, canBeSaved = privacyFilter)
     var privacyExpirationTimestamp: Long by prefs.delegates.long(
         key = PRIVACY_MODE_EXPIRATION_TIMESTAMP,
-        canBeSaved = privacyFilter
+        canBeSaved = privacyFilter,
     )
     var privacyVisitorConsent: Boolean by prefs.delegates.boolean(
         key = PRIVACY_VISITOR_CONSENT,
-        canBeSaved = privacyFilter
+        canBeSaved = privacyFilter,
     )
 
     // Crash
@@ -108,7 +108,7 @@ internal class PrefsStorage(
             PRIVACY_VISITOR_ID to PrivacyStorageFeature.PRIVACY,
             CRASHED to PrivacyStorageFeature.CRASH,
             USER to PrivacyStorageFeature.USER,
-            USER_GENERATION_TIMESTAMP to PrivacyStorageFeature.USER
+            USER_GENERATION_TIMESTAMP to PrivacyStorageFeature.USER,
         )
 
         @JvmStatic
@@ -123,13 +123,13 @@ internal class PrefsStorage(
             "PADaysSinceFirstLaunchAfterUpdate",
             "PADaysSinceLastUse",
             "ATIdclientUUID",
-            "PACrashed"
+            "PACrashed",
         )
         val CHANGED_KEYS = arrayOf(
             VERSION_CODE,
             FIRST_SESSION_DATE,
             FIRST_SESSION_DATE_AFTER_UPDATE,
-            LAST_SESSION_DATE
+            LAST_SESSION_DATE,
         )
     }
 }

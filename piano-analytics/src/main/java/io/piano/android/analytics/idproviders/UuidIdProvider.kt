@@ -18,7 +18,7 @@ internal class UuidIdProvider(
                     prefsStorage.visitorUuidGenerateTimestamp = now
                 }
                 val expireTimestamp = prefsStorage.visitorUuidGenerateTimestamp + TimeUnit.DAYS.toMillis(
-                    configuration.visitorStorageLifetime.toLong()
+                    configuration.visitorStorageLifetime.toLong(),
                 )
                 if (expireTimestamp > now) {
                     if (configuration.visitorStorageMode == VisitorStorageMode.RELATIVE) {

@@ -1,6 +1,8 @@
 package io.piano.android.analytics.model
 
-internal enum class ConnectionType(val key: String) {
+internal enum class ConnectionType(
+    val key: String,
+) {
     MOBILE("MOBILE"),
     WIFI("WIFI"),
     OFFLINE("OFFLINE"),

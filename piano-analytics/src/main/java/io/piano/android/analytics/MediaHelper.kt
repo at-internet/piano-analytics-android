@@ -78,7 +78,7 @@ public class MediaHelper internal constructor(
                         startSessionTimeMillis,
                         MIN_HEARTBEAT_DURATION,
                         heartbeatDurations,
-                        heartbeatRunnable
+                        heartbeatRunnable,
                     )
                 }
             }
@@ -195,7 +195,7 @@ public class MediaHelper internal constructor(
                     bufferTimeMillis,
                     MIN_BUFFER_HEARTBEAT_DURATION,
                     bufferHeartbeatDurations,
-                    runnable
+                    runnable,
                 )
             }
         }
@@ -210,7 +210,7 @@ public class MediaHelper internal constructor(
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun playbackStart(cursorPosition: Int, vararg properties: Property): Unit = processEvent(
         AV_START,
-        properties
+        properties,
     ) {
         previousCursorPositionMillis = cursorPosition.coerceAtLeast(0)
         currentCursorPositionMillis = previousCursorPositionMillis
@@ -225,7 +225,7 @@ public class MediaHelper internal constructor(
                 startSessionTimeMillis,
                 MIN_HEARTBEAT_DURATION,
                 heartbeatDurations,
-                heartbeatRunnable
+                heartbeatRunnable,
             )
         }
     }
@@ -239,7 +239,7 @@ public class MediaHelper internal constructor(
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun playbackPaused(cursorPosition: Int, vararg properties: Property): Unit = processEvent(
         AV_PAUSE,
-        properties
+        properties,
     ) {
         previousCursorPositionMillis = currentCursorPositionMillis
         currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
@@ -258,7 +258,7 @@ public class MediaHelper internal constructor(
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun playbackResumed(cursorPosition: Int, vararg properties: Property): Unit = processEvent(
         AV_RESUME,
-        properties
+        properties,
     ) {
         previousCursorPositionMillis = currentCursorPositionMillis
         currentCursorPositionMillis = cursorPosition.coerceAtLeast(0)
@@ -273,7 +273,7 @@ public class MediaHelper internal constructor(
                 startSessionTimeMillis,
                 MIN_HEARTBEAT_DURATION,
                 heartbeatDurations,
-                heartbeatRunnable
+                heartbeatRunnable,
             )
         }
     }
@@ -361,7 +361,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun adClick(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_AD_CLICK, false, *properties)
+        buildEvent(AV_AD_CLICK, false, *properties),
     )
 
     /**
@@ -371,7 +371,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun adSkip(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_AD_SKIP, false, *properties)
+        buildEvent(AV_AD_SKIP, false, *properties),
     )
 
     /**
@@ -381,7 +381,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun display(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_DISPLAY, false, *properties)
+        buildEvent(AV_DISPLAY, false, *properties),
     )
 
     /**
@@ -391,7 +391,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun close(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_CLOSE, false, *properties)
+        buildEvent(AV_CLOSE, false, *properties),
     )
 
     /**
@@ -401,7 +401,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun volume(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_VOLUME, false, *properties)
+        buildEvent(AV_VOLUME, false, *properties),
     )
 
     /**
@@ -447,7 +447,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun quality(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_QUALITY, false, *properties)
+        buildEvent(AV_QUALITY, false, *properties),
     )
 
     /**
@@ -457,7 +457,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun speed(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_SPEED, false, *properties)
+        buildEvent(AV_SPEED, false, *properties),
     )
 
     /**
@@ -467,7 +467,7 @@ public class MediaHelper internal constructor(
      */
     @Suppress("unused", "MemberVisibilityCanBePrivate") // Public API.
     public fun share(vararg properties: Property): Unit = pianoAnalytics.sendEvents(
-        buildEvent(AV_SHARE, false, *properties)
+        buildEvent(AV_SHARE, false, *properties),
     )
 
     /**
@@ -482,8 +482,8 @@ public class MediaHelper internal constructor(
             AV_ERROR,
             false,
             Property(PropertyName("av_player_error"), message),
-            *properties
-        )
+            *properties,
+        ),
     )
 
     /**
@@ -520,7 +520,7 @@ public class MediaHelper internal constructor(
 
         pianoAnalytics.sendEvents(
             startSeekEvent,
-            buildEvent(eventName, true, *properties)
+            buildEvent(eventName, true, *properties),
         )
     }
 
@@ -543,7 +543,7 @@ public class MediaHelper internal constructor(
                 Property(PropertyName("av_previous_position"), previousCursorPositionMillis),
                 Property(PropertyName("av_position"), currentCursorPositionMillis),
                 Property(PropertyName("av_duration"), eventDurationMillis),
-                Property(PropertyName("av_previous_event"), previousEventName)
+                Property(PropertyName("av_previous_event"), previousEventName),
             ).also {
                 previousEventName = eventName
             }
@@ -555,7 +555,7 @@ public class MediaHelper internal constructor(
                 *extraProps,
                 *properties,
                 Property(PropertyName("av_session_id"), sessionId),
-                Property(PropertyName("av_content_id"), contentId)
+                Property(PropertyName("av_content_id"), contentId),
             )
             .properties(avProperties)
             .build()
@@ -585,7 +585,7 @@ public class MediaHelper internal constructor(
                     startSessionTimeMillis,
                     MIN_HEARTBEAT_DURATION,
                     heartbeatDurations,
-                    heartbeatRunnable
+                    heartbeatRunnable,
                 )
             }
         }
@@ -598,7 +598,7 @@ public class MediaHelper internal constructor(
                     bufferTimeMillis,
                     MIN_BUFFER_HEARTBEAT_DURATION,
                     bufferHeartbeatDurations,
-                    bufferHeartbeatRunnable
+                    bufferHeartbeatRunnable,
                 )
             }
         }
@@ -612,7 +612,7 @@ public class MediaHelper internal constructor(
                     bufferTimeMillis,
                     MIN_BUFFER_HEARTBEAT_DURATION,
                     bufferHeartbeatDurations,
-                    rebufferHeartbeatRunnable
+                    rebufferHeartbeatRunnable,
                 )
             }
         }
@@ -700,7 +700,7 @@ public class MediaHelper internal constructor(
             AV_SEEK_START,
             AV_HEARTBEAT,
             AV_BUFFER_HEARTBEAT,
-            AV_REBUFFER_HEARTBEAT
+            AV_REBUFFER_HEARTBEAT,
         )
     }
 }
