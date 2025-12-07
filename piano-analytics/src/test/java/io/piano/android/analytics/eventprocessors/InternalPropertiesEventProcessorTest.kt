@@ -2,17 +2,16 @@ package io.piano.android.analytics.eventprocessors
 
 import android.content.pm.PackageInfo
 import android.util.DisplayMetrics
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.verify
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.DeviceInfoProvider
 import io.piano.android.analytics.model.ConnectionType
 import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.OfflineStorageMode
-
 import org.junit.Test
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.never
+import org.mockito.kotlin.verify
 import kotlin.test.assertEquals
 
 class InternalPropertiesEventProcessorTest {

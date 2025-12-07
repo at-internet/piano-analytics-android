@@ -6,6 +6,7 @@ import io.piano.android.analytics.idproviders.VisitorIdProvider
 import io.piano.android.analytics.model.ConnectionType
 import io.piano.android.analytics.model.EventRecord
 import io.piano.android.analytics.model.EventsRequest
+import io.piano.android.analytics.model.OfflineStorageMode
 import okhttp3.Headers.Companion.toHeaders
 import okhttp3.HttpUrl
 import okhttp3.MediaType.Companion.toMediaType
@@ -29,10 +30,13 @@ internal class SendTask(
         eventRepository.deleteOutOfLimitNotSentEvents(EVENTS_LIMIT)
         if (deviceInfoProvider.connectionType == ConnectionType.OFFLINE) {
             Timber.w("Can't send events - no connection")
-            return
+        } else {
+            eventRepository.getNotSentEvents().chunked(CHUNK_SIZE).forEach {
+                send(it)
+            }
         }
-        eventRepository.getNotSentEvents().chunked(CHUNK_SIZE).forEach {
-            send(it)
+        if (configuration.offlineStorageMode == OfflineStorageMode.NEVER) {
+            eventRepository.deleteOldEvents(0)
         }
     }
 

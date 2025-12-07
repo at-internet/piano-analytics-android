@@ -1,5 +1,14 @@
 # Piano Analytics SDK for Android
 
+## v3.6.0
+* Added OfflineMode.Never support
+* Updated dependencies:
+    - androidx.appcompat:appcompat [1.7.0 -> 1.7.1]
+      https://developer.android.com/jetpack/androidx/releases/appcompat#1.7.0
+    - androidx.databinding:viewbinding [8.8.0 -> 8.13.1]
+    - androidx.lifecycle:lifecycle-process [2.8.7 -> 2.9.2]
+      https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.7
+
 ## v3.5.0
 * Updated to Kotlin 2.0
 * Updated dependencies:

@@ -315,6 +315,7 @@ public final class io/piano/android/analytics/model/EventsRequestJsonAdapter : c
 
 public final class io/piano/android/analytics/model/OfflineStorageMode : java/lang/Enum {
 	public static final field ALWAYS Lio/piano/android/analytics/model/OfflineStorageMode;
+	public static final field NEVER Lio/piano/android/analytics/model/OfflineStorageMode;
 	public static final field REQUIRED Lio/piano/android/analytics/model/OfflineStorageMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/OfflineStorageMode;

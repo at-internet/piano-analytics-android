@@ -1,16 +1,16 @@
 package io.piano.android.analytics.idproviders
 
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.never
-import com.nhaarman.mockitokotlin2.spy
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.PrivacyModesStorage
 import io.piano.android.analytics.model.PrivacyMode
 import io.piano.android.analytics.model.VisitorIDType
 import org.junit.Test
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.never
+import org.mockito.kotlin.spy
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 

@@ -36,6 +36,11 @@ public enum class OfflineStorageMode {
      * Hits are sent if network is available, stored otherwise
      */
     REQUIRED,
+
+    /**
+     * Hits are sent only if network is available
+     */
+    NEVER,
 }
 
 public enum class VisitorStorageMode {
