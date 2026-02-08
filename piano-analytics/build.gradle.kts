@@ -19,8 +19,8 @@ version = VERSION_NAME
 
 android {
     defaultConfig {
-        minSdk = 21
-        compileSdk = 34
+        minSdk = 23
+        compileSdk = 35
         buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -53,7 +53,7 @@ kotlin {
 
 ktlint {
     android = true
-    version = "1.7.1"
+    version = "1.8.0"
 }
 
 dependencies {

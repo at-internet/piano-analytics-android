@@ -5,9 +5,9 @@ plugins {
 
 android {
     defaultConfig {
-        minSdk = 21
-        compileSdk = 34
-        targetSdk = 34
+        minSdk = 23
+        compileSdk = 35
+        targetSdk = 35
         applicationId = "com.example.piano_analytics_android"
         versionCode = 1
         versionName = "1.0"

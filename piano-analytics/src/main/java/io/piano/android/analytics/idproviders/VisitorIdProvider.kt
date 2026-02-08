@@ -14,8 +14,11 @@ internal class VisitorIdProvider(
     override val visitorId: String?
         get() = when (privacyModesStorage.currentMode) {
             PrivacyMode.NO_STORAGE -> NO_STORAGE_ID
+
             PrivacyMode.NO_CONSENT -> NO_CONSENT_ID
+
             PrivacyMode.OPTOUT -> OPT_OUT_ID
+
             else -> {
                 val provider = idByTypeProvider(configuration.visitorIDType)
                 when {
