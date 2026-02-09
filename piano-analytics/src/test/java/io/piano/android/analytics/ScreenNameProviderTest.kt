@@ -1,11 +1,10 @@
 package io.piano.android.analytics
 
 import android.app.Activity
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Assert.assertEquals
-
 import org.junit.Test
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
 class ScreenNameProviderTest {
     private val screenNameProvider = ScreenNameProvider()

@@ -1,21 +1,21 @@
 [versions]
 # Plugins
-kotlin = "2.0.21"
-android = "8.8.0"
-binaryCompatibility = "0.17.0"
-versionUpdater = "0.52.0"
-ktlint = "12.1.2"
-mavenRelease = "0.30.0"
-moshiIR = "0.28.0"
-ksp = "2.0.21-1.0.28"
+kotlin = "2.2.21"
+android = "8.13.2"
+binaryCompatibility = "0.18.1"
+versionUpdater = "0.53.0"
+ktlint = "14.0.1"
+mavenRelease = "0.36.0"
+moshiIR = "0.34.4"
+ksp = "2.3.5"
 
 # AndroidX libraries
-compatLibrary = "1.7.0"
-lifecycle = "2.8.7"
-materialLibrary = "1.12.0"
+compatLibrary = "1.7.1"
+lifecycle = "2.9.2"
+materialLibrary = "1.13.0"
 
 # Third party Libraries
-googleAdsId = "18.2.0"
+googleAdsId = "18.3.0"
 huaweiAdsId = "3.4.26.303"
 moshi = "1.15.2"
 okhttp = "4.12.0"
@@ -25,9 +25,9 @@ viewBindingProperty = "1.5.9"
 
 # Test Libraries
 junit = "4.13.2"
-androidxTestCore = "1.6.1"
-mockitoKotlin = "2.2.0"
-mockitoCore = "5.15.2"
+androidxTestCore = "1.7.0"
+mockitoKotlin = "6.2.3"
+mockitoCore = "5.21.0"
 
 [plugins]
 android-library = { id = "com.android.library", version.ref = "android" }
@@ -54,7 +54,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 viewBindingProperty = { module = "com.github.kirich1409:viewbindingpropertydelegate", version.ref = "viewBindingProperty" }
 
 kotlinJunit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
-mockitoKotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockitoKotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 mockitoCore = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
 junit = { module = "junit:junit", version.ref = "junit" }
 androidxTestCore = { module = "androidx.test:core-ktx", version.ref = "androidxTestCore" }

@@ -19,8 +19,8 @@ version = VERSION_NAME
 
 android {
     defaultConfig {
-        minSdk = 21
-        compileSdk = 34
+        minSdk = 23
+        compileSdk = 35
         buildConfigField("String", "SDK_VERSION", """"${project.version}"""")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -28,8 +28,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
     buildTypes {
@@ -47,13 +47,13 @@ android {
 kotlin {
     explicitApi()
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(17))
     }
 }
 
 ktlint {
     android = true
-    version = "1.5.0"
+    version = "1.8.0"
 }
 
 dependencies {

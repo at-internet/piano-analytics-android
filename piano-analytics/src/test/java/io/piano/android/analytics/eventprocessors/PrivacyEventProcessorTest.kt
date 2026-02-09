@@ -1,12 +1,12 @@
 package io.piano.android.analytics.eventprocessors
 
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import io.piano.android.analytics.Configuration
 import io.piano.android.analytics.PrivacyModesStorage
 import io.piano.android.analytics.model.Event
 import io.piano.android.analytics.model.PrivacyMode
 import org.junit.Test
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse

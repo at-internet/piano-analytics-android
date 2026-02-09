@@ -115,8 +115,8 @@ public final class io/piano/android/analytics/ContextPropertiesStorage {
 }
 
 public abstract interface class io/piano/android/analytics/CustomHttpDataProvider {
-	public abstract fun headers ()Ljava/util/Map;
-	public abstract fun parameters ()Ljava/util/Map;
+	public fun headers ()Ljava/util/Map;
+	public fun parameters ()Ljava/util/Map;
 }
 
 public final class io/piano/android/analytics/CustomHttpDataProvider$DefaultImpls {
@@ -219,7 +219,7 @@ public final class io/piano/android/analytics/PrivacyModesStorage {
 
 public abstract interface class io/piano/android/analytics/ReportUrlProvider {
 	public abstract fun getCollectDomain ()Ljava/lang/String;
-	public abstract fun getPath ()Ljava/lang/String;
+	public fun getPath ()Ljava/lang/String;
 	public abstract fun getSite ()I
 }
 
@@ -315,6 +315,7 @@ public final class io/piano/android/analytics/model/EventsRequestJsonAdapter : c
 
 public final class io/piano/android/analytics/model/OfflineStorageMode : java/lang/Enum {
 	public static final field ALWAYS Lio/piano/android/analytics/model/OfflineStorageMode;
+	public static final field NEVER Lio/piano/android/analytics/model/OfflineStorageMode;
 	public static final field REQUIRED Lio/piano/android/analytics/model/OfflineStorageMode;
 	public static fun getEntries ()Lkotlin/enums/EnumEntries;
 	public static fun valueOf (Ljava/lang/String;)Lio/piano/android/analytics/model/OfflineStorageMode;

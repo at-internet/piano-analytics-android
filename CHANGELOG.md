@@ -1,5 +1,19 @@
 # Piano Analytics SDK for Android
 
+## v3.6.0
+* Updated to Kotlin 2.1
+* Updated minSDK to 23
+* Added OfflineMode.Never support
+* Fixed issue with leaking OkHttp response body
+* Updated dependencies:
+    - Kotlin [2.0.21 -> 2.2.21]
+    - androidx.appcompat:appcompat [1.7.0 -> 1.7.1]
+      https://developer.android.com/jetpack/androidx/releases/appcompat#1.7.0
+    - androidx.databinding:viewbinding [8.8.0 -> 8.13.2]
+    - androidx.lifecycle:lifecycle-process [2.8.7 -> 2.9.2]
+      https://developer.android.com/jetpack/androidx/releases/lifecycle#2.8.7
+    - com.google.android.gms:play-services-ads-identifier [18.2.0 -> 18.3.0]
+
 ## v3.5.0
 * Updated to Kotlin 2.0
 * Updated dependencies:

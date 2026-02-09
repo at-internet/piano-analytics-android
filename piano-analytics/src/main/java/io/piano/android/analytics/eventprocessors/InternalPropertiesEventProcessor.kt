@@ -20,7 +20,7 @@ internal class InternalPropertiesEventProcessor(
         val appProperties = deviceInfoProvider.packageInfo?.run {
             setOf(
                 Property(PropertyName.APP_ID, packageName),
-                Property(PropertyName.APP_VERSION, versionName),
+                Property(PropertyName.APP_VERSION, versionName.orEmpty()),
             )
         } ?: emptySet()
         val (language, country) = Locale.getDefault().run { language to country }

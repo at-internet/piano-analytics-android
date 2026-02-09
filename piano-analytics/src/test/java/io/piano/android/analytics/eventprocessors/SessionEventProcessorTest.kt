@@ -1,11 +1,11 @@
 package io.piano.android.analytics.eventprocessors
 
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
 import io.piano.android.analytics.SessionStorage
 import io.piano.android.analytics.model.Event
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
 
 class SessionEventProcessorTest {
     private val eventsSource = listOf(
