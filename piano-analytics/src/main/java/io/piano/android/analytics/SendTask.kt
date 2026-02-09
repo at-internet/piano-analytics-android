@@ -63,7 +63,7 @@ internal class SendTask(
                 .url(url)
                 .post(requestBody)
                 .build()
-            okHttpClient.newCall(request).execute()
+            okHttpClient.newCall(request).execute().close()
         }.onFailure {
             Timber.w(it)
         }.onSuccess {
