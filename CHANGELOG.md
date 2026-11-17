@@ -1,5 +1,10 @@
 # Piano Analytics SDK for Android
 
+## v3.6.1
+* Fixed `app_fsau` reported without an app update after lifecycle storage was cleared by a privacy mode switch
+* Fixed first session not detected when the app returned from background after lifecycle storage was cleared
+* Fixed `app_dsls` after lifecycle storage was cleared and in privacy modes without lifecycle storage
+
 ## v3.6.0
 * Updated to Kotlin 2.1
 * Updated minSDK to 23

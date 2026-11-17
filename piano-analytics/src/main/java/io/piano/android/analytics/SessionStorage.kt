@@ -19,7 +19,10 @@ internal class SessionStorage(
         } ?: 0L
     }
     private var savedVersionCode: Long by prefsStorage::versionCode
-    private var lastSessionTimestamp: Long by prefsStorage::lastSessionDate
+    private var lastSessionTimestamp: Long by delegatedPropertyWithDefaultValue(
+        prefsStorage::lastSessionDate,
+        this::getCurrentTimestamp,
+    ) { it > 0 }
 
     var sessionCount: Int by delegatedPropertyWithDefaultValue(
         prefsStorage::sessionCount,
@@ -61,29 +64,41 @@ internal class SessionStorage(
     init {
         sessionLifecycleListener.sessionExpiredCallback = this::initNewSession
         addLifecycleObserver(sessionLifecycleListener)
-        if (prefsStorage.sessionCount == 0) {
-            // first session
-            sessionCount = 1
-            sessionCountAfterUpdate = 1
-            firstSessionTimestamp = getCurrentTimestamp()
-            lastSessionTimestamp = firstSessionTimestamp
-            savedVersionCode = appVersionCode
-            sessionId = UUID.randomUUID().toString()
-        } else {
-            initNewSession()
-        }
+        initNewSession()
     }
 
     internal fun initNewSession() {
+        // first launch, or lifecycle storage was cleared by a privacy mode switch
+        if (prefsStorage.sessionCount <= 0) {
+            initFirstSession()
+            return
+        }
         lastSessionTimestamp = getCurrentTimestamp()
         sessionCount++
-        if (savedVersionCode != appVersionCode) {
-            savedVersionCode = appVersionCode
-            firstSessionTimestampAfterUpdate = lastSessionTimestamp
-            sessionCountAfterUpdate = 1
-        } else {
-            sessionCountAfterUpdate++
+        when (savedVersionCode) {
+            appVersionCode -> sessionCountAfterUpdate++
+
+            // previous version is unknown (lifecycle storage was cleared), so it is not an update
+            0L -> {
+                savedVersionCode = appVersionCode
+                sessionCountAfterUpdate++
+            }
+
+            else -> {
+                savedVersionCode = appVersionCode
+                firstSessionTimestampAfterUpdate = lastSessionTimestamp
+                sessionCountAfterUpdate = 1
+            }
         }
+        sessionId = UUID.randomUUID().toString()
+    }
+
+    private fun initFirstSession() {
+        sessionCount = 1
+        sessionCountAfterUpdate = 1
+        firstSessionTimestamp = getCurrentTimestamp()
+        lastSessionTimestamp = firstSessionTimestamp
+        savedVersionCode = appVersionCode
         sessionId = UUID.randomUUID().toString()
     }
 
